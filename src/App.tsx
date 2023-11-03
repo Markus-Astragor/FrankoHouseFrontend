@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 /*test 2 */
-/*test branch*/
+/*deleted*/
 function App() {
   return (
     <div className="App">
