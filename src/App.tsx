@@ -5,6 +5,7 @@ import './App.css';
 import MainPage from './Pages/MainPage/MainPage';
 import NewsBoard from './Pages/NewsBoard/NewsBoard';
 
+
 function App() {
   const obj = {
     color: 'black',
