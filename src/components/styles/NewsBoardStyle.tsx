@@ -58,9 +58,11 @@ export const ShortText = styled.div`
   background-color: #d9d9d9;
   padding: 10px;
   text-align: center;
-  bottom: -150px;
+  top: 111%; /* Set the top property to 100% */
   color: white;
   font-size: 11px;
+  min-height: 100px; /* Adjust the minimum height as needed */
+  overflow: hidden;
 `;
 
 export const TimeStamp = styled.div`

@@ -20,19 +20,19 @@ interface NewsPieceBlockProps {
 function NewsPieceBlock({ image, title, shortText, timeStamp }: NewsPieceBlockProps) {
   return (
     <NewsPiece>
-      <ImageForNewsPiece>
-        <img src={image} />
-      </ImageForNewsPiece>
       <MiddleBlock>
+        <ImageForNewsPiece>
+          <img src={image} />
+        </ImageForNewsPiece>
         <MiddleImageForNewsPiece>
           <img src={MiddleImage} />
           <Title>{title}</Title>
         </MiddleImageForNewsPiece>
-        <ShortText>
-          {shortText}
-          <TimeStamp>{timeStamp}</TimeStamp>
-        </ShortText>
       </MiddleBlock>
+      <ShortText>
+        {shortText}
+        <TimeStamp>{timeStamp}</TimeStamp>
+      </ShortText>
     </NewsPiece>
   );
 }
