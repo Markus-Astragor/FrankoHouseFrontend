@@ -5,6 +5,8 @@ import {
   MiddleImageForNewsPiece,
   Title,
   ShortText,
+  TimeStamp,
+  MiddleBlock,
 } from "../../components/styles/NewsBoardStyle";
 import MiddleImage from "../../assets/NewsBoardImages/Середина.png";
 
@@ -12,19 +14,25 @@ interface NewsPieceBlockProps {
   image: string;
   title: string;
   shortText: string;
+  timeStamp: string;
 }
 
-function NewsPieceBlock({ image, title, shortText }: NewsPieceBlockProps) {
+function NewsPieceBlock({ image, title, shortText, timeStamp }: NewsPieceBlockProps) {
   return (
     <NewsPiece>
       <ImageForNewsPiece>
         <img src={image} />
       </ImageForNewsPiece>
-      <MiddleImageForNewsPiece>
-        <img src={MiddleImage} />
-        <Title>{title}</Title>
-      </MiddleImageForNewsPiece>
-      <ShortText>{shortText}</ShortText>
+      <MiddleBlock>
+        <MiddleImageForNewsPiece>
+          <img src={MiddleImage} />
+          <Title>{title}</Title>
+        </MiddleImageForNewsPiece>
+        <ShortText>
+          {shortText}
+          <TimeStamp>{timeStamp}</TimeStamp>
+        </ShortText>
+      </MiddleBlock>
     </NewsPiece>
   );
 }

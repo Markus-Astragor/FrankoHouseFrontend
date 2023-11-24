@@ -58,7 +58,19 @@ export const ShortText = styled.div`
   background-color: #d9d9d9;
   padding: 10px;
   text-align: center;
-  bottom: -119px;
+  bottom: -150px;
   color: white;
   font-size: 11px;
+`;
+
+export const TimeStamp = styled.div`
+  color: black;
+  font-weight: 700;
+  font-size: 10px;
+  margin-top: 20px;
+`;
+
+export const MiddleBlock = styled.div`
+  display: block;
+  position: relative;
 `;
