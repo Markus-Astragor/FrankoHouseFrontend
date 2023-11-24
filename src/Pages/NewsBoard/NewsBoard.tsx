@@ -1,4 +1,6 @@
 import React from "react";
+import { Pagination } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import TeenagerImg from "../../assets/NewsBoardImages/tvm-0 1.png";
 import { NewsBlock, NewsContainer, TitleProjects } from "../../components/styles/NewsBoardStyle";
 import NewsPiece from "./NewsPiece";
@@ -64,6 +66,11 @@ function NewsBoard() {
           );
         })}
       </NewsContainer>
+
+      <Stack spacing={2}>
+        <Pagination count={10} shape='rounded' />
+        <Pagination count={10} variant='outlined' shape='rounded' />
+      </Stack>
     </NewsBlock>
   );
 }

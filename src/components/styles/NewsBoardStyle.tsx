@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const NewsBlock = styled.div`
   display: block;
   background: #f3eded;
-  height: 120vh;
+  min-height: 120vh;
 `;
 
 export const NewsContainer = styled.div`
@@ -12,7 +12,7 @@ export const NewsContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 85%;
-  margin: 0 auto;
+  margin: 0 auto 200px auto;
   row-gap: 217px;
 `;
 
@@ -20,6 +20,11 @@ export const TitleProjects = styled.h2`
   font-size: 75px;
   text-align: center;
   font-weight: 700;
+`;
+
+export const Pages = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 // NewsPiece
@@ -69,7 +74,7 @@ export const TimeStamp = styled.div`
   color: black;
   font-weight: 700;
   font-size: 10px;
-  margin-top: 20px;
+  margin-top: 52px;
 `;
 
 export const MiddleBlock = styled.div`
