@@ -5,8 +5,6 @@ import "./App.css";
 import MainPage from "./Pages/MainPage/MainPage";
 import NewsBoard from "./Pages/NewsBoard/NewsBoard";
 
-
-
 function App() {
   const obj = {
     color: "black",
@@ -35,6 +33,7 @@ function App() {
           <Route element={<NewsBoard />} path='/posts' />
         </Routes>
       </Router>
+      <NewsBoard />
     </div>
   );
 }
