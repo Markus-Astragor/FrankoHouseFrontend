@@ -52,7 +52,16 @@ function NewsBoard() {
     <NewsBlock>
       <TitleProjects>Проекти</TitleProjects>
       <NewsContainer>
-        <NewsPiece image={data[0].image} title={data[0].title} />
+        {data.map((piecenews, index) => {
+          return (
+            <NewsPiece
+              image={piecenews.image}
+              title={piecenews.title}
+              shortText={piecenews.shortText}
+              key={index}
+            />
+          );
+        })}
       </NewsContainer>
     </NewsBlock>
   );

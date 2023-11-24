@@ -4,14 +4,16 @@ import styled from "styled-components";
 export const NewsBlock = styled.div`
   display: block;
   background: #f3eded;
-  height: 80vh;
+  height: 120vh;
 `;
 
 export const NewsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 85%;
   margin: 0 auto;
+  row-gap: 217px;
 `;
 
 export const TitleProjects = styled.h2`
@@ -25,6 +27,7 @@ export const NewsPiece = styled.div`
   display: block;
   width: 400px;
   position: relative;
+  margin: 10px;
 `;
 
 export const ImageForNewsPiece = styled.div`
@@ -35,6 +38,7 @@ export const MiddleImageForNewsPiece = styled.div`
   width: 400px;
   position: absolute;
   bottom: -38px;
+  z-index: 2;
 `;
 
 export const Title = styled.span`
@@ -46,4 +50,15 @@ export const Title = styled.span`
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
+`;
+
+export const ShortText = styled.div`
+  position: absolute;
+  width: 380px;
+  background-color: #d9d9d9;
+  padding: 10px;
+  text-align: center;
+  bottom: -119px;
+  color: white;
+  font-size: 11px;
 `;

@@ -33,7 +33,6 @@ function App() {
           <Route element={<NewsBoard />} path='/posts' />
         </Routes>
       </Router>
-      <NewsBoard />
     </div>
   );
 }
