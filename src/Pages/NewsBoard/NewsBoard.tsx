@@ -1,5 +1,7 @@
 import React from "react";
 import TeenagerImg from "../../assets/NewsBoardImages/tvm-0 1.png";
+import { NewsBlock, NewsContainer } from "../../components/styles/NewsBoardStyle";
+import NewsPiece from "./NewsPiece";
 
 function NewsBoard() {
   const data = [
@@ -47,9 +49,11 @@ function NewsBoard() {
     },
   ];
   return (
-    <div>
-      <img src={data[0].image} />
-    </div>
+    <NewsBlock>
+      <NewsContainer>
+        <NewsPiece image={data[0].image} />
+      </NewsContainer>
+    </NewsBlock>
   );
 }
 
