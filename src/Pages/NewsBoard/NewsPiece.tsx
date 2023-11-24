@@ -1,14 +1,27 @@
 import React from "react";
-import { NewsPiece } from "../../components/styles/NewsBoardStyle";
+import {
+  NewsPiece,
+  ImageForNewsPiece,
+  MiddleImageForNewsPiece,
+  Title,
+} from "../../components/styles/NewsBoardStyle";
+import MiddleImage from "../../assets/NewsBoardImages/Середина.png";
 
 interface NewsPieceBlockProps {
   image: string;
+  title: string;
 }
 
-function NewsPieceBlock({ image }: NewsPieceBlockProps) {
+function NewsPieceBlock({ image, title }: NewsPieceBlockProps) {
   return (
     <NewsPiece>
-      <img src={image} />
+      <ImageForNewsPiece>
+        <img src={image} />
+      </ImageForNewsPiece>
+      <MiddleImageForNewsPiece>
+        <img src={MiddleImage} />
+        <Title>{title}</Title>
+      </MiddleImageForNewsPiece>
     </NewsPiece>
   );
 }
