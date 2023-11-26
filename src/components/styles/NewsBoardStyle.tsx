@@ -9,7 +9,7 @@ export const NewsBlock = styled.div`
 
 export const NewsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 85%;
   margin: 0 auto 200px auto;
@@ -25,6 +25,8 @@ export const TitleProjects = styled.h2`
 export const Pages = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100px;
 `;
 
 // NewsPiece
