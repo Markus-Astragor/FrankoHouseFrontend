@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -199,6 +200,4 @@ function NewsBoard() {
       </Pages>
     </NewsBlock>
   );
-}
-
 export default NewsBoard;
