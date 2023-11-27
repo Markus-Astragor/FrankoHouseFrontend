@@ -13,7 +13,7 @@ import NewsPiece from "./NewsPiece";
 function NewsBoard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [newsPerPage] = useState<number>(6);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     setCurrentPage(value);
