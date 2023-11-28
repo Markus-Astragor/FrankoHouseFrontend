@@ -1,15 +1,14 @@
-
 import React, { useState } from "react";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import TeenagerImg from "../../assets/NewsBoardImages/tvm-0 1.png";
+import TeenagerImg from "../assets/NewsBoardImages/tvm-0 1.png";
 import {
   NewsBlock,
   NewsContainer,
   TitleProjects,
   Pages,
-} from "../../components/styles/NewsBoardStyle";
-import NewsPiece from "./NewsPiece";
+} from "../components/styles/NewsBoardStyle";
+import NewsPiece from "../components/NewsPiece";
 
 function NewsBoard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -200,4 +199,5 @@ function NewsBoard() {
       </Pages>
     </NewsBlock>
   );
+}
 export default NewsBoard;

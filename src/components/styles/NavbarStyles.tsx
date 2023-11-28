@@ -11,7 +11,7 @@ export const NavbarStyled = styled.div`
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
-  position: fixed;
+  /* position: fixed; */
 
   @media (max-width: 767px) {
     height: 110px;
@@ -20,7 +20,9 @@ export const NavbarStyled = styled.div`
 `;
 
 export const NavbarContainer = styled.div`
-  width: 90%;
+  max-width: 1200px;
+  padding: 0 30px;
+  box-sizing: border-box;
   margin: 0 auto;
 `;
 
@@ -47,7 +49,6 @@ export const Menu = styled.ul`
   display: flex;
   align-items: center;
   gap: 18px;
-
   font-size: 22px;
   font-weight: 700;
 
@@ -92,4 +93,15 @@ export const MenuItem = styled(NavLink)`
 
 export const SwitchLanguage = styled.div`
   cursor: pointer;
+`;
+
+export const Overlay = styled.div<{ show: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 6;
 `;
