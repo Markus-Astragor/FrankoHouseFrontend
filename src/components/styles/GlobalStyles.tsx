@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: 'Playfair Display', serif;
-        min-height: 100vh;
+        min-height: 100%;
     }
 
 
