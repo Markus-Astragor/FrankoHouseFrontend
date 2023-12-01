@@ -20,7 +20,7 @@ function Navbar() {
           </NavLink>
           <Menu>
             <MenuItem to='/'>Про нас</MenuItem>
-            <MenuItem to='/projects'>Проекти</MenuItem>
+            <MenuItem to='/posts'>Проекти</MenuItem>
             <MenuItem to='/partners'>Партнери</MenuItem>
             <MenuItem to='/contacts'>Контакти</MenuItem>
             <SwitchLanguage>UA|EN</SwitchLanguage>

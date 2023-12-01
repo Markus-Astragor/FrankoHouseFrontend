@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -10,8 +9,19 @@ import {
   Pages,
 } from "../../components/styles/NewsBoardStyle";
 import NewsPiece from "./NewsPiece";
+import { styled } from "@mui/material/styles";
 
 function NewsBoard() {
+  const StyledPagination = styled(Pagination)({
+    "& .MuiPaginationItem-page": {
+      backgroundColor: "black",
+      color: "white",
+    },
+    "& .MuiPaginationItem-arrows": {
+      backgroundColor: "black",
+    },
+  });
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [newsPerPage] = useState<number>(6);
   const [page, setPage] = useState<number>(1);
@@ -185,7 +195,7 @@ function NewsBoard() {
 
       <Pages>
         <Stack spacing={1}>
-          <Pagination
+          <StyledPagination
             count={
               data.length % newsPerPage !== 0
                 ? Math.round(data.length / newsPerPage) + 1
@@ -200,4 +210,5 @@ function NewsBoard() {
       </Pages>
     </NewsBlock>
   );
+}
 export default NewsBoard;
