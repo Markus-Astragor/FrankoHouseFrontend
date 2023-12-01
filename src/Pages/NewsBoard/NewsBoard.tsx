@@ -17,8 +17,8 @@ function NewsBoard() {
       backgroundColor: "black",
       color: "white",
     },
-    "& .MuiPaginationItem-arrows": {
-      backgroundColor: "black",
+    "& .MuiPaginationItem-icon": {
+      color: "white",
     },
   });
 
