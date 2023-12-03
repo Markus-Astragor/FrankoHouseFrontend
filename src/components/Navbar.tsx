@@ -51,7 +51,7 @@ function Navbar() {
           </Menu>
 
           <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
-          <BurgerMenu isOpen={isOpen} />
+          <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger} />
         </FlexContainer>
       </NavbarContainer>
       <Overlay onClick={handleOverlayClick} show={isOpen} />
