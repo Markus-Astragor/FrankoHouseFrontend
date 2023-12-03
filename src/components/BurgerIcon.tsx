@@ -10,7 +10,7 @@ interface BurgerIconProps {
 function BurgerIcon({ isOpen, onOpen }: BurgerIconProps) {
   return (
     <BurgerIconStyled opened={isOpen}>
-      <Hamburger size={28} toggled={isOpen} toggle={onOpen} />
+      <Hamburger size={isOpen ? 24 : 28} toggled={isOpen} toggle={onOpen} />
     </BurgerIconStyled>
   );
 }

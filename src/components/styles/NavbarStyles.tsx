@@ -30,7 +30,7 @@ export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  /* position: relative; */
 `;
 
 export const Logo = styled.img`
@@ -77,7 +77,9 @@ export const MenuItem = styled(NavLink)`
     position: absolute;
     top: 50%;
     opacity: 0;
-    transition: 0.3s ease-in-out;
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.2s linear;
   }
   &:hover {
     &::after {
