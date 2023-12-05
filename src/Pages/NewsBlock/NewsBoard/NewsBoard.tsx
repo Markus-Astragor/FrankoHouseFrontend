@@ -6,14 +6,9 @@ import {
   NewsContainer,
   TitleProjects,
   Pages,
-} from "../../components/styles/NewsBoardStyle";
-import NewsPiece from "./NewsPiece";
+} from "../../../components/styles/NewsBoardStyle";
+import NewsPiece from "../NewsPiece/NewsPiece";
 import { data } from "./mocks";
-
-// import constants
-// import Constants from "./constants";
-
-// const { newsPerPage, page, handleChange, currentNewsForCurrentPage } = Constants();
 
 function NewsBoard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -27,9 +22,7 @@ function NewsBoard() {
 
   const indexOfLastNewsPiece: number = currentPage * newsPerPage;
   const indexOfFirstNewsPiece = indexOfLastNewsPiece - newsPerPage;
-
   const currentNewsForCurrentPage = data.slice(indexOfFirstNewsPiece, indexOfLastNewsPiece);
-
   const totalCount =
     data.length % newsPerPage !== 0
       ? Math.round(data.length / newsPerPage) + 1

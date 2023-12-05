@@ -1,4 +1,4 @@
-import TeenagerImg from "../../assets/NewsBoardImages/tvm-0 1.png";
+import TeenagerImg from "../../../assets/NewsBoardImages/tvm-0 1.png";
 
 interface NewsMockData {
   image: string;

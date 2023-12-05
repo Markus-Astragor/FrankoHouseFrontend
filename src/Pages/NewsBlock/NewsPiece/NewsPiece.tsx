@@ -7,8 +7,8 @@ import {
   ShortText,
   TimeStamp,
   MiddleBlock,
-} from "../../components/styles/NewsBoardStyle";
-import MiddleImage from "../../assets/NewsBoardImages/Середина.png";
+} from "../../../components/styles/NewsBoardStyle";
+import MiddleImage from "../../../assets/NewsBoardImages/Середина.png";
 
 interface NewsPieceBlockProps {
   image: string;
