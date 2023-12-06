@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   BurgerMenuStyled,
@@ -28,6 +29,8 @@ interface BurgerMenuProps {
 }
 
 function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
+  const { t } = useTranslation();
+
   return (
     <BurgerMenuStyled open={isOpen}>
       <BurgerContainer>
@@ -38,10 +41,10 @@ function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
         </BugerLogoContainer>
 
         <BurgerMenuLinks>
-          <BurgerMenuLink to='/'>Про нас</BurgerMenuLink>
-          <BurgerMenuLink to='/posts'>Проекти</BurgerMenuLink>
-          <BurgerMenuLink to='/'>Партнери</BurgerMenuLink>
-          <BurgerMenuLink to='/'>Команди</BurgerMenuLink>
+          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link1")}</BurgerMenuLink>
+          <BurgerMenuLink to='/posts'>{t("ns1.description.navbar.link2")}</BurgerMenuLink>
+          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link3")}</BurgerMenuLink>
+          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link4")}</BurgerMenuLink>
         </BurgerMenuLinks>
 
         <InputContainer>
