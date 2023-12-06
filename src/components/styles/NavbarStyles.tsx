@@ -6,15 +6,23 @@ export const NavbarStyled = styled.div`
   width: 100%;
   box-sizing: border-box;
   height: 130px;
-  padding-top: 30px;
+  padding-top: 25px;
   background-image: url(${headerBackground});
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  /* position: fixed; */
+
+  @media (max-width: 767px) {
+    height: 110px;
+    padding-top: 20px;
+  }
 `;
 
 export const NavbarContainer = styled.div`
-  width: 90%;
+  max-width: 1200px;
+  padding: 0 30px;
+  box-sizing: border-box;
   margin: 0 auto;
 `;
 
@@ -22,6 +30,7 @@ export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* position: relative; */
 `;
 
 export const Logo = styled.img`
@@ -30,15 +39,27 @@ export const Logo = styled.img`
   padding-right: 10px;
   box-sizing: border-box;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    width: 90px;
+  }
 `;
 
 export const Menu = styled.ul`
   display: flex;
   align-items: center;
   gap: 18px;
-
   font-size: 22px;
   font-weight: 700;
+
+  @media (max-width: 767px) {
+    font-size: 18px;
+    gap: 14px;
+  }
+
+  @media (max-width: 609px) {
+    display: none;
+  }
 `;
 
 export const MenuItem = styled(NavLink)`
@@ -56,7 +77,9 @@ export const MenuItem = styled(NavLink)`
     position: absolute;
     top: 50%;
     opacity: 0;
-    transition: 0.3s ease-in-out;
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.2s linear;
   }
   &:hover {
     &::after {
@@ -72,4 +95,15 @@ export const MenuItem = styled(NavLink)`
 
 export const SwitchLanguage = styled.div`
   cursor: pointer;
+`;
+
+export const Overlay = styled.div<{ show: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${(props) => (props.show ? "block" : "none")};
+  z-index: 6;
 `;
