@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { GlobalStyles } from "./components/styles/GlobalStyles";
-import MainPage from "./Pages/MainPage/MainPage";
+import MainPage from "./Pages/MainPage";
 import NewsBoard from "./Pages/NewsBlock/NewsBoard/index";
-
 
 function App() {
   return (
