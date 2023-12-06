@@ -1,0 +1,10 @@
+{
+  "description": {
+    "navbar": {
+      "link1": "About us",
+      "link2": "Projects",
+      "link3": "Partners",
+      "link4": "Contacts"
+    }
+  }
+}

@@ -13,6 +13,7 @@ import {
 import { NavLink } from "react-router-dom";
 import BurgerIcon from "./BurgerIcon";
 import BurgerMenu from "./BurgerMenu";
+import { useTranslation } from "react-i18next";
 function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -34,6 +35,8 @@ function Navbar() {
     handleScroll();
   }
 
+  const { t, i18n } = useTranslation();
+
   return (
     <NavbarStyled>
       <NavbarContainer>
@@ -43,11 +46,14 @@ function Navbar() {
           </NavLink>
 
           <Menu>
-            <MenuItem to='/'>Про нас</MenuItem>
-            <MenuItem to='/posts'>Проекти</MenuItem>
-            <MenuItem to='/partners'>Партнери</MenuItem>
-            <MenuItem to='/contacts'>Контакти</MenuItem>
-            <SwitchLanguage>UA|EN</SwitchLanguage>
+            <MenuItem to='/'>{t("ns1.description.navbar.link1")}</MenuItem>
+            <MenuItem to='/posts'>{t("ns1.description.navbar.link2")}</MenuItem>
+            <MenuItem to='/partners'>{t("ns1.description.navbar.link3")}</MenuItem>
+            <MenuItem to='/contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
+            <SwitchLanguage>
+              <span onClick={() => i18n.changeLanguage("ua")}>UA</span>|
+              <span onClick={() => i18n.changeLanguage("en")}>EN</span>
+            </SwitchLanguage>
           </Menu>
 
           <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
