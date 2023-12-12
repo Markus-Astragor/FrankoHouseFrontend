@@ -36,8 +36,8 @@ function NewsBoard() {
             <NewsPiece
               image={piecenews.image}
               title={piecenews.title}
-              shortText={piecenews.shortText}
-              timeStamp={piecenews.timeStamp}
+              description={piecenews.description}
+              date={piecenews.date}
               key={index}
             />
           );

@@ -13,11 +13,11 @@ import MiddleImage from "../../../assets/NewsBoardImages/Середина.png";
 interface NewsPieceBlockProps {
   image: string;
   title: string;
-  shortText: string;
-  timeStamp: string;
+  description: string;
+  date: string;
 }
 
-function NewsPieceBlock({ image, title, shortText, timeStamp }: NewsPieceBlockProps) {
+function NewsPieceBlock({ image, title, description, date }: NewsPieceBlockProps) {
   return (
     <NewsPiece>
       <MiddleBlock>
@@ -30,8 +30,8 @@ function NewsPieceBlock({ image, title, shortText, timeStamp }: NewsPieceBlockPr
         </MiddleImageForNewsPiece>
       </MiddleBlock>
       <ShortText>
-        {shortText}
-        <TimeStamp>{timeStamp}</TimeStamp>
+        {description}
+        <TimeStamp>{date}</TimeStamp>
       </ShortText>
     </NewsPiece>
   );
