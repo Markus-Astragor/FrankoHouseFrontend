@@ -7,15 +7,15 @@ import {
   ShortText,
   TimeStamp,
   MiddleBlock,
-} from "../../../components/styles/NewsBoardStyle";
+} from "../NewsPiece/styled";
 import MiddleImage from "../../../assets/NewsBoardImages/Середина.png";
 
-interface NewsPieceBlockProps {
+type NewsPieceBlockProps = {
   image: string;
   title: string;
   description: string;
   date: string;
-}
+};
 
 function NewsPieceBlock({ image, title, description, date }: NewsPieceBlockProps) {
   return (

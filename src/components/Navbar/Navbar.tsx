@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LogoSrc from "../assets/header-imgs/logo.png";
+import LogoSrc from "../../assets/header-imgs/logo.png";
 import {
   NavbarStyled,
   NavbarContainer,
@@ -9,10 +9,10 @@ import {
   Menu,
   MenuItem,
   SwitchLanguage,
-} from "./styles/NavbarStyles";
+} from "./NavbarStyles";
 import { NavLink } from "react-router-dom";
-import BurgerIcon from "./BurgerIcon";
-import BurgerMenu from "./BurgerMenu";
+import BurgerIcon from "../BurgerIcon/BurgerIcon";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
 function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

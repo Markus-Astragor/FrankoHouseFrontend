@@ -13,15 +13,15 @@ import {
   Input,
   InputButton,
   SocialMediaContainer,
-} from "./styles/BurgerMenuStyles";
+} from "./BurgerMenuStyles";
 
 /* Icons & images*/
-import LogoSrc from "../assets/header-imgs/logo.png";
-import SearchIcon from "../assets/header-imgs/search_icon.png";
+import LogoSrc from "../../assets/header-imgs/logo.png";
+import SearchIcon from "../../assets/header-imgs/search_icon.png";
 
-import FacebookSVG from "./SVG/FacebookSVG";
-import InstagramSVG from "./SVG/TelegramSVG";
-import YoutubeSVG from "./SVG/YoutubeSVG";
+import FacebookSVG from "../SVG/FacebookSVG";
+import InstagramSVG from "../SVG/TelegramSVG";
+import YoutubeSVG from "../SVG/YoutubeSVG";
 
 interface BurgerMenuProps {
   isOpen: boolean;

@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { StyledPagination } from "./styled";
-import Stack from "@mui/material/Stack";
-import {
-  NewsBlock,
-  NewsContainer,
-  TitleProjects,
-  Pages,
-} from "../../../components/styles/NewsBoardStyle";
+import { NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
 import { data } from "./mocks";
+import Pagination from "./Pagination/Pagination";
 
 function NewsBoard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -44,17 +38,7 @@ function NewsBoard() {
         })}
       </NewsContainer>
 
-      <Pages>
-        <Stack spacing={1}>
-          <StyledPagination
-            count={totalCount}
-            page={page}
-            onChange={handleChange}
-            variant='outlined'
-            shape='rounded'
-          />
-        </Stack>
-      </Pages>
+      <Pagination totalCount={totalCount} page={page} handleChange={handleChange} />
     </NewsBlock>
   );
 }

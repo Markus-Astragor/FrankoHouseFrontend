@@ -1,5 +1,5 @@
 import React from "react";
-import { SvgWrapper } from "../styles/SvgStyles";
+import { SvgWrapper } from "./SvgStyles";
 function FacebookSVG() {
   return (
     <SvgWrapper>
