@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { StyledPagination } from "./styled";
 import Stack from "@mui/material/Stack";
-import {
-  NewsBlock,
-  NewsContainer,
-  TitleProjects,
-  Pages,
-} from "../../../components/styles/NewsBoardStyle";
+import { NewsBlock, NewsContainer, TitleProjects, Pages } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
 import { data } from "./mocks";
 

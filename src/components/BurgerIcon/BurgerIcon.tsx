@@ -1,6 +1,6 @@
 import React from "react";
 import Hamburger from "hamburger-react";
-import { BurgerIconStyled } from "./styles/BurgerIconStyles";
+import { BurgerIconStyled } from "./BurgerIconStyles";
 
 interface BurgerIconProps {
   isOpen: boolean;
