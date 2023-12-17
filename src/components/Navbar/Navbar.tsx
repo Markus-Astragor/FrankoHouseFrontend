@@ -46,7 +46,7 @@ function Navbar() {
           </NavLink>
 
           <Menu>
-            <MenuItem to='/'>{t("ns1.description.navbar.link1")}</MenuItem>
+            <MenuItem to='/about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
             <MenuItem to='/posts'>{t("ns1.description.navbar.link2")}</MenuItem>
             <MenuItem to='/partners'>{t("ns1.description.navbar.link3")}</MenuItem>
             <MenuItem to='/contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
