@@ -41,10 +41,10 @@ function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
         </BugerLogoContainer>
 
         <BurgerMenuLinks>
-          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link1")}</BurgerMenuLink>
+          <BurgerMenuLink to='/about-us'>{t("ns1.description.navbar.link1")}</BurgerMenuLink>
           <BurgerMenuLink to='/posts'>{t("ns1.description.navbar.link2")}</BurgerMenuLink>
-          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link3")}</BurgerMenuLink>
-          <BurgerMenuLink to='/'>{t("ns1.description.navbar.link4")}</BurgerMenuLink>
+          <BurgerMenuLink to='/partners'>{t("ns1.description.navbar.link3")}</BurgerMenuLink>
+          <BurgerMenuLink to='/contacts'>{t("ns1.description.navbar.link4")}</BurgerMenuLink>
         </BurgerMenuLinks>
 
         <InputContainer>

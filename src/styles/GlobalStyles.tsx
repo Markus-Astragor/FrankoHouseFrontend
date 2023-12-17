@@ -18,5 +18,10 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
     }
 
+    .active{
+        /* transform: rotate(3deg); */
+        color: red;
+    }
+
 
 `;
