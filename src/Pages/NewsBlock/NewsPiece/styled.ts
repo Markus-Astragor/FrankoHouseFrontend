@@ -27,6 +27,7 @@ export const Title = styled.span`
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
+  cursor: pointer;
 `;
 
 export const ShortText = styled.div`
