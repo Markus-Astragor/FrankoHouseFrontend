@@ -33,6 +33,7 @@ function NewsBoard() {
               description={piecenews.description}
               date={piecenews.date}
               key={index}
+              id={piecenews.id}
             />
           );
         })}
