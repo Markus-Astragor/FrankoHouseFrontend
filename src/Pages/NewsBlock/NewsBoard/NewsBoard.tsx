@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
 import { data } from "./mocks";
 import Pagination from "./Pagination/Pagination";
 
 function NewsBoard() {
+  type NewsData = {
+    _id: string;
+    Title: string;
+    ShortDescription: string;
+    Photos: string[];
+    Timestamp: string;
+  };
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [newsPerPage] = useState<number>(6);
   const [page, setPage] = useState<number>(1);
+  const [, setDataFromBackend] = useState<NewsData[]>();
+
+  useEffect(() => {
+    axios
+      .get("https://www.server24.space/api/getPosts")
+      .then((res) => {
+        console.log(res);
+        setDataFromBackend(res.data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
