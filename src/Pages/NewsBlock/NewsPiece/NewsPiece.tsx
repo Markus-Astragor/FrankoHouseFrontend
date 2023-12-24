@@ -9,15 +9,22 @@ import {
   MiddleBlock,
 } from "../NewsPiece/styled";
 import MiddleImage from "../../../assets/NewsBoardImages/Середина.png";
+import { useNavigate } from "react-router-dom";
 
 type NewsPieceBlockProps = {
+  id: number;
   image: string;
   title: string;
   description: string;
   date: string;
 };
 
-function NewsPieceBlock({ image, title, description, date }: NewsPieceBlockProps) {
+function NewsPieceBlock({ image, title, description, date, id }: NewsPieceBlockProps) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/posts/${id}`);
+  };
+
   return (
     <NewsPiece>
       <MiddleBlock>
@@ -26,7 +33,7 @@ function NewsPieceBlock({ image, title, description, date }: NewsPieceBlockProps
         </ImageForNewsPiece>
         <MiddleImageForNewsPiece>
           <img src={MiddleImage} />
-          <Title>{title}</Title>
+          <Title onClick={handleClick}>{title}</Title>
         </MiddleImageForNewsPiece>
       </MiddleBlock>
       <ShortText>

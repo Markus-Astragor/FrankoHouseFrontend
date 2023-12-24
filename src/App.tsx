@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import MainPage from "./Pages/MainPage";
-import NewsBoard from "./Pages/NewsBlock/NewsBoard/index";
 import AboutUs from "./Pages/AboutUs/AboutUs";
+import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Routes>
           <Route element={<MainPage />} path='/' />
-          <Route element={<NewsBoard />} path='/posts' />
+          <Route element={<NewsBoardRoutes />} path='/posts/*' />
           <Route element={<AboutUs />} path='/about-us' />
         </Routes>
       </Router>
