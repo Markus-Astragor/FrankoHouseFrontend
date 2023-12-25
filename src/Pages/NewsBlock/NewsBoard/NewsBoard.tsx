@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
-import { data } from "./mocks";
 import Pagination from "./Pagination/Pagination";
 
 function NewsBoard() {
@@ -17,7 +16,7 @@ function NewsBoard() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [newsPerPage] = useState<number>(6);
   const [page, setPage] = useState<number>(1);
-  const [, setDataFromBackend] = useState<NewsData[]>();
+  const [dataFromBackend, setDataFromBackend] = useState<NewsData[]>([]);
 
   useEffect(() => {
     axios
@@ -38,11 +37,14 @@ function NewsBoard() {
 
   const indexOfLastNewsPiece: number = currentPage * newsPerPage;
   const indexOfFirstNewsPiece = indexOfLastNewsPiece - newsPerPage;
-  const currentNewsForCurrentPage = data.slice(indexOfFirstNewsPiece, indexOfLastNewsPiece);
+  const currentNewsForCurrentPage = dataFromBackend.slice(
+    indexOfFirstNewsPiece,
+    indexOfLastNewsPiece,
+  );
   const totalCount =
-    data.length % newsPerPage !== 0
-      ? Math.round(data.length / newsPerPage) + 1
-      : data.length / newsPerPage;
+    dataFromBackend.length % newsPerPage !== 0
+      ? Math.round(dataFromBackend.length / newsPerPage) + 1
+      : dataFromBackend.length / newsPerPage;
   return (
     <NewsBlock>
       <TitleProjects>Проекти</TitleProjects>
@@ -50,12 +52,12 @@ function NewsBoard() {
         {currentNewsForCurrentPage.map((piecenews, index) => {
           return (
             <NewsPiece
-              image={piecenews.image}
-              title={piecenews.title}
-              description={piecenews.description}
-              date={piecenews.date}
+              image={piecenews.Photos[0]}
+              title={piecenews.Title}
+              description={piecenews.ShortDescription}
+              date={piecenews.Timestamp}
               key={index}
-              id={piecenews.id}
+              id={piecenews._id}
             />
           );
         })}

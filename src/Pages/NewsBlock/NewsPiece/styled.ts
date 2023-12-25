@@ -38,7 +38,7 @@ export const ShortText = styled.div`
   text-align: center;
   top: 111%; /* Set the top property to 100% */
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   min-height: 100px; /* Adjust the minimum height as needed */
   overflow: hidden;
 `;
@@ -46,7 +46,7 @@ export const ShortText = styled.div`
 export const TimeStamp = styled.div`
   color: black;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 15px;
   margin-top: 52px;
 `;
 
