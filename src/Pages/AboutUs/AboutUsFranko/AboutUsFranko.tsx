@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AboutUsFrankoStyled,
   WhiteBackground,
@@ -13,13 +14,14 @@ import frankoImgSrc from "../../../assets/about-us/franko-face.png";
 import flowersImgSrc from "../../../assets/about-us/flowers.png";
 
 function AboutUsFranko() {
+  const { t } = useTranslation();
+
   return (
     <AboutUsFrankoStyled>
       <AboutUsFrankoContainer>
         <FrankoQuote>
-          &quot;Людина повинна бути великою не за величезністю своїх досягнень, а за величчю своїх
-          мрій.&quot;
-          <FrankoQuoteAuthor>- Іван Франко</FrankoQuoteAuthor>
+          &quot;{t("ns1.description.about-us.franko-quote")}&quot;
+          <FrankoQuoteAuthor>- {t("ns1.description.about-us.franko-name")}</FrankoQuoteAuthor>
         </FrankoQuote>
 
         <FrankoImg src={frankoImgSrc} />

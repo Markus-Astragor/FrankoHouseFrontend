@@ -1,5 +1,7 @@
 import React from "react";
 import Map from "./Map/Map";
+import { useTranslation } from "react-i18next";
+
 import {
   AboutUsInfoLineStyled,
   WhiteBackgorundTop,
@@ -18,6 +20,8 @@ import MailIconSrc from "../../../assets/about-us/about-us-info-line/mail-icon.p
 import LocationIconSrc from "../../../assets/about-us/about-us-info-line/location-icon.png";
 import FrankoImgSrc from "../../../assets/about-us/about-us-info-line/franko-img.png";
 function AboutUsInfoLine() {
+  const { t } = useTranslation();
+
   return (
     <AboutUsInfoLineStyled>
       <WhiteBackgorundTop />
@@ -26,7 +30,7 @@ function AboutUsInfoLine() {
         <FrankoImg src={FrankoImgSrc} />
         <InfoLineBlock>
           <InfoLineBlockText>
-            <InfoLineBlockTitle>Інформаційна лінія</InfoLineBlockTitle>
+            <InfoLineBlockTitle>{t("ns1.description.about-us.info-line")}</InfoLineBlockTitle>
             <ul>
               <InfoLineBlockItem>
                 <ItemIcon src={PhoneIconSrc} />
@@ -38,7 +42,7 @@ function AboutUsInfoLine() {
               </InfoLineBlockItem>
               <InfoLineBlockItem>
                 <ItemIcon src={LocationIconSrc} />
-                <TextItem>вулиця Івана Франка, 150, 152, Львів, Львівська область, 79000</TextItem>
+                <TextItem>{t("ns1.description.about-us.adress")}</TextItem>
               </InfoLineBlockItem>
             </ul>
           </InfoLineBlockText>

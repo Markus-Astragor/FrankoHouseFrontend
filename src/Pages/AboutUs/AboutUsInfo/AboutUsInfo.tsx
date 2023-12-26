@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   AboutUsInfoContainer,
   AboutUsInfoStyled,
@@ -19,26 +20,27 @@ import frankoWithBookImgSrc from "../../../assets/about-us/about-us-info/franko.
 import bookImgSrc from "../../../assets/about-us/about-us-info/book.png";
 
 function AboutUsInfo() {
+  const { t } = useTranslation();
+
   return (
     <AboutUsInfoStyled>
       <AboutUsInfoContainer>
-        <AboutUsInfoTtitle>Про нас</AboutUsInfoTtitle>
+        <AboutUsInfoTtitle>{t("ns1.description.about-us.about-us-title")}</AboutUsInfoTtitle>
         <AboutUsFlex>
           <AboutUsFlexLeft>
             <FlexItemWrapper>
-              <AboutUsFlexLeftTitle>Хто ми?</AboutUsFlexLeftTitle>
-              <AboutUsFlexLeftDesc>
-                Наша місія - об&apos;єднати музеї, які присвячені Івану Франку, для спільної роботи
-                над збереженням та популяризацією його спадщини в Україні та за її межами.
-              </AboutUsFlexLeftDesc>
+              <AboutUsFlexLeftTitle>{t("ns1.description.about-us.who-we")}</AboutUsFlexLeftTitle>
+              <AboutUsFlexLeftDesc>{t("ns1.description.about-us.our-mission")}</AboutUsFlexLeftDesc>
             </FlexItemWrapper>
             <FlexItemWrapper>
-              <AboutUsFlexLeftTitle>Чим ми займаємось?</AboutUsFlexLeftTitle>
+              <AboutUsFlexLeftTitle>
+                {t("ns1.description.about-us.our-occupation")}
+              </AboutUsFlexLeftTitle>
               <List>
-                <Li>Дослідження</Li>
-                <Li>Популяризація</Li>
-                <Li>Комунікація</Li>
-                <Li>Взаємодія</Li>
+                <Li>{t("ns1.description.about-us.list-of-occupation.item1")}</Li>
+                <Li>{t("ns1.description.about-us.list-of-occupation.item2")}</Li>
+                <Li>{t("ns1.description.about-us.list-of-occupation.item3")}</Li>
+                <Li>{t("ns1.description.about-us.list-of-occupation.item4")}</Li>
               </List>
             </FlexItemWrapper>
           </AboutUsFlexLeft>

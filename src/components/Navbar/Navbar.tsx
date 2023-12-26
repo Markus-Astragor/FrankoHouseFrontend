@@ -37,6 +37,11 @@ function Navbar() {
 
   const { t, i18n } = useTranslation();
 
+  function changeLanguage(lan: string) {
+    localStorage.setItem("language", lan);
+    i18n.changeLanguage(lan);
+  }
+
   return (
     <NavbarStyled>
       <NavbarContainer>
@@ -51,8 +56,8 @@ function Navbar() {
             <MenuItem to='/partners'>{t("ns1.description.navbar.link3")}</MenuItem>
             <MenuItem to='/contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
             <SwitchLanguage>
-              <span onClick={() => i18n.changeLanguage("ua")}>UA</span>|
-              <span onClick={() => i18n.changeLanguage("en")}>EN</span>
+              <span onClick={() => changeLanguage("ua")}>UA</span>|
+              <span onClick={() => changeLanguage("en")}>EN</span>
             </SwitchLanguage>
           </Menu>
 
