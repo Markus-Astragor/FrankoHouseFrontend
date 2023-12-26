@@ -5,6 +5,22 @@
       "link2": "Projects",
       "link3": "Partners",
       "link4": "Contacts"
+    },
+    "about-us": {
+      "franko-quote": "A person should be great not by the magnitude of their achievements, but by the greatness of their dreams.",
+      "franko-name": "Ivan Franko",
+      "about-us-title": "About Us",
+      "who-we": "Who We Are",
+      "our-mission": "Our mission is to unite museums dedicated to Ivan Franko for collaborative efforts in preserving and promoting his legacy in Ukraine and beyond.",
+      "our-occupation": "What We Do",
+      "list-of-occupation": {
+        "item1": "Research",
+        "item2": "Popularization",
+        "item3": "Communication",
+        "item4": "Interaction"
+      },
+      "info-line": "Information line",
+      "adress": "Ivana Franka Street, 150, 152, Lviv, Lviv region, 79000"
     }
   }
 }
