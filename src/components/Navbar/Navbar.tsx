@@ -23,11 +23,11 @@ function Navbar() {
   }
 
   function handleScroll() {
-    if (!isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "visible";
-    }
+    // if (!isOpen) {
+    //   document.body.style.overflow = "hidden";
+    // } else {
+    //   document.body.style.overflow = "visible";
+    // }
   }
 
   function handleOpenBurger() {
