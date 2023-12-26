@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import URLS from "../../../configURLS.json";
 
 function FullNewsPiece() {
   type NewsData = {
@@ -17,7 +18,7 @@ function FullNewsPiece() {
 
   useEffect(() => {
     axios
-      .get(`https://www.server24.space/api/getPosts/${id}`)
+      .get(`${URLS["BASE-URL"]}/getPosts/${id}`)
       .then((res) => {
         console.log(res.data);
         setNeddedPost(res.data);

@@ -3,6 +3,7 @@ import axios from "axios";
 import { NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
 import Pagination from "./Pagination/Pagination";
+import URLS from "../../../configURLS.json";
 
 function NewsBoard() {
   type NewsData = {
@@ -20,7 +21,7 @@ function NewsBoard() {
 
   useEffect(() => {
     axios
-      .get("https://www.server24.space/api/getPosts")
+      .get(`${URLS["BASE-URL"]}/getPosts`)
       .then((res) => {
         console.log(res);
         setDataFromBackend(res.data);
