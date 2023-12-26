@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   AboutUsFrankoStyled,
@@ -15,6 +15,9 @@ import flowersImgSrc from "../../../assets/about-us/flowers.png";
 
 function AboutUsFranko() {
   const { t } = useTranslation();
+  useEffect(() => {
+    console.log("rendering page");
+  }, []);
 
   return (
     <AboutUsFrankoStyled>
