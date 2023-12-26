@@ -12,6 +12,7 @@ import {
   AboutUsFlexRight,
   AboutUsFlexRightBook,
   AboutUsFlexRightFranko,
+  FlexItemWrapper,
 } from "./AboutUsInfoStyles";
 
 import frankoWithBookImgSrc from "../../../assets/about-us/about-us-info/franko.png";
@@ -24,18 +25,22 @@ function AboutUsInfo() {
         <AboutUsInfoTtitle>Про нас</AboutUsInfoTtitle>
         <AboutUsFlex>
           <AboutUsFlexLeft>
-            <AboutUsFlexLeftTitle>Хто ми?</AboutUsFlexLeftTitle>
-            <AboutUsFlexLeftDesc>
-              Наша місія - об&apos;єднати музеї, які присвячені Івану Франку, для спільної роботи
-              над збереженням та популяризацією його спадщини в Україні та за її межами.
-            </AboutUsFlexLeftDesc>
-            <AboutUsFlexLeftTitle>Чим ми займаємось?</AboutUsFlexLeftTitle>
-            <List>
-              <Li>Дослідження</Li>
-              <Li>Популяризація</Li>
-              <Li>Комунікація</Li>
-              <Li>Взаємодія</Li>
-            </List>
+            <FlexItemWrapper>
+              <AboutUsFlexLeftTitle>Хто ми?</AboutUsFlexLeftTitle>
+              <AboutUsFlexLeftDesc>
+                Наша місія - об&apos;єднати музеї, які присвячені Івану Франку, для спільної роботи
+                над збереженням та популяризацією його спадщини в Україні та за її межами.
+              </AboutUsFlexLeftDesc>
+            </FlexItemWrapper>
+            <FlexItemWrapper>
+              <AboutUsFlexLeftTitle>Чим ми займаємось?</AboutUsFlexLeftTitle>
+              <List>
+                <Li>Дослідження</Li>
+                <Li>Популяризація</Li>
+                <Li>Комунікація</Li>
+                <Li>Взаємодія</Li>
+              </List>
+            </FlexItemWrapper>
           </AboutUsFlexLeft>
           <AboutUsFlexRight>
             <AboutUsFlexRightBook src={bookImgSrc} />

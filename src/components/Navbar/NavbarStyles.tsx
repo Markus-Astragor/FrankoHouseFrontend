@@ -105,5 +105,5 @@ export const Overlay = styled.div<{ show: boolean }>`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: ${(props) => (props.show ? "block" : "none")};
-  z-index: 6;
+  z-index: 7;
 `;

@@ -4,9 +4,20 @@ import whiteBgSrc from "../../../assets/about-us/white-backgorund.png";
 export const AboutUsFrankoStyled = styled.div`
   height: 700px;
   width: 100%;
-  position: relative;
   box-sizing: border-box;
-  padding: 100px 40px 0;
+  padding: 100px 0 0;
+  position: relative;
+  @media (max-width: 950px) {
+    padding-top: 70px;
+  }
+`;
+
+export const AboutUsFrankoContainer = styled.div`
+  max-width: 1280px;
+  padding: 0 20px;
+  position: relative;
+  height: 100%;
+  margin: 0 auto;
 `;
 
 export const WhiteBackground = styled.div`
@@ -25,9 +36,20 @@ export const FrankoImg = styled.img`
   right: 0px;
   height: auto;
   width: 400px;
-  /* width: 30%; */
-  width: calc(20vw + 130px);
+  width: 420px;
   z-index: 5;
+  @media (max-width: 950px) {
+    width: 350px;
+  }
+
+  @media (max-width: 768px) {
+    width: 280px;
+  }
+  @media (max-width: 430px) {
+    width: 220px;
+    /* left: 50%;
+    transform: translateX(-50%); */
+  }
 `;
 
 export const YellowCircle = styled.div`
@@ -47,10 +69,14 @@ export const FlowersImg = styled.img`
   bottom: 130px;
   left: 0;
   width: 500px;
-  /* width: 30%; */
-  width: calc(20vw + 200px);
-
   height: auto;
+
+  @media (max-width: 950px) {
+    width: 350px;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const FrankoQuote = styled.div`
@@ -59,11 +85,31 @@ export const FrankoQuote = styled.div`
   font-size: 30px;
   max-width: 900px;
   line-height: 50px;
+
+  @media (max-width: 1175px) {
+    max-width: 600px;
+  }
+
+  @media (max-width: 950px) {
+    font-size: 26px;
+    line-height: 45px;
+  }
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    font-size: 20px;
+  }
 `;
 
 export const FrankoQuoteAuthor = styled.p`
   display: flex;
   justify-content: end;
   padding-right: 100px;
-  padding-top: 30px;
+  padding-top: 10px;
+  @media (max-width: 950px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: end;
+  }
 `;
