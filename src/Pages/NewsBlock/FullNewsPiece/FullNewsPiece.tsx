@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router";
-import { fullData } from "../NewsBoard/mocks";
+import URLS from "../../../configURLS.json";
 
 function FullNewsPiece() {
+  type NewsData = {
+    _id: string;
+    Title: string;
+    ShortDescription: string;
+    Photos: string[];
+    Timestamp: string;
+  };
+
   const { id } = useParams();
-  const neededFullPieceNews = fullData.find((pieceOfNews) => pieceOfNews.id === Number(id));
-  console.log("neededFullPieceNews", neededFullPieceNews);
+  const [neededPost, setNeddedPost] = useState<NewsData>();
+  console.log("id", id);
+
+  useEffect(() => {
+    axios
+      .get(`${URLS["BASE-URL"]}/getPosts/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setNeddedPost(res.data);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
 
   return (
     <div>
-      <h3 style={{ textAlign: "center" }}>{neededFullPieceNews?.title}</h3>
-      <p style={{ textAlign: "center" }}>{neededFullPieceNews?.description}</p>
-      <p style={{ textAlign: "center" }}>{neededFullPieceNews?.fullDescription}</p>
+      <p>{neededPost?.Title}</p>
     </div>
   );
 }
