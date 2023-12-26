@@ -14,7 +14,10 @@ import { NavLink } from "react-router-dom";
 import BurgerIcon from "../BurgerIcon/BurgerIcon";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
+import { useLanguageContext } from "../../Context/LanguageContext";
 function Navbar() {
+  const { setLanguage } = useLanguageContext();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function handleOverlayClick() {
@@ -39,6 +42,7 @@ function Navbar() {
 
   function changeLanguage(lan: string) {
     localStorage.setItem("language", lan);
+    setLanguage(lan);
     i18n.changeLanguage(lan);
   }
 
