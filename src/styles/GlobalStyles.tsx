@@ -19,9 +19,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .active{
-        /* transform: rotate(3deg); */
         color: red;
     }
-
-
 `;
