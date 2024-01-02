@@ -67,7 +67,29 @@ export const MenuItem = styled(NavLink)`
   color: #000;
   font-family: "Playfair Display", serif;
   text-decoration: none;
-  &::before,
+  padding: 4px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    bottom: -4px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover {
+    &::before {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
+  /* &::before,
   &:after {
     content: "";
     display: block;
@@ -90,7 +112,7 @@ export const MenuItem = styled(NavLink)`
       opacity: 1;
       transform: translateY(-20px);
     }
-  }
+  } */
 `;
 
 export const SwitchLanguage = styled.div`

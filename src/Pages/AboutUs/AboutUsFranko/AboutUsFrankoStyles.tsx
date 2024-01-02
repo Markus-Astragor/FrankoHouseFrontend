@@ -100,11 +100,14 @@ export const FrankoQuote = styled.div`
   }
 `;
 
-export const FrankoQuoteAuthor = styled.p`
+export const FrankoQuoteAuthor = styled.p<{ showFrankoName: boolean }>`
+  transition: ${(props) => (props.showFrankoName ? "2s ease-in" : "0s linear")};
+  opacity: ${(props) => (props.showFrankoName ? 1 : 0)};
   display: flex;
   justify-content: end;
   padding-right: 100px;
   padding-top: 10px;
+
   @media (max-width: 950px) {
     justify-content: center;
   }
