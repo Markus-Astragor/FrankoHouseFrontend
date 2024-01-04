@@ -1,5 +1,4 @@
 import React, { FormEvent, useRef, useState } from "react";
-import axios from "axios";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
@@ -8,6 +7,7 @@ import TextArea from "../../../components/TextArea/TexArea";
 import { FormElementWrapper, FileInput } from "./CreatePostStyles";
 
 import config from "../../../configURLS.json";
+import axios from "axios";
 
 function CreatePost() {
   const fileRef = useRef<HTMLInputElement | null>(null);
@@ -35,29 +35,25 @@ function CreatePost() {
 
   function createPost() {
     const data = new FormData();
-    images.forEach((image, index) => {
-      data.append(`image-${index + 1}`, image);
+    data.append("UkrTitle", UkrTitle || "");
+    data.append("UkrDescription", UkrDescription || "");
+    data.append("UkrShortDescription", UkrShortDescription || "");
+    data.append("EngTitle", EngTitle || "");
+    data.append("EngDescription", EngDescription || "");
+    data.append("EngShortDescription", EngShortDescription || "");
+    images.forEach((image) => {
+      data.append("Photos", image);
     });
 
+    console.log(data.get("Photos"));
+
     axios
-      .post(
-        `${config["BASE-URL"]}/admin/createPost`,
-        {
-          UkrTitle,
-          UkrDescription,
-          UkrShortDescription,
-          EngTitle,
-          EngShortDescription,
-          EngDescription,
-          Photos: data,
+      .post(`${config["BASE-URL"]}/admin/createPost`, data, {
+        headers: {
+          // "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
         },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-          },
-        },
-      )
+      })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
