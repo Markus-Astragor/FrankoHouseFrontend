@@ -80,7 +80,7 @@ export const MenuItem = styled(NavLink)`
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.4s ease-in-out;
   }
 
   &:hover {

@@ -18,9 +18,9 @@ import { useLanguageContext } from "../../../Context/LanguageContext";
 function AboutUsFranko() {
   const { language } = useLanguageContext();
   const { t } = useTranslation();
-  const text = t("ns1.description.about-us.franko-quote");
   const [currentText, setCurrentText] = useState<string>("");
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const text = t("ns1.description.about-us.franko-quote");
   const showFrankoName = currentIndex === text.length;
 
   // changig text when language chnages accordingly
@@ -35,7 +35,7 @@ function AboutUsFranko() {
       const timeout = setTimeout(() => {
         setCurrentText((prevText) => prevText + text[currentIndex]);
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      }, 25);
+      }, 40);
 
       return () => clearTimeout(timeout);
     }
@@ -45,8 +45,6 @@ function AboutUsFranko() {
     <AboutUsFrankoStyled>
       <AboutUsFrankoContainer>
         <FrankoQuote>
-          {/* &quot;{t("ns1.description.about-us.franko-quote")}&quot;
-           */}
           {currentText}
           <FrankoQuoteAuthor showFrankoName={showFrankoName}>
             - {t("ns1.description.about-us.franko-name")}
