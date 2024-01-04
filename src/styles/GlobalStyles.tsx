@@ -19,6 +19,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .active{
-        color: red;
+        /* color: red; */
     }
 `;

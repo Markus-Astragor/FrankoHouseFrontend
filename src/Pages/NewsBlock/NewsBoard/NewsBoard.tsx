@@ -10,7 +10,7 @@ function NewsBoard() {
     _id: string;
     Title: string;
     ShortDescription: string;
-    Photos: string[];
+    Photos: string;
     Timestamp: string;
   };
 
@@ -53,7 +53,7 @@ function NewsBoard() {
         {currentNewsForCurrentPage.map((piecenews, index) => {
           return (
             <NewsPiece
-              image={piecenews.Photos[0]}
+              image={piecenews.Photos}
               title={piecenews.Title}
               description={piecenews.ShortDescription}
               date={piecenews.Timestamp}

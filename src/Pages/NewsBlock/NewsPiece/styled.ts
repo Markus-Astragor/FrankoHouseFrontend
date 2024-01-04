@@ -9,6 +9,9 @@ export const NewsPiece = styled.div`
 
 export const ImageForNewsPiece = styled.div`
   display: block;
+  img {
+    width: 100%;
+  }
 `;
 
 export const MiddleImageForNewsPiece = styled.div`
