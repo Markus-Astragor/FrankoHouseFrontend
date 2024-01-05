@@ -21,6 +21,7 @@ function AdminAuth() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoader(true);
+    setErrorText("");
 
     console.log("login", login);
     console.log("password", password);
