@@ -6,11 +6,10 @@ import {
   FieldName,
   SubmitButton,
   ErrorParagraph,
-  Loader,
-  BlockForLoader,
 } from "./AdminAuthStyle";
 import axios from "axios";
 import URLS from "../../configURLS.json";
+import LoaderComponent from "../../components/Loader/LoaderComponent";
 
 function AdminAuth() {
   const [login, setLogin] = useState<string>("");
@@ -23,13 +22,10 @@ function AdminAuth() {
     setLoader(true);
     setErrorText("");
 
-    console.log("login", login);
-    console.log("password", password);
-
     axios
       .post(`${URLS["BASE-URL"]}/login`, {
-        Login: login,
-        Password: password,
+        login: login,
+        password: password,
       })
       .then((res) => {
         console.log("res", res);
@@ -64,13 +60,7 @@ function AdminAuth() {
           required
         />
         <ErrorParagraph>{errorText}</ErrorParagraph>
-        {loader ? (
-          <BlockForLoader>
-            <Loader></Loader>
-          </BlockForLoader>
-        ) : (
-          <SubmitButton>Увійти</SubmitButton>
-        )}
+        {loader ? <LoaderComponent /> : <SubmitButton>Увійти</SubmitButton>}
       </Form>
     </MainBlock>
   );

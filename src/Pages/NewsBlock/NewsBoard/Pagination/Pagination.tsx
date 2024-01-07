@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledPagination } from "./styled";
 import Stack from "@mui/material/Stack";
-import { Pages } from "../NewsBoardStyle";
+import { BlockPagination, Pages } from "./styledPagination";
 
 type PaginationProps = {
   totalCount: number;
@@ -11,7 +11,7 @@ type PaginationProps = {
 
 function Pagination({ totalCount, page, handleChange }: PaginationProps) {
   return (
-    <div>
+    <BlockPagination>
       <Pages>
         <Stack spacing={1}>
           <StyledPagination
@@ -23,7 +23,7 @@ function Pagination({ totalCount, page, handleChange }: PaginationProps) {
           />
         </Stack>
       </Pages>
-    </div>
+    </BlockPagination>
   );
 }
 

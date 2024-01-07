@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
+import { BlockForLoader, NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
 import NewsPiece from "../NewsPiece/NewsPiece";
 import Pagination from "./Pagination/Pagination";
 import URLS from "../../../configURLS.json";
+import LoaderComponent from "../../../components/Loader/LoaderComponent";
 
 function NewsBoard() {
   type NewsData = {
     _id: string;
-    Title: string;
-    ShortDescription: string;
-    Photos: string;
-    Timestamp: string;
+    title: string;
+    shortDescription: string;
+    photos: string;
+    timestamp: string;
   };
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [newsPerPage] = useState<number>(6);
   const [page, setPage] = useState<number>(1);
   const [dataFromBackend, setDataFromBackend] = useState<NewsData[]>([]);
+  const [loader, setLoader] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoader(true);
     axios
       .get(`${URLS["BASE-URL"]}/getPosts`)
       .then((res) => {
@@ -28,6 +31,9 @@ function NewsBoard() {
       })
       .catch((err) => {
         console.log("err", err);
+      })
+      .finally(() => {
+        setLoader(false);
       });
   }, []);
 
@@ -49,22 +55,30 @@ function NewsBoard() {
   return (
     <NewsBlock>
       <TitleProjects>Проекти</TitleProjects>
-      <NewsContainer>
-        {currentNewsForCurrentPage.map((piecenews, index) => {
-          return (
-            <NewsPiece
-              image={piecenews.Photos}
-              title={piecenews.Title}
-              description={piecenews.ShortDescription}
-              date={piecenews.Timestamp}
-              key={index}
-              id={piecenews._id}
-            />
-          );
-        })}
-      </NewsContainer>
+      {loader ? (
+        <BlockForLoader>
+          <LoaderComponent />
+        </BlockForLoader>
+      ) : (
+        <>
+          <NewsContainer>
+            {currentNewsForCurrentPage.map((piecenews, index) => {
+              return (
+                <NewsPiece
+                  image={piecenews.photos}
+                  title={piecenews.title}
+                  description={piecenews.shortDescription}
+                  date={piecenews.timestamp}
+                  key={index}
+                  id={piecenews._id}
+                />
+              );
+            })}
+          </NewsContainer>
 
-      <Pagination totalCount={totalCount} page={page} handleChange={handleChange} />
+          <Pagination totalCount={totalCount} page={page} handleChange={handleChange} />
+        </>
+      )}
     </NewsBlock>
   );
 }
