@@ -5,6 +5,7 @@ export const NewsBlock = styled.div`
   display: block;
   background: #f3eded;
   min-height: 120vh;
+  position: relative;
 `;
 
 export const NewsContainer = styled.div`
@@ -22,9 +23,10 @@ export const TitleProjects = styled.h2`
   font-weight: 700;
 `;
 
-export const Pages = styled.div`
+export const BlockForLoader = styled.div`
+  width: 100%;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
 `;

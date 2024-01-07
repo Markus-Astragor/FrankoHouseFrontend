@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const NewsPiece = styled.div`
   display: block;
   width: 400px;
+  min-height: 20vh;
   position: relative;
   margin: 10px;
 `;
