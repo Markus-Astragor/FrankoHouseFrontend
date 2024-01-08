@@ -3,7 +3,14 @@ import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 
 import TextArea from "../../../components/TextArea/TexArea";
-import { FormElementWrapper, FileInput, CreatePostStyled, InputTitle } from "./CreatePostStyles";
+import {
+  FormElementWrapper,
+  FileInput,
+  CreatePostStyled,
+  InputTitle,
+  Title,
+  FlexContainer,
+} from "./CreatePostStyles";
 import useCreatePost from "../../../hooks/useCreatePost";
 
 export type postInfoProps = {
@@ -66,6 +73,7 @@ function CreatePost() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (images.length === 0) return alert("Виберіть хочаб одне зображення");
     createPost(postInfo, images);
   }
 
@@ -76,7 +84,7 @@ function CreatePost() {
 
   return (
     <CreatePostStyled>
-      <h3 style={{ marginBottom: "20px", textAlign: "center" }}>Створити Пост</h3>
+      <Title style={{ marginBottom: "20px", textAlign: "center" }}>Створити Пост</Title>
       <form onSubmit={handleSubmit}>
         <FormElementWrapper>
           <InputLabel>Заголовок (українською)</InputLabel>
@@ -137,9 +145,12 @@ function CreatePost() {
           />
         </FormElementWrapper>
 
-        <Button type='submit' variant='outlined'>
-          Створити пост
-        </Button>
+        <FlexContainer>
+          <Button type='submit' variant='outlined'>
+            Створити пост
+          </Button>
+          <Button variant='outlined'>Скнинути зображення</Button>
+        </FlexContainer>
       </form>
     </CreatePostStyled>
   );
