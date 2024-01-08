@@ -34,7 +34,7 @@ function NewsPieceBlock({ image, title, description, date, id }: NewsPieceBlockP
     <NewsPiece>
       <MiddleBlock>
         <ImageForNewsPiece>
-          <img src={image} />
+          <img src={image} width='400px' />
         </ImageForNewsPiece>
         <MiddleImageForNewsPiece>
           <img src={MiddleImage} />
