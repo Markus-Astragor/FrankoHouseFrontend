@@ -1,117 +1,147 @@
-import React, { FormEvent, useRef, useState } from "react";
-import Input from "@mui/material/Input";
+import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 
 import TextArea from "../../../components/TextArea/TexArea";
-import { FormElementWrapper, FileInput } from "./CreatePostStyles";
+import { FormElementWrapper, FileInput, CreatePostStyled, InputTitle } from "./CreatePostStyles";
+import useCreatePost from "../../../hooks/useCreatePost";
 
-import config from "../../../configURLS.json";
-import axios from "axios";
+export type postInfoProps = {
+  ukrTitle: string;
+  ukrDescription: string;
+  ukrShortDescription: string;
+  engTitle: string;
+  engDescription: string;
+  engShortDescription: string;
+};
 
 function CreatePost() {
-  const fileRef = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<File[]>([]);
+  const [postInfo, setPostInfo] = useState<postInfoProps>({
+    ukrTitle: "",
+    ukrDescription: "",
+    ukrShortDescription: "",
+    engTitle: "",
+    engDescription: "",
+    engShortDescription: "",
+  });
+  const { createPost } = useCreatePost();
 
-  // States for info
-  const [UkrTitle, setUkrTitle] = useState<string>();
-  const [UkrDescription, setUkrDescription] = useState<string>();
-  const [UkrShortDescription, setUkrShortDescription] = useState<string>();
-  const [EngTitle, setEngTitle] = useState<string>();
-  const [EngDescription, setEngDescription] = useState<string>();
-  const [EngShortDescription, setEngShortDescription] = useState<string>();
+  const fileRef = useRef<HTMLInputElement | null>(null);
 
-  function formData() {
-    if (images.length >= 10) return alert("You have reached the amount of images ");
-    if (fileRef.current && fileRef.current.files) {
-      const file = fileRef.current?.files[0];
-      if (file) {
-        setImages((prev) => [...prev, file]);
+  function handleFileInput() {
+    if (images.length >= 10) return alert("Ви досягли ліміту по зображеннях");
+    if (fileRef.current && fileRef.current.files?.length !== 0) {
+      const files = fileRef.current?.files;
+      console.log(files);
+
+      if (files) {
+        const newFiles: File[] = [];
+
+        // Validation for files of type image
+        for (const file of files) {
+          if (file.type.startsWith("image/")) {
+            newFiles.push(file);
+          } else {
+            alert(`${file.name} не є зображенням`);
+          }
+        }
+
+        // Validation for max images count
+        if (newFiles.length + images.length > 10) {
+          alert(
+            `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
+              10 - images.length
+            } `,
+          );
+          return;
+        }
+
+        setImages((prev) => [...prev, ...newFiles]);
       } else {
         console.log("No image selected");
       }
     }
   }
 
-  function createPost() {
-    const data = new FormData();
-    data.append("UkrTitle", UkrTitle || "");
-    data.append("UkrDescription", UkrDescription || "");
-    data.append("UkrShortDescription", UkrShortDescription || "");
-    data.append("EngTitle", EngTitle || "");
-    data.append("EngDescription", EngDescription || "");
-    data.append("EngShortDescription", EngShortDescription || "");
-    images.forEach((image) => {
-      data.append("Photos", image);
-    });
-
-    console.log(data.get("Photos"));
-
-    axios
-      .post(`${config["BASE-URL"]}/admin/createPost`, data, {
-        headers: {
-          // "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log("hello world");
-    createPost();
+    createPost(postInfo, images);
+  }
+
+  function handleInput(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setPostInfo((prev) => ({ ...prev, [name]: value }));
   }
 
   return (
-    <div>
+    <CreatePostStyled>
       <h3 style={{ marginBottom: "20px", textAlign: "center" }}>Створити Пост</h3>
       <form onSubmit={handleSubmit}>
         <FormElementWrapper>
           <InputLabel>Заголовок (українською)</InputLabel>
-          <Input value={UkrTitle} onChange={(e) => setUkrTitle(e.target.value)} fullWidth />
+          <InputTitle
+            required
+            name='ukrTitle'
+            value={postInfo.ukrTitle}
+            onChange={handleInput}
+            fullWidth
+          />
         </FormElementWrapper>
         <FormElementWrapper>
           <InputLabel>Короткий опис (українською)</InputLabel>
-          <TextArea value={UkrDescription} onChange={(e) => setUkrDescription(e.target.value)} />
-        </FormElementWrapper>
-
-        <FormElementWrapper>
-          <InputLabel>Повний опис (українською)</InputLabel>
           <TextArea
-            value={UkrShortDescription}
-            onChange={(e) => setUkrShortDescription(e.target.value)}
+            value={postInfo.ukrShortDescription}
+            onChange={handleInput}
+            name='ukrShortDescription'
           />
         </FormElementWrapper>
 
         <FormElementWrapper>
+          <InputLabel>Повний опис (українською)</InputLabel>
+          <TextArea name='ukrDescription' value={postInfo.ukrDescription} onChange={handleInput} />
+        </FormElementWrapper>
+
+        <FormElementWrapper>
           <InputLabel>Заголовок (англійською)</InputLabel>
-          <Input value={EngTitle} onChange={(e) => setEngTitle(e.target.value)} fullWidth />
+          <InputTitle
+            required
+            name='engTitle'
+            value={postInfo.engTitle}
+            onChange={handleInput}
+            fullWidth
+          />
         </FormElementWrapper>
         <FormElementWrapper>
           <InputLabel>Короткий опис (англійською)</InputLabel>
           <TextArea
-            value={EngShortDescription}
-            onChange={(e) => setEngShortDescription(e.target.value)}
+            name='engShortDescription'
+            value={postInfo.engShortDescription}
+            onChange={handleInput}
           />
         </FormElementWrapper>
 
         <FormElementWrapper>
           <InputLabel>Повний опис (англійською)</InputLabel>
-          <TextArea value={EngDescription} onChange={(e) => setEngDescription(e.target.value)} />
+          <TextArea name='engDescription' value={postInfo.engDescription} onChange={handleInput} />
         </FormElementWrapper>
 
         <FormElementWrapper>
           <InputLabel>Фотографії</InputLabel>
-          <FileInput ref={fileRef} onChange={formData} type='file' />
+          <FileInput
+            multiple
+            ref={fileRef}
+            onChange={handleFileInput}
+            type='file'
+            accept='image/*'
+          />
         </FormElementWrapper>
 
         <Button type='submit' variant='outlined'>
           Створити пост
         </Button>
       </form>
-    </div>
+    </CreatePostStyled>
   );
 }
 

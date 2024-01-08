@@ -5,10 +5,21 @@ import { styled } from "@mui/system";
 type TextAreaProps = {
   value: string | undefined;
   onChange: (e) => void;
+  name: string;
 };
 
-export default function TextArea({ value, onChange }: TextAreaProps) {
-  return <TextareaAutosize value={value} onChange={onChange} aria-label='empty textarea' />;
+export default function TextArea({ value, onChange, name }: TextAreaProps) {
+  return (
+    <TextareaAutosize
+      required
+      minRows={5}
+      maxRows={5}
+      value={value}
+      onChange={onChange}
+      name={name}
+      aria-label='empty textarea'
+    />
+  );
 }
 
 const blue = {
@@ -36,17 +47,20 @@ const grey = {
 const TextareaAutosize = styled(BaseTextareaAutosize)(
   ({ theme }) => `
   resize: none;
-  width: 320px;
+  // width: 320px;
+  width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
   padding: 8px 12px;
+  box-sizing: border-box;
   border-radius: 8px;
   color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
   background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
   border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
   box-shadow: 0px 2px 2px ${theme.palette.mode === "dark" ? grey[900] : grey[50]};
+
 
   &:hover {
     border-color: ${blue[400]};

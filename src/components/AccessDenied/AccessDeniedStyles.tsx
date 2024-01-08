@@ -37,6 +37,7 @@ export const Message = styled.p`
   text-align: center;
   font-size: 22px;
   margin-bottom: 30px;
+  line-height: 30px;
 `;
 
 export const Button = styled(NavLink)`
@@ -49,4 +50,9 @@ export const Button = styled(NavLink)`
   &:hover {
     transform: scale(0.95);
   }
+`;
+
+export const UppercaseText = styled.span`
+  font-weight: 600;
+  text-transform: uppercase;
 `;
