@@ -82,6 +82,10 @@ function CreatePost() {
     setPostInfo((prev) => ({ ...prev, [name]: value }));
   }
 
+  function handleClearImages() {
+    setImages([]);
+  }
+
   return (
     <CreatePostStyled>
       <Title style={{ marginBottom: "20px", textAlign: "center" }}>Створити Пост</Title>
@@ -149,7 +153,9 @@ function CreatePost() {
           <Button type='submit' variant='outlined'>
             Створити пост
           </Button>
-          <Button variant='outlined'>Скнинути зображення</Button>
+          <Button onClick={handleClearImages} variant='outlined'>
+            Скинути зображення
+          </Button>
         </FlexContainer>
       </form>
     </CreatePostStyled>
