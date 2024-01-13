@@ -5,6 +5,7 @@ import config from "../configURLS.json";
 import { postInfoProps } from "../Pages/AdminPanel/CreatePost/CreatePost";
 
 const useCreatePost = () => {
+  const [success, setSuccess] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const createPost = async (postInfo: postInfoProps, images: File[]) => {
     try {
@@ -27,7 +28,7 @@ const useCreatePost = () => {
         },
       });
       console.log(response);
-      alert("Пост створено успішно");
+      setSuccess(response.data.message);
     } catch (error) {
       console.log(error);
       alert("Виникла помилка під час створення поста");
@@ -36,7 +37,7 @@ const useCreatePost = () => {
     }
   };
 
-  return { createPost, loading };
+  return { createPost, loading, success, setSuccess };
 };
 
 export default useCreatePost;

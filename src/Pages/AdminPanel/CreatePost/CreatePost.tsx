@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 
 import TextArea from "../../../components/TextArea/TexArea";
@@ -10,8 +9,13 @@ import {
   InputTitle,
   Title,
   FlexContainer,
+  CreatePostWrapper,
+  CenterBox,
+  InputLbl,
 } from "./CreatePostStyles";
 import useCreatePost from "../../../hooks/useCreatePost";
+import Success from "../../../components/SuccesWindow/Success";
+import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 export type postInfoProps = {
   ukrTitle: string;
@@ -32,7 +36,7 @@ function CreatePost() {
     engDescription: "",
     engShortDescription: "",
   });
-  const { createPost } = useCreatePost();
+  const { createPost, success, setSuccess, loading } = useCreatePost();
 
   const fileRef = useRef<HTMLInputElement | null>(null);
 
@@ -87,78 +91,97 @@ function CreatePost() {
   }
 
   return (
-    <CreatePostStyled>
-      <Title style={{ marginBottom: "20px", textAlign: "center" }}>Створити Пост</Title>
-      <form onSubmit={handleSubmit}>
-        <FormElementWrapper>
-          <InputLabel>Заголовок (українською)</InputLabel>
-          <InputTitle
-            required
-            name='ukrTitle'
-            value={postInfo.ukrTitle}
-            onChange={handleInput}
-            fullWidth
-          />
-        </FormElementWrapper>
-        <FormElementWrapper>
-          <InputLabel>Короткий опис (українською)</InputLabel>
-          <TextArea
-            value={postInfo.ukrShortDescription}
-            onChange={handleInput}
-            name='ukrShortDescription'
-          />
-        </FormElementWrapper>
+    <>
+      <CreatePostWrapper>
+        <CreatePostStyled>
+          <Title>Створити Пост</Title>
+          <form onSubmit={handleSubmit}>
+            <FormElementWrapper>
+              <InputLbl>Заголовок (українською)</InputLbl>
+              <InputTitle
+                required
+                name='ukrTitle'
+                value={postInfo.ukrTitle}
+                onChange={handleInput}
+                fullWidth
+              />
+            </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Короткий опис (українською)</InputLbl>
+              <TextArea
+                value={postInfo.ukrShortDescription}
+                onChange={handleInput}
+                name='ukrShortDescription'
+              />
+            </FormElementWrapper>
 
-        <FormElementWrapper>
-          <InputLabel>Повний опис (українською)</InputLabel>
-          <TextArea name='ukrDescription' value={postInfo.ukrDescription} onChange={handleInput} />
-        </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Повний опис (українською)</InputLbl>
+              <TextArea
+                name='ukrDescription'
+                value={postInfo.ukrDescription}
+                onChange={handleInput}
+              />
+            </FormElementWrapper>
 
-        <FormElementWrapper>
-          <InputLabel>Заголовок (англійською)</InputLabel>
-          <InputTitle
-            required
-            name='engTitle'
-            value={postInfo.engTitle}
-            onChange={handleInput}
-            fullWidth
-          />
-        </FormElementWrapper>
-        <FormElementWrapper>
-          <InputLabel>Короткий опис (англійською)</InputLabel>
-          <TextArea
-            name='engShortDescription'
-            value={postInfo.engShortDescription}
-            onChange={handleInput}
-          />
-        </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Заголовок (англійською)</InputLbl>
+              <InputTitle
+                required
+                name='engTitle'
+                value={postInfo.engTitle}
+                onChange={handleInput}
+                fullWidth
+              />
+            </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Короткий опис (англійською)</InputLbl>
+              <TextArea
+                name='engShortDescription'
+                value={postInfo.engShortDescription}
+                onChange={handleInput}
+              />
+            </FormElementWrapper>
 
-        <FormElementWrapper>
-          <InputLabel>Повний опис (англійською)</InputLabel>
-          <TextArea name='engDescription' value={postInfo.engDescription} onChange={handleInput} />
-        </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Повний опис (англійською)</InputLbl>
+              <TextArea
+                name='engDescription'
+                value={postInfo.engDescription}
+                onChange={handleInput}
+              />
+            </FormElementWrapper>
 
-        <FormElementWrapper>
-          <InputLabel>Фотографії</InputLabel>
-          <FileInput
-            multiple
-            ref={fileRef}
-            onChange={handleFileInput}
-            type='file'
-            accept='image/*'
-          />
-        </FormElementWrapper>
+            <FormElementWrapper>
+              <InputLbl>Фотографії</InputLbl>
+              <FileInput
+                multiple
+                ref={fileRef}
+                onChange={handleFileInput}
+                type='file'
+                accept='image/*'
+              />
+            </FormElementWrapper>
 
-        <FlexContainer>
-          <Button type='submit' variant='outlined'>
-            Створити пост
-          </Button>
-          <Button onClick={handleClearImages} variant='outlined'>
-            Скинути зображення
-          </Button>
-        </FlexContainer>
-      </form>
-    </CreatePostStyled>
+            {loading ? (
+              <CenterBox>
+                <Loader />
+              </CenterBox>
+            ) : (
+              <FlexContainer>
+                <Button type='submit' variant='outlined'>
+                  Створити пост
+                </Button>
+                <Button onClick={handleClearImages} variant='outlined'>
+                  Скинути зображення
+                </Button>
+              </FlexContainer>
+            )}
+          </form>
+        </CreatePostStyled>
+      </CreatePostWrapper>
+      {success && <Success setSuccess={setSuccess} message={success} />}
+    </>
   );
 }
 
