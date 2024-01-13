@@ -79,6 +79,7 @@ function CreatePost() {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
     createPost(postInfo, images);
+    clearInputs();
   }
 
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
@@ -88,6 +89,17 @@ function CreatePost() {
 
   function handleClearImages() {
     setImages([]);
+  }
+
+  function clearInputs() {
+    setPostInfo({
+      ukrTitle: "",
+      ukrDescription: "",
+      ukrShortDescription: "",
+      engTitle: "",
+      engDescription: "",
+      engShortDescription: "",
+    });
   }
 
   return (
