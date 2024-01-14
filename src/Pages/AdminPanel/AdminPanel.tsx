@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, Outlet } from "react-router-dom";
 import {
   AdminStyled,
   NavBar,
@@ -12,10 +13,10 @@ import AccessDenied from "../../components/AccessDenied/AccessDenied";
 import axios from "axios";
 import config from "../../configURLS.json";
 import LogoSrc from "../../assets/header-imgs/logo-white.png";
-import { Outlet } from "react-router-dom";
 
 export default function AdminPanel() {
   const [showError, setShowError] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("jwtToken")) setShowError(true);
@@ -30,6 +31,7 @@ export default function AdminPanel() {
         .then((res) => console.log(res))
         .catch(() => setShowError(true));
     }
+    navigate("/admin/view-posts");
   }, []);
 
   if (showError) return <AccessDenied />;

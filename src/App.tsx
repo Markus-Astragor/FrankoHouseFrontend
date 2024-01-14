@@ -24,8 +24,8 @@ function App() {
             <Route element={<NewsBoardRoutes />} path='/posts/*' />
             <Route element={<AboutUs />} path='/about-us' />
             <Route element={<AdminPanel />} path='admin'>
-              <Route path='view-posts' element={<GetPosts />} />
               <Route path='view-posts/:id' element={<EditPost />} />
+              <Route path='view-posts' element={<GetPosts />} />
               <Route path='create-post' element={<CreatePost />} />
             </Route>
             <Route element={<AdminAuth />} path='/admin/auth' />
