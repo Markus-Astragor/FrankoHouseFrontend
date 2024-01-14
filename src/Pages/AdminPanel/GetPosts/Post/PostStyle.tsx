@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const PostItem = styled.li`
   background-color: #fff;
@@ -43,7 +44,26 @@ export const Button = styled.button`
   border: 2px solid #000;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 14px;
   transition: 0.4s linear;
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
+  }
+`;
+
+export const LinkButton = styled(Link)`
+  padding: 8px 25px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.4s linear;
+  text-decoration: none;
+  color: #000;
 
   &:hover {
     background-color: #000;

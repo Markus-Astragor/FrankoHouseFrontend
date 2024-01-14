@@ -9,11 +9,9 @@ import "./i18n/i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
-  </React.StrictMode>,
+  <StyledEngineProvider injectFirst>
+    <App />
+  </StyledEngineProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
