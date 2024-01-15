@@ -5,7 +5,6 @@ export const BlockPagination = styled.div`
   margin: 0 auto;
   position: absolute;
   top: 100%;
-  background-color: #f3eded;
 `;
 
 export const Pages = styled.div`

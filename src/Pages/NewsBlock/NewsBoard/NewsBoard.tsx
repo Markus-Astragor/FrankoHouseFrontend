@@ -5,6 +5,7 @@ import NewsPiece from "../NewsPiece/NewsPiece";
 import Pagination from "./Pagination/Pagination";
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
+import Navbar from "../../../components/Navbar/Navbar";
 
 function NewsBoard() {
   type NewsData = {
@@ -50,36 +51,39 @@ function NewsBoard() {
   );
   const totalCount =
     dataFromBackend.length % newsPerPage !== 0
-      ? Math.round(dataFromBackend.length / newsPerPage) + 1
+      ? Math.floor(dataFromBackend.length / newsPerPage) + 1
       : dataFromBackend.length / newsPerPage;
   return (
-    <NewsBlock>
-      <TitleProjects>Проекти</TitleProjects>
-      {loader ? (
-        <BlockForLoader>
-          <LoaderComponent />
-        </BlockForLoader>
-      ) : (
-        <>
-          <NewsContainer>
-            {currentNewsForCurrentPage.map((piecenews, index) => {
-              return (
-                <NewsPiece
-                  image={piecenews.photos}
-                  title={piecenews.title}
-                  description={piecenews.shortDescription}
-                  date={piecenews.timestamp}
-                  key={index}
-                  id={piecenews._id}
-                />
-              );
-            })}
-          </NewsContainer>
+    <>
+      <Navbar />
+      <NewsBlock>
+        <TitleProjects>Проекти</TitleProjects>
+        {loader ? (
+          <BlockForLoader>
+            <LoaderComponent />
+          </BlockForLoader>
+        ) : (
+          <>
+            <NewsContainer>
+              {currentNewsForCurrentPage.map((piecenews, index) => {
+                return (
+                  <NewsPiece
+                    image={piecenews.photos}
+                    title={piecenews.title}
+                    description={piecenews.shortDescription}
+                    date={piecenews.timestamp}
+                    key={index}
+                    id={piecenews._id}
+                  />
+                );
+              })}
+            </NewsContainer>
 
-          <Pagination totalCount={totalCount} page={page} handleChange={handleChange} />
-        </>
-      )}
-    </NewsBlock>
+            <Pagination totalCount={totalCount} page={page} handleChange={handleChange} />
+          </>
+        )}
+      </NewsBlock>
+    </>
   );
 }
 export default NewsBoard;

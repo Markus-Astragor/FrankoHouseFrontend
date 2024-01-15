@@ -5,7 +5,7 @@ export const NewsPiece = styled.div`
   width: 400px;
   min-height: 20vh;
   position: relative;
-  margin: 10px;
+  margin: 10px 10px 200px 10px;
 `;
 
 export const ImageForNewsPiece = styled.div`
