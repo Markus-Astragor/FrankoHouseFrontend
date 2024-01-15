@@ -11,11 +11,17 @@ import {
   FileInput,
   InputTitle,
   CenterBox,
-  Title,
   InputLbl,
 } from "../CreatePost/CreatePostStyles";
 
-import { EditPostStyled, FlexItem, Form, FlexItems, ButtonsContainer } from "./EditPostStyle";
+import {
+  EditPostStyled,
+  FlexItem,
+  Form,
+  FlexItems,
+  ButtonsContainer,
+  Title,
+} from "./EditPostStyle";
 import useCreatePost from "../../../hooks/useCreatePost";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
@@ -145,7 +151,7 @@ export default function EditPost() {
 
   return (
     <EditPostStyled>
-      <Title>Редагувати Пост</Title>
+      <Title>Редагування</Title>
       <Form onSubmit={handleSubmit}>
         <FlexItems>
           <FlexItem>

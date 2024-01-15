@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MainBlock,
   InputElement,
@@ -17,6 +18,7 @@ function AdminAuth() {
   const [loader, setLoader] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoader(true);
@@ -30,6 +32,7 @@ function AdminAuth() {
       .then((res) => {
         console.log("res", res);
         localStorage.setItem("jwtToken", res.data.token);
+        navigate("/admin");
       })
       .catch((err) => {
         console.log("err", err);

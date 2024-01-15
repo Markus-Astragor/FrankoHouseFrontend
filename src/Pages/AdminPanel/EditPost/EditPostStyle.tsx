@@ -5,6 +5,13 @@ export const EditPostStyled = styled.div`
   position: relative;
 `;
 
+export const Title = styled.h2`
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 40px;
+  text-align: center;
+`;
+
 export const Form = styled.form`
   width: 90%;
   margin: 0 auto;
