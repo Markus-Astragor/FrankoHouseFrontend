@@ -1,22 +1,38 @@
-import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
+import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import config from "../../../configURLS.json";
+
 import Button from "@mui/material/Button";
 
+import TextArea from "../../../components/TextArea/TexArea";
 import {
   FormElementWrapper,
   FileInput,
-  CreatePostStyled,
   InputTitle,
-  Title,
-  FlexContainer,
-  CreatePostWrapper,
   CenterBox,
   InputLbl,
-} from "./CreatePostStyles";
-import useCreatePost from "../../../hooks/useCreatePost";
-import TextArea from "../../../components/TextArea/TexArea";
+} from "../CreatePost/CreatePostStyles";
 
+import {
+  EditPostStyled,
+  FlexItem,
+  Form,
+  FlexItems,
+  ButtonsContainer,
+  Title,
+} from "./EditPostStyle";
+import useCreatePost from "../../../hooks/useCreatePost";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
+
+type SinglePostData = {
+  _id: string;
+  title: string;
+  shortDescription: string;
+  timestamp: string;
+  photos: string[];
+};
 
 export type postInfoProps = {
   ukrTitle: string;
@@ -27,7 +43,16 @@ export type postInfoProps = {
   engShortDescription: string;
 };
 
-function CreatePost() {
+export default function EditPost() {
+  const { id } = useParams();
+  const [postData, setPostData] = useState<SinglePostData>({
+    _id: "",
+    title: "",
+    shortDescription: "",
+    timestamp: "",
+    photos: [],
+  });
+
   const [images, setImages] = useState<File[]>([]);
   const [postInfo, setPostInfo] = useState<postInfoProps>({
     ukrTitle: "",
@@ -37,6 +62,7 @@ function CreatePost() {
     engDescription: "",
     engShortDescription: "",
   });
+
   const { createPost, success, setSuccess, loading } = useCreatePost();
 
   const fileRef = useRef<HTMLInputElement | null>(null);
@@ -103,12 +129,32 @@ function CreatePost() {
     });
   }
 
+  useEffect(() => {
+    async function getPostData() {
+      try {
+        const res = await axios.get(`${config["BASE-URL"]}/getPosts/${id}`);
+
+        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
+        console.log(res);
+        setPostData(res.data);
+      } catch (error) {
+        // let message = "Виникла помилка";
+        // if (error instanceof Error) {
+        //   message = error.message;
+        // }
+      }
+    }
+    getPostData();
+  }, []);
+
+  console.log(postData);
+
   return (
-    <>
-      <CreatePostWrapper>
-        <CreatePostStyled>
-          <Title>Створити Пост</Title>
-          <form onSubmit={handleSubmit}>
+    <EditPostStyled>
+      <Title>Редагування</Title>
+      <Form onSubmit={handleSubmit}>
+        <FlexItems>
+          <FlexItem>
             <FormElementWrapper>
               <InputLbl>Заголовок (українською)</InputLbl>
               <InputTitle
@@ -136,7 +182,9 @@ function CreatePost() {
                 onChange={handleInput}
               />
             </FormElementWrapper>
+          </FlexItem>
 
+          <FlexItem>
             <FormElementWrapper>
               <InputLbl>Заголовок (англійською)</InputLbl>
               <InputTitle
@@ -164,38 +212,36 @@ function CreatePost() {
                 onChange={handleInput}
               />
             </FormElementWrapper>
+          </FlexItem>
+        </FlexItems>
 
-            <FormElementWrapper>
-              <InputLbl>Фотографії</InputLbl>
-              <FileInput
-                multiple
-                ref={fileRef}
-                onChange={handleFileInput}
-                type='file'
-                accept='image/*'
-              />
-            </FormElementWrapper>
+        <FormElementWrapper>
+          <InputLbl>Фотографії</InputLbl>
+          <FileInput
+            multiple
+            ref={fileRef}
+            onChange={handleFileInput}
+            type='file'
+            accept='image/*'
+          />
+        </FormElementWrapper>
 
-            {loading ? (
-              <CenterBox>
-                <Loader />
-              </CenterBox>
-            ) : (
-              <FlexContainer>
-                <Button type='submit' variant='outlined'>
-                  Створити пост
-                </Button>
-                <Button onClick={handleClearImages} variant='outlined'>
-                  Скинути зображення
-                </Button>
-              </FlexContainer>
-            )}
-          </form>
-        </CreatePostStyled>
-      </CreatePostWrapper>
+        {loading ? (
+          <CenterBox>
+            <Loader />
+          </CenterBox>
+        ) : (
+          <ButtonsContainer>
+            <Button type='submit' variant='outlined'>
+              Створити пост
+            </Button>
+            <Button onClick={handleClearImages} variant='outlined'>
+              Скинути зображення
+            </Button>
+          </ButtonsContainer>
+        )}
+      </Form>
       {success && <Success setSuccess={setSuccess} message={success} />}
-    </>
+    </EditPostStyled>
   );
 }
-
-export default CreatePost;
