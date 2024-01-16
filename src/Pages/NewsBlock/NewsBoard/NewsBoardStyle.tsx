@@ -3,7 +3,7 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
-  min-height: 90vh;
+  min-height: 100vh;
   position: relative;
   margin-top: 20px;
 `;

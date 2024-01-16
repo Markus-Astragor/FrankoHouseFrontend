@@ -11,5 +11,5 @@ export const Pages = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 200px;
 `;

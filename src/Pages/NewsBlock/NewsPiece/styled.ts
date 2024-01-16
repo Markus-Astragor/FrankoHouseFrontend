@@ -23,6 +23,9 @@ export const MiddleImageForNewsPiece = styled.div`
 `;
 
 export const Title = styled.span`
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: block;
   position: absolute;
   font-size: 20px;

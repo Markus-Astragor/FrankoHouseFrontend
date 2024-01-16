@@ -1,11 +1,11 @@
 import TeenagerImg from "../../../assets/NewsBoardImages/tvm-0 1.png";
 
 type NewsMockData = {
-  id: number;
-  image: string;
+  _id: string;
   title: string;
-  description: string;
-  date: string;
+  shortDescription: string;
+  photos: string;
+  timestamp: string;
 };
 
 type FullNewsMockData = {
@@ -24,12 +24,12 @@ const mockDataLength = 20;
 
 for (let i = 1; i < mockDataLength; i++) {
   const mockObj: NewsMockData = {
-    id: i,
-    image: TeenagerImg,
-    title: `«Тінейджер в музеї ${i}»`,
-    description:
+    _id: `${i}`,
+    photos: TeenagerImg,
+    title: `«Тінейджер в музеї ${i}аппппппппппппппппппппппппппппппп»`,
+    shortDescription:
       "В Домі Франка тривала Літня школа музейних лідерів ««Тінейджер в музеї»» для учнів львівських шкіл віком від 10 до 14 років. Мета літньої школи – підвищити інтерес підлітків до культурної спадщини, сприяти їхній соціальній інтеграції та комунікації між особами з різними зацікавленнями та фізичними можливостями....",
-    date: "10–15 червня 2019 р",
+    timestamp: "10–15 червня 2019 р",
   };
 
   const fullDataObj: FullNewsMockData = {
