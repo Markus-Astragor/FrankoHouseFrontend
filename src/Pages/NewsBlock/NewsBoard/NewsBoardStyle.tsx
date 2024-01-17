@@ -3,9 +3,9 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
-  background: #f3eded;
-  min-height: 120vh;
+  min-height: 100vh;
   position: relative;
+  margin-top: 20px;
 `;
 
 export const NewsContainer = styled.div`
@@ -13,8 +13,8 @@ export const NewsContainer = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   width: 85%;
+  height: 100%;
   margin: 0 auto 200px auto;
-  row-gap: 217px;
 `;
 
 export const TitleProjects = styled.h2`

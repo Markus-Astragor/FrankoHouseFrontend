@@ -5,12 +5,11 @@ export const BlockPagination = styled.div`
   margin: 0 auto;
   position: absolute;
   top: 100%;
-  background-color: #f3eded;
 `;
 
 export const Pages = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 200px;
 `;
