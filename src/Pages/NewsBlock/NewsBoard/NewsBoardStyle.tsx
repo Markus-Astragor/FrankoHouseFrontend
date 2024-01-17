@@ -15,7 +15,6 @@ export const NewsContainer = styled.div`
   width: 85%;
   height: 100%;
   margin: 0 auto 200px auto;
-  // row-gap: 217px;
 `;
 
 export const TitleProjects = styled.h2`

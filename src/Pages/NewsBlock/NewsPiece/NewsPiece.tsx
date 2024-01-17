@@ -7,6 +7,7 @@ import {
   ShortText,
   TimeStamp,
   MiddleBlock,
+  WrapperForShortDescription,
 } from "../NewsPiece/styled";
 import MiddleImage from "../../../assets/NewsBoardImages/Середина.png";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +43,7 @@ function NewsPieceBlock({ image, title, description, date, id }: NewsPieceBlockP
         </MiddleImageForNewsPiece>
       </MiddleBlock>
       <ShortText>
-        {description}
+        <WrapperForShortDescription>{description}</WrapperForShortDescription>
         <TimeStamp>{formattedDate}</TimeStamp>
       </ShortText>
     </NewsPiece>
