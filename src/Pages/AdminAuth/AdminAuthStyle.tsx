@@ -17,6 +17,21 @@ export const Form = styled.form`
   * {
     margin: 5px;
   }
+
+  @media (max-width: 550px) {
+    width: 70%;
+  }
+
+  @media (min-width: 551px) and (max-width: 800px) {
+    width: 60%;
+  }
+
+  @media (min-width: 801px) and (max-width: 1200px) {
+    width: 40%;
+  }
+  @media (min-width: 1201px) and (max-width: 1600px) {
+    width: 30%;
+  }
 `;
 
 export const InputElement = styled.input`
