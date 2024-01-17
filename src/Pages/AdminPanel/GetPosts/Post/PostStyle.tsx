@@ -22,13 +22,14 @@ export const PostInfo = styled.div`
 
 export const Title = styled.div`
   font-size: 18px;
+  padding-right: 10px;
 `;
 
 export const Date = styled.div`
   font-size: 18px;
   border-right: 1px solid #000;
   padding: 5px 0;
-  padding-right: 15px;
+  padding-right: 10px;
 `;
 
 export const ButtonsBox = styled.div`
