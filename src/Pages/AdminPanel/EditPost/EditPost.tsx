@@ -1,4 +1,11 @@
 import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios, { AxiosError } from "axios";
+import config from "../../../configURLS.json";
+import TextArea from "../../../components/TextArea/TexArea";
+import useApi from "../../../hooks/useApi";
+import Success from "../../../components/SuccesWindow/Success";
+import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import {
   Wrapper,
@@ -22,12 +29,6 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
-import TextArea from "../../../components/TextArea/TexArea";
-import Success from "../../../components/SuccesWindow/Success";
-import { Loader } from "../../../components/Loader/LoaderComponentStyles";
-import useApi from "../../../hooks/useApi";
-import config from "../../../configURLS.json";
-
 export type postInfoProps = {
   ukrTitle: string;
   ukrDescription: string;
@@ -37,7 +38,10 @@ export type postInfoProps = {
   engShortDescription: string;
 };
 
-function CreatePost() {
+export default function EditPost() {
+  const { id } = useParams();
+  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
+
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [postInfo, setPostInfo] = useState<postInfoProps>({
@@ -49,13 +53,11 @@ function CreatePost() {
     engShortDescription: "",
   });
 
-  useEffect(() => {
-    tranformImageForPreview();
-  }, [images]);
+  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["EDIT-POST"]);
 
-  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
   const fileRef = useRef<HTMLInputElement | null>(null);
 
+  // handling selecting files from input file
   function handleFileInput() {
     if (images.length >= 10) return alert("Ви досягли ліміту по зображеннях");
     if (fileRef.current && fileRef.current.files?.length !== 0) {
@@ -91,23 +93,29 @@ function CreatePost() {
     }
   }
 
+  // Submit function
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    sendRequest(postInfo, images, "POST");
-    clearInputs();
+    sendRequest(postInfo, images, "PATCH", id);
+    handleClearInputs();
   }
 
+  // handling change on each input
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setPostInfo((prev) => ({ ...prev, [name]: value }));
   }
 
+  // Clearing all images
   function handleClearImages() {
     setImages([]);
+    setImagesPreview([]);
+    setImagesUrl([]);
   }
 
-  function clearInputs() {
+  // Clearing all inputs
+  function handleClearInputs() {
     setPostInfo({
       ukrTitle: "",
       ukrDescription: "",
@@ -124,6 +132,25 @@ function CreatePost() {
     setImages(images.slice(0, index).concat(images.slice(index + 1)));
   }
 
+  // Function for converting url into file
+  async function createFileFromUrl(url: string, fileName: string) {
+    try {
+      // Use Axios to make the request
+      const response = await axios.get(url, { responseType: "blob" });
+
+      // Create a File object from the Blob
+      const file = new File([response.data], fileName || "image.jpg", {
+        type: response.headers["content-type"],
+      });
+
+      return file;
+    } catch (error) {
+      console.error("Error creating File from URL:", error);
+      throw error;
+    }
+  }
+
+  // Function for transforming all images into base64 for displaying
   function tranformImageForPreview() {
     if (images.length === 0) return;
     const promises = images.map((image) => {
@@ -151,21 +178,59 @@ function CreatePost() {
         console.error("Error processing images:", error);
       });
   }
-  // Clearing all inputs
-  function handleClearInputs() {
-    setPostInfo({
-      ukrTitle: "",
-      ukrDescription: "",
-      ukrShortDescription: "",
-      engTitle: "",
-      engDescription: "",
-      engShortDescription: "",
+
+  useEffect(() => {
+    tranformImageForPreview();
+  }, [images]);
+
+  // # 2 Converting urls into files
+  useEffect(() => {
+    const imagesPromises = imagesUrl.map((url, index) =>
+      createFileFromUrl(url, `image-${index + 1}`),
+    );
+    Promise.all(imagesPromises).then((res) => {
+      console.log(res);
+      setImages(res);
     });
-  }
+  }, [imagesUrl]);
+
+  // #1 Fetching post data
+  useEffect(() => {
+    async function getPostData() {
+      try {
+        const res = await axios.get(`${config["BASE-URL"]}/admin/getPost/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        });
+
+        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
+        setPostInfo({
+          ukrTitle: res.data.ukrainian.title,
+          ukrDescription: res.data.ukrainian.description,
+          ukrShortDescription: res.data.ukrainian.shortDescription,
+          engTitle: res.data.english.title,
+          engDescription: res.data.english.description,
+          engShortDescription: res.data.english.shortDescription,
+        });
+
+        setImagesUrl(res.data.photos);
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error instanceof AxiosError) {
+            alert(error.response?.data.message);
+          } else {
+            alert(error.message);
+          }
+        }
+      }
+    }
+    getPostData();
+  }, []);
 
   return (
     <Wrapper>
-      <Title>Створення публікації</Title>
+      <Title>Редагування</Title>
       <Form onSubmit={handleSubmit}>
         <FlexItems>
           <FlexItem>
@@ -274,5 +339,3 @@ function CreatePost() {
     </Wrapper>
   );
 }
-
-export default CreatePost;
