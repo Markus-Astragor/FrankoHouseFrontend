@@ -1,17 +1,27 @@
-import React, { ChangeEvent, FormEvent, useRef, useState } from "react";
-import Button from "@mui/material/Button";
+import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
 
 import {
-  FormElementWrapper,
-  FileInput,
-  CreatePostStyled,
-  InputTitle,
+  Wrapper,
+  FlexItem,
+  Form,
+  FlexItems,
+  ButtonsContainer,
   Title,
-  FlexContainer,
-  CreatePostWrapper,
+  ImagesContainer,
+  ImageContainer,
+  DeleteButton,
+  InputFileBox,
+  FileInput,
+  FileInputLable,
+  FileInputIcon,
+  InputFileContainer,
+  FormElementWrapper,
+  InputTitle,
   CenterBox,
   InputLbl,
-} from "./CreatePostStyles";
+  ButtonStyled,
+} from "../../../styles/GeneralStylesAdminPanel";
+
 import TextArea from "../../../components/TextArea/TexArea";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
@@ -29,6 +39,7 @@ export type postInfoProps = {
 
 function CreatePost() {
   const [images, setImages] = useState<File[]>([]);
+  const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [postInfo, setPostInfo] = useState<postInfoProps>({
     ukrTitle: "",
     ukrDescription: "",
@@ -37,8 +48,12 @@ function CreatePost() {
     engDescription: "",
     engShortDescription: "",
   });
-  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
 
+  useEffect(() => {
+    tranformImageForPreview();
+  }, [images]);
+
+  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   function handleFileInput() {
@@ -103,12 +118,57 @@ function CreatePost() {
     });
   }
 
+  // Deleting image
+  function handleDeleteImage(index: number) {
+    setImagesPreview(imagesPreview.slice(0, index).concat(imagesPreview.slice(index + 1)));
+    setImages(images.slice(0, index).concat(images.slice(index + 1)));
+  }
+
+  function tranformImageForPreview() {
+    if (images.length === 0) return;
+    const promises = images.map((image) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          resolve(e.target?.result as string);
+        };
+
+        reader.onerror = (error) => {
+          reject(error);
+        };
+
+        reader.readAsDataURL(image);
+      });
+    });
+
+    Promise.all(promises)
+      .then((newPreviews) => {
+        setImagesPreview(newPreviews as string[]);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error processing images:", error);
+      });
+  }
+  // Clearing all inputs
+  function handleClearInputs() {
+    setPostInfo({
+      ukrTitle: "",
+      ukrDescription: "",
+      ukrShortDescription: "",
+      engTitle: "",
+      engDescription: "",
+      engShortDescription: "",
+    });
+  }
+
   return (
-    <>
-      <CreatePostWrapper>
-        <CreatePostStyled>
-          <Title>Створити Пост</Title>
-          <form onSubmit={handleSubmit}>
+    <Wrapper>
+      <Title>Створення публікації</Title>
+      <Form onSubmit={handleSubmit}>
+        <FlexItems>
+          <FlexItem>
             <FormElementWrapper>
               <InputLbl>Заголовок (українською)</InputLbl>
               <InputTitle
@@ -136,7 +196,9 @@ function CreatePost() {
                 onChange={handleInput}
               />
             </FormElementWrapper>
+          </FlexItem>
 
+          <FlexItem>
             <FormElementWrapper>
               <InputLbl>Заголовок (англійською)</InputLbl>
               <InputTitle
@@ -164,37 +226,52 @@ function CreatePost() {
                 onChange={handleInput}
               />
             </FormElementWrapper>
+          </FlexItem>
+        </FlexItems>
 
-            <FormElementWrapper>
-              <InputLbl>Фотографії</InputLbl>
-              <FileInput
-                multiple
-                ref={fileRef}
-                onChange={handleFileInput}
-                type='file'
-                accept='image/*'
-              />
-            </FormElementWrapper>
+        <ImagesContainer>
+          {imagesPreview.map((img, index) => (
+            <ImageContainer key={index}>
+              <img src={img} />
+              <DeleteButton onClick={() => handleDeleteImage(index)}>X</DeleteButton>
+            </ImageContainer>
+          ))}
+        </ImagesContainer>
 
-            {loading ? (
-              <CenterBox>
-                <Loader />
-              </CenterBox>
-            ) : (
-              <FlexContainer>
-                <Button type='submit' variant='outlined'>
-                  Створити пост
-                </Button>
-                <Button onClick={handleClearImages} variant='outlined'>
-                  Скинути зображення
-                </Button>
-              </FlexContainer>
-            )}
-          </form>
-        </CreatePostStyled>
-      </CreatePostWrapper>
+        <InputFileContainer>
+          <InputFileBox>
+            <FileInput
+              multiple
+              ref={fileRef}
+              onChange={handleFileInput}
+              type='file'
+              accept='image/*'
+            />
+            <FileInputIcon>+</FileInputIcon>
+            <FileInputLable>додати фото</FileInputLable>
+          </InputFileBox>
+        </InputFileContainer>
+
+        {loading ? (
+          <CenterBox>
+            <Loader />
+          </CenterBox>
+        ) : (
+          <ButtonsContainer>
+            <ButtonStyled type='submit' variant='outlined'>
+              Оновити
+            </ButtonStyled>
+            <ButtonStyled onClick={handleClearImages} variant='outlined'>
+              Скинути зображення
+            </ButtonStyled>
+            <ButtonStyled onClick={handleClearInputs} variant='outlined'>
+              Очистити всі поля
+            </ButtonStyled>
+          </ButtonsContainer>
+        )}
+      </Form>
       {success && <Success setSuccess={setSuccess} message={success} />}
-    </>
+    </Wrapper>
   );
 }
 

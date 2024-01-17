@@ -2,21 +2,13 @@ import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "reac
 import { useParams } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import config from "../../../configURLS.json";
-import Button from "@mui/material/Button";
 import TextArea from "../../../components/TextArea/TexArea";
 import useApi from "../../../hooks/useApi";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import {
-  FormElementWrapper,
-  InputTitle,
-  CenterBox,
-  InputLbl,
-} from "../CreatePost/CreatePostStyles";
-
-import {
-  EditPostStyled,
+  Wrapper,
   FlexItem,
   Form,
   FlexItems,
@@ -30,7 +22,12 @@ import {
   FileInputLable,
   FileInputIcon,
   InputFileContainer,
-} from "./EditPostStyle";
+  FormElementWrapper,
+  InputTitle,
+  CenterBox,
+  InputLbl,
+  ButtonStyled,
+} from "../../../styles/GeneralStylesAdminPanel";
 
 export type postInfoProps = {
   ukrTitle: string;
@@ -232,7 +229,7 @@ export default function EditPost() {
   }, []);
 
   return (
-    <EditPostStyled>
+    <Wrapper>
       <Title>Редагування</Title>
       <Form onSubmit={handleSubmit}>
         <FlexItems>
@@ -326,19 +323,19 @@ export default function EditPost() {
           </CenterBox>
         ) : (
           <ButtonsContainer>
-            <Button type='submit' variant='outlined'>
+            <ButtonStyled type='submit' variant='outlined'>
               Оновити
-            </Button>
-            <Button onClick={handleClearImages} variant='outlined'>
+            </ButtonStyled>
+            <ButtonStyled onClick={handleClearImages} variant='outlined'>
               Скинути зображення
-            </Button>
-            <Button onClick={handleClearInputs} variant='outlined'>
+            </ButtonStyled>
+            <ButtonStyled onClick={handleClearInputs} variant='outlined'>
               Очистити всі поля
-            </Button>
+            </ButtonStyled>
           </ButtonsContainer>
         )}
       </Form>
       {success && <Success setSuccess={setSuccess} message={success} />}
-    </EditPostStyled>
+    </Wrapper>
   );
 }

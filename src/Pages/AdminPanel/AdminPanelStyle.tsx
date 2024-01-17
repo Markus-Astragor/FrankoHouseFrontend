@@ -12,8 +12,8 @@ export const AdminStyled = styled.div`
 
 export const NavBar = styled.div`
   height: 100vh;
-  max-width: 300px;
-  width: 300px;
+  max-width: 400px;
+  width: 20%;
   background-color: #09282c;
   border-radius: 0px 30px 30px 0px;
 `;
@@ -25,6 +25,7 @@ export const NavbarBox = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 120px;
 `;
 
@@ -47,6 +48,7 @@ export const Link = styled(NavLink)`
   padding: 8px 50px;
   transition: 0.3s ease-in;
   text-align: center;
+  box-sizing: border-box;
   &:hover {
     background: rgba(135, 135, 135, 0.52);
   }
