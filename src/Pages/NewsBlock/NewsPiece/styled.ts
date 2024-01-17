@@ -20,6 +20,10 @@ export const MiddleImageForNewsPiece = styled.div`
   position: absolute;
   bottom: -38px;
   z-index: 2;
+
+  img {
+    height: auto;
+  }
 `;
 
 export const Title = styled.span`

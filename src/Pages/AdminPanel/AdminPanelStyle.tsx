@@ -56,7 +56,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const AdminWindow = styled.div`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   padding: 40px 20px 40px;
   box-sizing: border-box;
   overflow-y: scroll;

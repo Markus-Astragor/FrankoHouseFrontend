@@ -42,7 +42,8 @@ function NewsPieceBlock({ image, title, description, date, id }: NewsPieceBlockP
         </MiddleImageForNewsPiece>
       </MiddleBlock>
       <ShortText>
-        {description}
+        {description} овоілфт олтолвіфтол толвтіфлот олтолтвіфолт олтловтіфолтолтолвітфолтлотвлот
+        олтолтолвтіфтвіфлтлвіф лтвфіолвтіфолтлот тлотвлфіотвіфло
         <TimeStamp>{formattedDate}</TimeStamp>
       </ShortText>
     </NewsPiece>

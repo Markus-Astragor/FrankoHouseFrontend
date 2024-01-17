@@ -1,3 +1,10 @@
 {
-  "BASE-URL": "https://www.server24.space/api"
+  "BASE-URL": "https://www.server24.space/api",
+  "GET-POSTS": "https://www.server24.space/api/getPosts",
+  "GET-POSTS-ID": "https://www.server24.space/api/getPosts",
+  "ADMIN": {
+    "CREATE-POST": "https://www.server24.space/api/admin/createPost",
+    "EDIT-POST": "https://www.server24.space/api/admin/editPost",
+    "GET-POST-ID": "https://www.server24.space/api/admin/getPost"
+  }
 }

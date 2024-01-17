@@ -12,11 +12,11 @@ import {
   CenterBox,
   InputLbl,
 } from "./CreatePostStyles";
-import useCreatePost from "../../../hooks/useCreatePost";
 import TextArea from "../../../components/TextArea/TexArea";
-
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
+import useApi from "../../../hooks/useApi";
+import config from "../../../configURLS.json";
 
 export type postInfoProps = {
   ukrTitle: string;
@@ -37,7 +37,7 @@ function CreatePost() {
     engDescription: "",
     engShortDescription: "",
   });
-  const { createPost, success, setSuccess, loading } = useCreatePost();
+  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
 
   const fileRef = useRef<HTMLInputElement | null>(null);
 
@@ -79,7 +79,7 @@ function CreatePost() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    createPost(postInfo, images);
+    sendRequest(postInfo, images, "POST");
     clearInputs();
   }
 
