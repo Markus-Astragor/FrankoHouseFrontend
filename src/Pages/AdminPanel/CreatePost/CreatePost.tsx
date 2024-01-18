@@ -259,7 +259,7 @@ function CreatePost() {
         ) : (
           <ButtonsContainer>
             <ButtonStyled type='submit' variant='outlined'>
-              Оновити
+              Створити
             </ButtonStyled>
             <ButtonStyled onClick={handleClearImages} variant='outlined'>
               Скинути зображення
