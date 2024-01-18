@@ -1,5 +1,14 @@
 import React from "react";
-import { PostItem, PostInfo, Title, Date, ButtonsBox, Button, LinkButton } from "./PostStyle";
+import {
+  PostItem,
+  PostInfo,
+  Title,
+  Date,
+  ButtonsBox,
+  Button,
+  LinkButton,
+  ButtonsGroup,
+} from "./PostStyle";
 import { PostData } from "../GetPosts";
 
 import moment from "moment";
@@ -29,10 +38,14 @@ export default function Post({
           </Title>
         </PostInfo>
         <ButtonsBox>
-          <Date>{formattedDate}</Date>
+          <div>
+            <Date>{formattedDate}</Date>
+          </div>
 
-          <Button onClick={() => handlePostDelete(post._id)}>Видалити</Button>
-          <LinkButton to={`${post._id}`}>Редагувати</LinkButton>
+          <ButtonsGroup>
+            <Button onClick={() => handlePostDelete(post._id)}>Видалити</Button>
+            <LinkButton to={`${post._id}`}>Редагувати</LinkButton>
+          </ButtonsGroup>
         </ButtonsBox>
       </PostItem>
     </>

@@ -47,10 +47,9 @@ const grey = {
 const TextareaAutosize = styled(BaseTextareaAutosize)(
   ({ theme }) => `
   resize: none;
-  // width: 320px;
   width: 100%;
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   padding: 8px 12px;
@@ -75,5 +74,21 @@ const TextareaAutosize = styled(BaseTextareaAutosize)(
   &:focus-visible {
     outline: 0;
   }
+
+ 
+  // @media (max-width: 1200px) {
+  //     font-size: 15px;
+  // }
+
+  // @media (min-width: 1200px) and (max-width: 2400px) {
+  // textarea{
+  //   font-size: 19px;
+  //   }
+  // }
+
+  // @media (min-width: 2400px) {
+  //     font-size: 25px;
+  // }
+
 `,
 );

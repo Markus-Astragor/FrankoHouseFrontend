@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import config from "../../../configURLS.json";
-import { CreatePostStyled, Title, PostsBox, CenterBox } from "./GetPostsStyle";
+import { GetPostsStyled, Title, PostsBox, CenterBox } from "./GetPostsStyle";
 import Post from "./Post/Post";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
@@ -88,14 +88,14 @@ export default function GetPosts() {
 
   return (
     <>
-      <CreatePostStyled>
+      <GetPostsStyled>
         <Title>Пости</Title>
         <PostsBox>
           {data.map((el: PostData) => (
             <Post handlePostDelete={handlePostDelete} key={el._id} post={el} />
           ))}
         </PostsBox>
-      </CreatePostStyled>
+      </GetPostsStyled>
       {success && <Success setSuccess={setSuccess} message={success} />}
       {showConfirm && <Confirmation onCancel={handleCancel} onDelete={handleDelete} />}
     </>
