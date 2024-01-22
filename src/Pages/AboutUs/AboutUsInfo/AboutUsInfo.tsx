@@ -23,7 +23,7 @@ function AboutUsInfo() {
   const { t } = useTranslation();
 
   return (
-    <AboutUsInfoStyled>
+    <AboutUsInfoStyled id='about-us'>
       <AboutUsInfoContainer>
         <AboutUsInfoTtitle>{t("ns1.description.about-us.about-us-title")}</AboutUsInfoTtitle>
         <AboutUsFlex>

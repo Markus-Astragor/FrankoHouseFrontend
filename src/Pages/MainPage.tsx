@@ -1,9 +1,12 @@
 import React from "react";
-import Navbar from "../components/Navbar/Navbar";
+// import Navbar from "../components/Navbar/Navbar";
+import AboutUs from "./AboutUs/AboutUs";
+import NewsBoardRoutes from "./NewsBlock/NewsBoard/NewsBoardRoutes";
 function MainPage() {
   return (
     <div style={{ background: "#F3EDED", height: "1500px" }}>
-      <Navbar />
+      <AboutUs />
+      <NewsBoardRoutes />
     </div>
   );
 }

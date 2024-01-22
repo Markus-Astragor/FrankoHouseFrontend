@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import headerBackground from "../../assets/header-imgs/header-back.png";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 export const NavbarStyled = styled.div`
   width: 100%;
@@ -62,7 +62,7 @@ export const Menu = styled.ul`
   }
 `;
 
-export const MenuItem = styled(NavLink)`
+export const MenuItem = styled.a`
   position: relative;
   color: #000;
   font-family: "Playfair Display", serif;
