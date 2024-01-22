@@ -55,10 +55,10 @@ function Navbar() {
           </NavLink>
 
           <Menu>
-            <MenuItem to='/about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
-            <MenuItem to='/posts'>{t("ns1.description.navbar.link2")}</MenuItem>
-            <MenuItem to='/partners'>{t("ns1.description.navbar.link3")}</MenuItem>
-            <MenuItem to='/contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
+            <MenuItem href='#about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
+            <MenuItem href='#posts'>{t("ns1.description.navbar.link2")}</MenuItem>
+            <MenuItem>{t("ns1.description.navbar.link3")}</MenuItem>
+            <MenuItem>{t("ns1.description.navbar.link4")}</MenuItem>
             <SwitchLanguage>
               <span onClick={() => changeLanguage("ua")}>UA</span>|
               <span onClick={() => changeLanguage("en")}>EN</span>

@@ -5,7 +5,6 @@ import NewsPiece from "../NewsPiece/NewsPiece";
 import Pagination from "./Pagination/Pagination";
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
-import Navbar from "../../../components/Navbar/Navbar";
 
 function NewsBoard() {
   type NewsData = {
@@ -55,7 +54,6 @@ function NewsBoard() {
       : dataFromBackend.length / newsPerPage;
   return (
     <>
-      <Navbar />
       <NewsBlock>
         <TitleProjects>Проекти</TitleProjects>
         {loader ? (

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { LanguageContext } from "./Context/LanguageContext";
+import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import MainPage from "./Pages/MainPage";
-import AboutUs from "./Pages/AboutUs/AboutUs";
-import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 import AdminPanel from "./Pages/AdminPanel/AdminPanel";
 import AdminAuth from "./Pages/AdminAuth/AdminAuth";
 import GetPosts from "./Pages/AdminPanel/GetPosts/GetPosts";
@@ -22,7 +21,6 @@ function App() {
           <Routes>
             <Route element={<MainPage />} path='/' />
             <Route element={<NewsBoardRoutes />} path='/posts/*' />
-            <Route element={<AboutUs />} path='/about-us' />
             <Route element={<AdminPanel />} path='admin'>
               <Route path='view-posts/:id' element={<EditPost />} />
               <Route path='view-posts' element={<GetPosts />} />

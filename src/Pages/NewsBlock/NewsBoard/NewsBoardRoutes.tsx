@@ -5,7 +5,7 @@ import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 
 function NewsBoardRoutes() {
   return (
-    <div>
+    <div id='posts'>
       <Routes>
         <Route index element={<NewsBoard />} />
         <Route path=':id' element={<FullNewsPiece />} />
