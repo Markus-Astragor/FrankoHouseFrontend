@@ -3,11 +3,13 @@ import Navbar from "../components/Navbar/Navbar";
 import AboutUs from "./AboutUs/AboutUs";
 import NewsBoardRoutes from "./NewsBlock/NewsBoard/NewsBoardRoutes";
 import Intro from "../components/Intro/Intro";
+import OurMission from "../components/OurMission/OurMission";
 function MainPage() {
   return (
     <div>
       <Navbar />
       <Intro />
+      <OurMission />
       <AboutUs />
       <NewsBoardRoutes />
     </div>

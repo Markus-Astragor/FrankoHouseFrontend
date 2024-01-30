@@ -17,21 +17,24 @@ export const IntroStyled = styled.div`
     padding-left: 110px;
   }
 
-  @media (min-width: 420px) and (max-width: 768px) {
+  @media (min-width: 480px) and (max-width: 768px) {
     padding-top: 90px;
     padding-left: 80px;
   }
 
-  @media (max-width: 420px) {
-    padding-top: 80px;
-    padding-left: 50px;
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    text-align: center;
   }
 `;
 
 export const Title = styled.h1`
   color: #fff;
   font-family: Montserrat;
-  font-size: 5vw;
+  font-size: 4.5vw;
   font-weight: 600;
 
   @media (min-width: 768px) and (max-width: 1050px) {
