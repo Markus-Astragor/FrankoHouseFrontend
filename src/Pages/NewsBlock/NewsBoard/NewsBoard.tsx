@@ -55,7 +55,7 @@ function NewsBoard() {
   return (
     <>
       <NewsBlock>
-        <TitleProjects>Проекти</TitleProjects>
+        <TitleProjects>Події</TitleProjects>
         {loader ? (
           <BlockForLoader>
             <LoaderComponent />

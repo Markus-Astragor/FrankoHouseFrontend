@@ -1,10 +1,10 @@
 {
-  "BASE-URL": "https://www.server24.space/api",
-  "GET-POSTS": "https://www.server24.space/api/getPosts",
-  "GET-POSTS-ID": "https://www.server24.space/api/getPosts",
+  "BASE-URL": "https://amif.server24.space/api",
+  "GET-POSTS": "https://amif.server24.space/api/getPosts",
+  "GET-POSTS-ID": "https://amif.server24.space/api/getPosts",
   "ADMIN": {
-    "CREATE-POST": "https://www.server24.space/api/admin/createPost",
-    "EDIT-POST": "https://www.server24.space/api/admin/editPost",
-    "GET-POST-ID": "https://www.server24.space/api/admin/getPost"
+    "CREATE-POST": "https://amif.server24.space/api/admin/createPost",
+    "EDIT-POST": "https://amif.server24.space/api/admin/editPost",
+    "GET-POST-ID": "https://amif.server24.space/api/admin/getPost"
   }
 }

@@ -47,7 +47,7 @@ function Navbar() {
           <Menu>
             <MenuItem href='#about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
             <MenuItem href='#posts'>{t("ns1.description.navbar.link2")}</MenuItem>
-            <MenuItem>{t("ns1.description.navbar.link3")}</MenuItem>
+            <MenuItem href='#partners'>{t("ns1.description.navbar.link3")}</MenuItem>
             <MenuItem>{t("ns1.description.navbar.link4")}</MenuItem>
             <SwitchLanguage>
               <span onClick={() => changeLanguage("ua")}>UA</span>|
