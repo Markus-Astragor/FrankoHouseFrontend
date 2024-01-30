@@ -1,29 +1,22 @@
 import styled from "styled-components";
-import headerBackground from "../../assets/header-imgs/header-back.png";
+// import headerBackground from "../../assets/header-imgs/header-back.png";
 // import { NavLink } from "react-router-dom";
 
 export const NavbarStyled = styled.div`
   width: 100%;
   box-sizing: border-box;
-  height: 130px;
-  padding-top: 25px;
-  background-image: url(${headerBackground});
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* position: fixed; */
 
-  @media (max-width: 767px) {
+  background-color: #fff;
+
+  /* @media (max-width: 767px) {
     height: 110px;
     padding-top: 20px;
-  }
+  } */
 `;
 
 export const NavbarContainer = styled.div`
-  max-width: 1200px;
-  padding: 0 30px;
+  padding: 30px 30px;
   box-sizing: border-box;
-  margin: 0 auto;
 `;
 
 export const FlexContainer = styled.div`
@@ -48,7 +41,7 @@ export const Logo = styled.img`
 export const Menu = styled.ul`
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
   font-size: 22px;
   font-weight: 700;
 

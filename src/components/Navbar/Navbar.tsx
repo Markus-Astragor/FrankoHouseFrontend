@@ -21,21 +21,11 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function handleOverlayClick() {
-    handleScroll();
     setIsOpen(false);
-  }
-
-  function handleScroll() {
-    // if (!isOpen) {
-    //   document.body.style.overflow = "hidden";
-    // } else {
-    //   document.body.style.overflow = "visible";
-    // }
   }
 
   function handleOpenBurger() {
     setIsOpen((prev) => !prev);
-    handleScroll();
   }
 
   const { t, i18n } = useTranslation();

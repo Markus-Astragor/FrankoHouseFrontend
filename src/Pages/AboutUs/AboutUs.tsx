@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
+// import Navbar from "../../components/Navbar/Navbar";
 import { AboutUsStyled } from "./AboutUsStyle";
 
 import AboutUsInfo from "./AboutUsInfo/AboutUsInfo";
@@ -9,7 +9,7 @@ import AboutUsInfoLine from "./AboutUsInfoLine/AboutUsInfoLine";
 function AboutUs() {
   return (
     <AboutUsStyled>
-      <Navbar />
+      {/* <Navbar /> */}
       <AboutUsFranko />
       <AboutUsInfo />
       <AboutUsInfoLine />
