@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBlock } from "./styled";
+import { ImageBlock, PartnerImage } from "./styled";
 
 type ImageProps = {
   image: string;
@@ -10,7 +10,7 @@ export default function Image({ image, link }: ImageProps) {
   return (
     <ImageBlock>
       <a href={link} target='_blank' rel='noreferrer'>
-        <img src={image} width='159px' height='159px' />
+        <PartnerImage src={image} />
       </a>
     </ImageBlock>
   );
