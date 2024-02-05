@@ -166,6 +166,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  height: 130px;
   border-radius: 15px;
   overflow: hidden;
   box-sizing: border-box;

@@ -65,8 +65,9 @@ export default function GetPosts() {
         setIsLoading(true);
         const res = await axios.get(`${config["BASE-URL"]}/getPosts`);
 
-        if (res.status != 200) throw new Error("Виникла помилка при завантажені даних");
+        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
         setData(res.data);
+        console.log(res.data);
       } catch (err) {
         let message: string = "Невідома помилка";
         if (err instanceof Error) message = err.message;
