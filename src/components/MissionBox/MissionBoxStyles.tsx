@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+function isEvenArrow(id: number) {
+  return id % 2 !== 0;
+}
+
 export const MissionBoxStyled = styled.div<{
   align: string | undefined;
   borderReverse: boolean;
@@ -8,7 +12,7 @@ export const MissionBoxStyled = styled.div<{
   justify-self: ${(props) => (props.align ? props.align : "start")};
 
   max-width: 430px;
-  padding: 25px 25px;
+  padding: 25px;
   height: 130px;
   box-sizing: border-box;
   background-color: #d9d9d9;
@@ -44,6 +48,11 @@ export const MissionBoxStyled = styled.div<{
     }
   }
 
+  @media (max-width: 415px) {
+    padding: 12px;
+    font-size: 13px;
+  }
+
   &::after,
   &::before {
     content: "";
@@ -55,19 +64,20 @@ export const MissionBoxStyled = styled.div<{
     left: 0;
     z-index: 1;
     border-radius: 75.5px;
+    box-sizing: border-box;
   }
 
   &::after {
     top: -55px;
     transform: rotate(-20deg);
+    border: ${(props) => (props.borderReverse ? "2px dashed #d9d9d9" : "2px solid #d9d9d9")};
     border-left: 0;
     border-bottom: 0;
-    border: ${(props) => (props.borderReverse ? "1px dashed #d9d9d9" : "1px solid #d9d9d9")};
   }
 
   &::before {
     top: 55px;
-    border: ${(props) => (props.borderReverse ? "1px solid #d9d9d9" : "1px dashed #d9d9d9")};
+    border: ${(props) => (props.borderReverse ? "2px solid #d9d9d9" : "2px dashed #d9d9d9")};
     transform: rotate(-20deg);
     border-top: 0;
   }
@@ -77,11 +87,12 @@ export const MissionBoxText = styled.div`
   text-align: center;
 `;
 
-export const ArrowDown = styled.img`
+export const ArrowDown = styled.img<{ arrowId: number }>`
   position: absolute;
   top: 50%;
   right: -110px;
   width: 26%;
+  display: ${(props) => (props.arrowId === 3 || props.arrowId === 4 ? "none" : "block")};
 
   @media (min-width: 1200px) and (max-width: 1540px) {
     right: -100px;
@@ -93,7 +104,15 @@ export const ArrowDown = styled.img`
     width: 30%;
   }
 
-  @media (max-width: 1000px) {
+  @media (min-width: 650px) and (max-width: 1000px) {
+    display: block;
+    display: ${(props) => (props.arrowId === 4 ? "none" : "block")};
+
+    transform: ${(props) => (isEvenArrow(props.arrowId) ? "rotateY(0)" : "rotateY(180deg)")};
+    ${(props) => (isEvenArrow(props.arrowId) ? "right: -110px" : "left: -110px")}
+  }
+
+  @media (max-width: 650px) {
     display: none;
   }
 `;

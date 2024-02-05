@@ -4,21 +4,21 @@ import ArrowDownSrc from "../../assets/our-mission/arrow-down.png";
 
 type MissionBoxProps = {
   align?: string;
-  showArrow?: boolean;
+  arrowId: number;
   children: ReactNode;
   borderReverse?: boolean;
 };
 
 export default function MissionBox({
   align,
-  showArrow = false,
   borderReverse = false,
   children,
+  arrowId,
 }: MissionBoxProps) {
   return (
     <MissionBoxStyled borderReverse={borderReverse} align={align}>
       <MissionBoxText>{children}</MissionBoxText>
-      {showArrow && <ArrowDown src={ArrowDownSrc} />}
+      <ArrowDown arrowId={arrowId} src={ArrowDownSrc} />
     </MissionBoxStyled>
   );
 }
