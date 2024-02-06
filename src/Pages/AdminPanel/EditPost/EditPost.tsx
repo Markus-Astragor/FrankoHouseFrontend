@@ -41,7 +41,6 @@ export type postInfoProps = {
 export default function EditPost() {
   const { id } = useParams();
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
-
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [postInfo, setPostInfo] = useState<postInfoProps>({
@@ -204,6 +203,8 @@ export default function EditPost() {
           },
         });
 
+        console.log(res);
+
         if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
         setPostInfo({
           ukrTitle: res.data.ukrainian.title,
@@ -235,8 +236,9 @@ export default function EditPost() {
         <FlexItems>
           <FlexItem>
             <FormElementWrapper>
-              <InputLbl>Заголовок (українською)</InputLbl>
+              <InputLbl htmlFor='ukr-title'>Заголовок (українською)</InputLbl>
               <InputTitle
+                id='ukr-title'
                 required
                 name='ukrTitle'
                 value={postInfo.ukrTitle}
