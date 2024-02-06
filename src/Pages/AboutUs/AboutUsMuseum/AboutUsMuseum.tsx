@@ -37,10 +37,8 @@ export default function AboutUsMuseum() {
           </TextContent>
         </AboutUsLeftPart>
         <AboutUsRightPart>
-          <FrankoUSSRimg src={FrankoUSSR} width='461px' height='396px' />
-          <ChurchImg>
-            <img src={Church} width='334px' height='326px' />
-          </ChurchImg>
+          <FrankoUSSRimg src={FrankoUSSR} />
+          <ChurchImg src={Church} />
         </AboutUsRightPart>
       </AboutUsMuseumContainer>
     </AboutUsMuseumBlock>
