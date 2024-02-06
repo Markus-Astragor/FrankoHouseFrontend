@@ -71,6 +71,7 @@ export const MissionBoxStyled = styled.div<{
     top: -55px;
     transform: rotate(-20deg);
     border: ${(props) => (props.borderReverse ? "2px dashed #d9d9d9" : "2px solid #d9d9d9")};
+    border: ${(props) => (props.borderReverse ? "1px dashed #d9d9d9" : "1px solid #d9d9d9")};
     border-left: 0;
     border-bottom: 0;
   }
