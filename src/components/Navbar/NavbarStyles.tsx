@@ -1,17 +1,9 @@
 import styled from "styled-components";
-// import headerBackground from "../../assets/header-imgs/header-back.png";
-// import { NavLink } from "react-router-dom";
 
 export const NavbarStyled = styled.div`
   width: 100%;
   box-sizing: border-box;
-
   background-color: #fff;
-
-  /* @media (max-width: 767px) {
-    height: 110px;
-    padding-top: 20px;
-  } */
 `;
 
 export const NavbarContainer = styled.div`
@@ -33,7 +25,7 @@ export const Logo = styled.img`
   box-sizing: border-box;
   cursor: pointer;
 
-  @media (max-width: 767px) {
+  @media (max-width: 866px) {
     width: 90px;
   }
 `;
@@ -45,12 +37,12 @@ export const Menu = styled.ul`
   font-size: 22px;
   font-weight: 700;
 
-  @media (max-width: 767px) {
+  @media (max-width: 866px) {
     font-size: 18px;
     gap: 14px;
   }
 
-  @media (max-width: 609px) {
+  @media (max-width: 710px) {
     display: none;
   }
 `;
@@ -61,6 +53,7 @@ export const MenuItem = styled.a`
   font-family: "Playfair Display", serif;
   text-decoration: none;
   padding: 4px;
+  cursor: pointer;
 
   &::before {
     content: "";
@@ -82,30 +75,6 @@ export const MenuItem = styled.a`
       transform: scaleX(1);
     }
   }
-  /* &::before,
-  &:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: black;
-    position: absolute;
-    top: 50%;
-    opacity: 0;
-    transition:
-      transform 0.4s ease-in-out,
-      opacity 0.2s linear;
-  }
-  &:hover {
-    &::after {
-      opacity: 1;
-      transform: translateY(20px);
-    }
-    &::before {
-      opacity: 1;
-      transform: translateY(-20px);
-    }
-  } */
 `;
 
 export const SwitchLanguage = styled.div`

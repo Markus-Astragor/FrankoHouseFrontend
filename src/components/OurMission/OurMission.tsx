@@ -7,30 +7,25 @@ import {
   MissionsBoxContainer,
 } from "./OurMissionStyles";
 
+import { useTranslation } from "react-i18next";
 function OurMission() {
+  const { t } = useTranslation();
+
   return (
     <MissionStyled>
       <MissionContainer>
         <MissionTitle>Наша місія</MissionTitle>
         <MissionsBoxContainer>
-          <MissionBox showArrow={true}>
-            Обмін інформацією та особистісній комунікації дослідників і шанувальників постаті й
-            творчості Івана Франка в Україні та закордоном;
+          <MissionBox arrowId={1}>{t("ns1.description.our-mission.item-1")}</MissionBox>
+
+          <MissionBox arrowId={2}>{t("ns1.description.our-mission.item-2")}</MissionBox>
+
+          <MissionBox arrowId={3} align='end' borderReverse={true}>
+            {t("ns1.description.our-mission.item-3")}
           </MissionBox>
 
-          <MissionBox showArrow={true}>
-            Популяризація світогляду та творчості Івана Франка в українському інформаційному
-            просторі та системі вищої і середньої освіти, сприяння ознайомлення з ними світової
-            спільноти
-          </MissionBox>
-
-          <MissionBox align='end' borderReverse={true}>
-            Підтримка, стимулювання та координація франкознавчих досліджень
-          </MissionBox>
-
-          <MissionBox align='end' borderReverse={true}>
-            Обмін інформацією та особистісній комунікації дослідників і шанувальників постаті й
-            творчості Івана Франка в Україні та закордоном;
+          <MissionBox arrowId={4} align='end' borderReverse={true}>
+            {t("ns1.description.our-mission.item-4")}
           </MissionBox>
         </MissionsBoxContainer>
       </MissionContainer>

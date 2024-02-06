@@ -7,7 +7,7 @@ export const BurgerIconStyled = styled.div<{ opened: boolean }>`
   display: ${(props) => (props.opened ? "block" : "none")};
   z-index: 15;
 
-  @media (max-width: 609px) {
+  @media (max-width: 710px) {
     display: block;
   }
 `;

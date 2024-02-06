@@ -36,6 +36,7 @@ export const Title = styled.h1`
   font-family: Montserrat;
   font-size: 4.5vw;
   font-weight: 600;
+  max-width: 60%;
 
   @media (min-width: 768px) and (max-width: 1050px) {
     font-size: 6vw;
