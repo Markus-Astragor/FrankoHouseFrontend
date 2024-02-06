@@ -41,7 +41,6 @@ export type postInfoProps = {
 export default function EditPost() {
   const { id } = useParams();
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
-
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [postInfo, setPostInfo] = useState<postInfoProps>({

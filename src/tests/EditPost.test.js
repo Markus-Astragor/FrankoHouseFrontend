@@ -1,4 +1,4 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, findByLabelText } from "@testing-library/react";
 import EditPost from "../Pages/AdminPanel/EditPost/EditPost";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
@@ -33,9 +33,13 @@ test("it should render page with information about selected post", async () => {
   );
 
   await screen.findByRole("heading");
-  await screen.findByRole("textbox", {
+  const urkInputLabel = await screen.findByRole("textbox", {
     name: /заголовок \(українською\)/i,
   });
   screen.debug();
-  // screen.logTestingPlaygroundURL();
+
+  expect(urkInputLabel).toBeInTheDocument();
+  const ukrTitleInput = await screen.findByLabelText(/заголовок \(українською\)/i);
+  expect(ukrTitleInput).toHaveTextContent("");
+  // this test is not finished
 });

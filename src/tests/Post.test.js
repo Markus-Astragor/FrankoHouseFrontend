@@ -1,36 +1,35 @@
 import { screen, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Post from "../Pages/AdminPanel/GetPosts/Post/Post";
+import userEvent from "@testing-library/user-event";
 
-test("it should display post title with information passed via props", () => {
+function renderPost() {
+  const deleteFunction = jest.fn();
+
   const post = {
     _id: 5461,
     title: "Музеї Франка",
     shortDescription: "Короткий опис музеї франка",
     timestamp: 1643855832000,
   };
+
   render(
     <MemoryRouter>
-      <Post post={post} />
+      <Post handlePostDelete={deleteFunction} post={post} />
     </MemoryRouter>,
   );
 
-  const title = screen.getByText(new RegExp(post.title));
+  return [post, deleteFunction];
+}
+
+test("it should display post title with information passed via props", () => {
+  const [postData] = renderPost();
+  const title = screen.getByText(new RegExp(postData.title));
   expect(title).toBeInTheDocument();
 });
 
 test("it should display two buttons delete and edit on the post", () => {
-  const post = {
-    _id: 5461,
-    title: "Музеї Франка",
-    shortDescription: "Короткий опис музеї франка",
-    timestamp: 1643855832000,
-  };
-  render(
-    <MemoryRouter>
-      <Post post={post} />
-    </MemoryRouter>,
-  );
+  renderPost();
 
   const buttons = [
     screen.getByRole("button", { name: /видалити/i }),
@@ -38,4 +37,17 @@ test("it should display two buttons delete and edit on the post", () => {
   ];
 
   for (const btn of buttons) expect(btn).toBeInTheDocument();
+});
+
+test("it should call deleteFunction when we click on the delete button with correct id", () => {
+  const [post, deleteFn] = renderPost();
+
+  const deleteBtn = screen.getByRole("button", {
+    name: /видалити/i,
+  });
+
+  expect(deleteBtn).toBeInTheDocument();
+
+  userEvent.click(deleteBtn);
+  expect(deleteFn).toBeCalledWith(post._id);
 });
