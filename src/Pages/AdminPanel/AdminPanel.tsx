@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {
   AdminStyled,
   NavBar,
@@ -16,7 +16,7 @@ import LogoSrc from "../../assets/header-imgs/logo-white.png";
 
 export default function AdminPanel() {
   const [showError, setShowError] = useState<boolean>(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("jwtToken")) setShowError(true);
@@ -31,7 +31,6 @@ export default function AdminPanel() {
         .then((res) => console.log(res))
         .catch(() => setShowError(true));
     }
-    navigate("/admin/view-posts");
   }, []);
 
   if (showError) return <AccessDenied />;

@@ -4,7 +4,18 @@
       "link1": "About us",
       "link2": "Projects",
       "link3": "Partners",
-      "link4": "Contacts"
+      "link4": "Contacts",
+      "link5": "Our mission"
+    },
+    "our-mission": {
+      "title": "Наша місія",
+      "item-1": "Обмін інформацією та особистісна комунікації дослідників і шанувальників постаті й творчості Івана Франка в Україні та закордоном;",
+      "item-2": "Популяризація світогляду та творчості Івана Франка в українському інформаційному просторі та системі вищої і середньої освіти, сприяння ознайомлення з ними світової спільноти",
+      "item-3": "Підтримка, стимулювання та координація франкознавчих досліджень",
+      "item-4": "Обмін інформацією та особистісній комунікації дослідників і шанувальників постаті й творчості Івана Франка в Україні та закордоном;"
+    },
+    "intro": {
+      "main-title": "\"Association of museums of Ivan Franko\""
     },
     "about-us": {
       "franko-quote": "A person should be great not by the magnitude of their achievements, but by the greatness of their dreams.",
