@@ -6,13 +6,5 @@
     "CREATE-POST": "https://amif.server24.space/api/admin/createPost",
     "EDIT-POST": "https://amif.server24.space/api/admin/editPost",
     "GET-POST-ID": "https://amif.server24.space/api/admin/getPost"
-
-  "BASE-URL": "https://www.amif.server24.space/api",
-  "GET-POSTS": "https://www.amif.server24.space/api/getPosts",
-  "GET-POSTS-ID": "https://www.amif.server24.space/api/getPosts",
-  "ADMIN": {
-    "CREATE-POST": "https://www.amif.server24.space/api/admin/createPost",
-    "EDIT-POST": "https://www.amif.server24.space/api/admin/editPost",
-    "GET-POST-ID": "https://www.amif.server24.space/api/admin/getPost"
   }
 }
