@@ -3,9 +3,17 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
-  min-height: 100vh;
+  height: 1000px;
   position: relative;
   margin-top: 20px;
+
+  @media (min-width: 300px) and (max-width: 700px) {
+    margin-top: 700px;
+  }
+
+  @media (min-width: 701px) and (max-width: 1100px) {
+    margin-top: 551px;
+  }
 `;
 
 export const NewsContainer = styled.div`
@@ -13,7 +21,6 @@ export const NewsContainer = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   width: 85%;
-  height: 100%;
   margin: 0 auto 200px auto;
 `;
 
