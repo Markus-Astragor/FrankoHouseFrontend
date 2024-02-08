@@ -57,7 +57,8 @@ export const PartnersContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 133px;
+  justify-content: center;
+  gap: 100px;
 
   @media (min-width: 300px) and (max-width: 600px) {
     width: 85%;
@@ -66,7 +67,7 @@ export const PartnersContainer = styled.div`
 
   @media (min-width: 601px) and (max-width: 700px) {
     width: 70%;
-    gap: 107px;
+    gap: 100px;
   }
 
   @media (min-width: 701px) and (max-width: 900px) {
@@ -75,13 +76,12 @@ export const PartnersContainer = styled.div`
   }
 
   @media (min-width: 901px) and (max-width: 1100px) {
-    width: 81%;
-    gap: 57px;
+    width: 100%;
   }
 
   @media (min-width: 1101px) and (max-width: 1300px) {
     width: 80%;
-    gap: 71px;
+    gap: 65px;
   }
 
   @media (min-width: 1301px) and (max-width: 1500px) {
@@ -90,12 +90,12 @@ export const PartnersContainer = styled.div`
   }
   @media (min-width: 1501px) and (max-width: 1700px) {
     width: 90%;
-    gap: 143px;
+    gap: 130px;
   }
 
   @media (min-width: 1701px) and (max-width: 1900px) {
     width: 85%;
-    gap: 164px;
+    gap: 140px;
   }
 `;
 

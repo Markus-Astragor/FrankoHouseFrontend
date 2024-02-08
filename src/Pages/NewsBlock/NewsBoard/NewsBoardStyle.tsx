@@ -5,14 +5,14 @@ export const NewsBlock = styled.div`
   display: block;
   height: 1000px;
   position: relative;
-  margin-top: 20px;
+  margin-top: 181px;
 
   @media (min-width: 300px) and (max-width: 700px) {
-    margin-top: 700px;
+    margin-top: 900px;
   }
 
   @media (min-width: 701px) and (max-width: 1100px) {
-    margin-top: 551px;
+    margin-top: 651px;
   }
 `;
 
