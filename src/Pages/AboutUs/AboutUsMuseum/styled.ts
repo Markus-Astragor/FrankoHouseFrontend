@@ -78,7 +78,7 @@ export const FrankoUSSRimg = styled.img`
   }
 
   @media (min-width: 1101px) and (max-width: 1300px) {
-    margin-left: 174px;
+    margin-left: 146px;
     margin-top: 313px;
     width: 357px;
     height: 298px;
@@ -111,7 +111,7 @@ export const ChurchImg = styled.img`
   }
 
   @media (min-width: 701px) and (max-width: 900px) {
-    bottom: 142px;
+    bottom: 250px;
     left: 30px;
     width: 334px;
     height: 257px;
