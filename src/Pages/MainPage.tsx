@@ -5,6 +5,7 @@ import AboutUs from "./AboutUs/AboutUs";
 import Intro from "../components/Intro/Intro";
 import Partners from "./Partners/Partners";
 import OurMission from "../components/OurMission/OurMission";
+import Footer from "../components/Footer/Footer";
 function MainPage() {
   return (
     <div>
@@ -14,6 +15,7 @@ function MainPage() {
       <AboutUs />
       {/* <NewsBoardRoutes /> */}
       <Partners />
+      <Footer />
     </div>
   );
 }
