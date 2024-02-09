@@ -6,6 +6,7 @@ import Intro from "../components/Intro/Intro";
 import Partners from "./Partners/Partners";
 import OurMission from "../components/OurMission/OurMission";
 import Footer from "../components/Footer/Footer";
+import Museums from "../components/Museums/Museums";
 function MainPage() {
   return (
     <div>
@@ -15,6 +16,7 @@ function MainPage() {
       <AboutUs />
       <NewsBoardRoutes />
       <Partners />
+      <Museums />
       <Footer />
     </div>
   );
