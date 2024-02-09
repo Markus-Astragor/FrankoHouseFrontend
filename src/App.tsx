@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LanguageContext } from "./Context/LanguageContext";
-import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
+// import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
 import { GlobalStyles } from "./styles/GlobalStyles";
@@ -20,7 +20,7 @@ function App() {
         <Router>
           <Routes>
             <Route element={<MainPage />} path='/' />
-            <Route element={<NewsBoardRoutes />} path='/posts/*' />
+            {/* <Route element={<NewsBoardRoutes />} path='/posts/*' /> */}
             <Route element={<AdminPanel />} path='admin'>
               <Route index element={<Navigate to='view-posts' replace />} />
               <Route path='view-posts' element={<GetPosts />} />

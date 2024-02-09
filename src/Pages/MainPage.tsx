@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import AboutUs from "./AboutUs/AboutUs";
-import NewsBoardRoutes from "./NewsBlock/NewsBoard/NewsBoardRoutes";
+// import NewsBoardRoutes from "./NewsBlock/NewsBoard/NewsBoardRoutes";
 import Intro from "../components/Intro/Intro";
 import Partners from "./Partners/Partners";
 import OurMission from "../components/OurMission/OurMission";
@@ -12,7 +12,7 @@ function MainPage() {
       <Intro />
       <OurMission />
       <AboutUs />
-      <NewsBoardRoutes />
+      {/* <NewsBoardRoutes /> */}
       <Partners />
     </div>
   );

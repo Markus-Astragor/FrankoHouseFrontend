@@ -14,7 +14,7 @@ function OurMission() {
   return (
     <MissionStyled>
       <MissionContainer>
-        <MissionTitle>Наша місія</MissionTitle>
+        <MissionTitle>{t("ns1.description.our-mission.title")}</MissionTitle>
         <MissionsBoxContainer>
           <MissionBox arrowId={1}>{t("ns1.description.our-mission.item-1")}</MissionBox>
 
