@@ -12,7 +12,7 @@ function OurMission() {
   const { t } = useTranslation();
 
   return (
-    <MissionStyled>
+    <MissionStyled id='our-mission'>
       <MissionContainer>
         <MissionTitle>Наша місія</MissionTitle>
         <MissionsBoxContainer>
