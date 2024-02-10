@@ -42,6 +42,7 @@ function NewsBoard() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    centerMode: true,
     nextArrow: <></>,
     prevArrow: <></>,
     responsive: [
@@ -50,7 +51,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          centerPadding: "150px",
+          centerPadding: "-30px",
         },
       },
       {
@@ -58,7 +59,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "150px",
+          centerPadding: "-150px",
         },
       },
       {
@@ -66,7 +67,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "160px",
+          centerPadding: "-160px",
         },
       },
       {
@@ -74,7 +75,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "140px",
+          centerPadding: "-140px",
         },
       },
       {
@@ -82,7 +83,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "40px",
+          centerPadding: "-40px",
         },
       },
       {
@@ -90,7 +91,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "20px",
+          centerPadding: "-20px",
         },
       },
     ],
