@@ -9,9 +9,10 @@ type NewsPieceBlockProps = {
   image: string;
   title: string;
   setSelectedNews: (news: string | null) => void;
+  setShowCards: (show: boolean) => void;
 };
 
-function NewsPieceBlock({ image, title, id, setSelectedNews }: NewsPieceBlockProps) {
+function NewsPieceBlock({ image, title, id, setSelectedNews, setShowCards }: NewsPieceBlockProps) {
   console.log(id);
 
   moment.locale("uk");
@@ -20,6 +21,7 @@ function NewsPieceBlock({ image, title, id, setSelectedNews }: NewsPieceBlockPro
     <NewsPiece
       onClick={() => {
         setSelectedNews(id);
+        setShowCards(false);
       }}
     >
       <BlockForImage src={image} />

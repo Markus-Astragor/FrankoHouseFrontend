@@ -22,6 +22,7 @@ function NewsBoard() {
   const [dataFromBackend, setDataFromBackend] = useState<NewsData[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedNews, setSelectedNews] = useState<string | null>(null);
+  const [showCards, setShowCards] = useState<boolean>(true);
 
   useEffect(() => {
     setLoader(true);
@@ -112,17 +113,21 @@ function NewsBoard() {
         ) : (
           <>
             <NewsContainer>
-              <Slider {...settings}>
-                {dataFromBackend?.map((newsPiece, index) => (
-                  <NewsPiece
-                    image={newsPiece.photos}
-                    title={newsPiece.title}
-                    id={newsPiece._id}
-                    key={index}
-                    setSelectedNews={setSelectedNews}
-                  />
-                ))}
-              </Slider>
+              {showCards && (
+                <Slider {...settings}>
+                  {dataFromBackend?.map((newsPiece, index) => (
+                    <NewsPiece
+                      image={newsPiece.photos}
+                      title={newsPiece.title}
+                      id={newsPiece._id}
+                      key={index}
+                      setSelectedNews={setSelectedNews}
+                      setShowCards={setShowCards}
+                    />
+                  ))}
+                </Slider>
+              )}
+
               {selectedNews && <FullNewsPiece id={selectedNews} />}
             </NewsContainer>
           </>
