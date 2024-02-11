@@ -3,7 +3,8 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
-  height: 100vh;
+  height: auto;
+  margin: 50px 0px 50px 0px;
   position: relative;
 
   @media (min-width: 300px) and (max-width: 700px) {
@@ -21,6 +22,7 @@ export const NewsBlock = styled.div`
 
 export const NewsContainer = styled.div`
   width: 90%;
+  height: 100%;
   margin: 0 auto;
   margin-top: 64px;
   box-sizing: border-box;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
 import { BlockForLoader } from "../NewsBoard/NewsBoardStyle";
@@ -17,7 +16,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import leftImage from "../../../assets/NewsBoardImages/left-arrow.png";
 import rightImage from "../../../assets/NewsBoardImages/right-arrow.png";
-import Navbar from "../../../components/Navbar/Navbar";
 
 type props = {
   className: string;
@@ -65,7 +63,11 @@ function SamplePrevArrow({ className, style, onClick }: props) {
   );
 }
 
-function FullNewsPiece() {
+type FullNewsPieceProps = {
+  id: string;
+};
+
+function FullNewsPiece({ id }: FullNewsPieceProps) {
   type NewsData = {
     _id: string;
     title: string;
@@ -75,7 +77,6 @@ function FullNewsPiece() {
     description: string;
   };
 
-  const { id } = useParams();
   const [neededPost, setNeddedPost] = useState<NewsData>();
   const [loader, setLoader] = useState<boolean>(false);
 
@@ -108,7 +109,6 @@ function FullNewsPiece() {
         </BlockForLoader>
       ) : (
         <div>
-          <Navbar />
           <MainBlock>
             <Title>{neededPost?.title}</Title>
             <SliderBlock>

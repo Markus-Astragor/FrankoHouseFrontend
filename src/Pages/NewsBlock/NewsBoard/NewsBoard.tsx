@@ -10,6 +10,7 @@ import NewsPiece from "../NewsPiece/NewsPiece";
 
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
+import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 
 function NewsBoard() {
   type NewsData = {
@@ -20,6 +21,7 @@ function NewsBoard() {
 
   const [dataFromBackend, setDataFromBackend] = useState<NewsData[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
+  const [selectedNews, setSelectedNews] = useState<string | null>(null);
 
   useEffect(() => {
     setLoader(true);
@@ -45,6 +47,7 @@ function NewsBoard() {
     centerMode: true,
     nextArrow: <></>,
     prevArrow: <></>,
+    centerPadding: "30px",
     responsive: [
       {
         breakpoint: 1780,
@@ -116,9 +119,11 @@ function NewsBoard() {
                     title={newsPiece.title}
                     id={newsPiece._id}
                     key={index}
+                    setSelectedNews={setSelectedNews}
                   />
                 ))}
               </Slider>
+              {selectedNews && <FullNewsPiece id={selectedNews} />}
             </NewsContainer>
           </>
         )}
