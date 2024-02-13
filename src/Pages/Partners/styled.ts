@@ -54,6 +54,7 @@ export const Title = styled.h2`
 export const PartnersContainer = styled.div`
   width: 70%;
   margin: 0 auto;
+  max-width: 1500px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

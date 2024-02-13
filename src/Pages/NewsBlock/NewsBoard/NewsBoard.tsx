@@ -43,35 +43,27 @@ function NewsBoard() {
   const settings = {
     dots: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
     centerMode: true,
-    nextArrow: <></>,
-    prevArrow: <></>,
-    centerPadding: "30px",
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerPadding: "120px",
+    autoplay: true,
+    autoplaySpeed: 2000,
     responsive: [
-      {
-        breakpoint: 1780,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          centerPadding: "-30px",
-        },
-      },
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "-150px",
+          centerPadding: "150px",
         },
       },
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "-160px",
+          centerPadding: "60px",
         },
       },
       {
@@ -79,23 +71,32 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "-140px",
+          centerPadding: "140px",
         },
       },
       {
-        breakpoint: 550,
+        breakpoint: 650,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "-40px",
+          centerPadding: "80px",
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 530,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "-20px",
+          centerPadding: "40px",
+        },
+      },
+      {
+        breakpoint: 430,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: "0",
+          centerMode: false,
         },
       },
     ],
