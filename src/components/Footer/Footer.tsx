@@ -8,10 +8,13 @@ import {
   Logo,
   TextItem,
   FoxImage,
+  Link,
 } from "./FooterStyles";
 import logoSrc from "../../assets/footer/white-logo.png";
 import foxImageSrc from "../../assets/footer/fox.png";
+import { useTranslation } from "react-i18next";
 function Footer() {
+  const { t } = useTranslation();
   return (
     <FooterStyled>
       <FooterContainer>
@@ -22,28 +25,40 @@ function Footer() {
         <FlexContainer>
           <FlexItem>
             <TextItem>
-              <strong>Про нас</strong>
+              <strong>
+                <Link href='#about-us'>{t("ns1.description.footer.links.about-us")}</Link>
+              </strong>
             </TextItem>
-            <TextItem>Проекти</TextItem>
-            <TextItem>Контакти</TextItem>
-            <TextItem>Музеї</TextItem>
-            <TextItem>Партнери</TextItem>
-            <TextItem>Наша місія</TextItem>
+            <TextItem>
+              <Link href='#posts'>{t("ns1.description.footer.links.projects")}</Link>
+            </TextItem>
+            <TextItem>
+              <Link href='#contacts'>{t("ns1.description.footer.links.contacts")}</Link>
+            </TextItem>
+            <TextItem>
+              <Link href='#museums'>{t("ns1.description.footer.links.museums")}</Link>
+            </TextItem>
+            <TextItem>
+              <Link href='#partners'>{t("ns1.description.footer.links.partners")}</Link>
+            </TextItem>
+            <TextItem>
+              <Link href='#our-mission'>{t("ns1.description.footer.links.our-mission")}</Link>
+            </TextItem>
           </FlexItem>
           <FlexItem>
             <TextItem>
-              <strong>Контакти</strong>
+              <strong>{t("ns1.description.footer.contacts.contacts")}</strong>
             </TextItem>
             <TextItem>email: dimfranka@gmail.com</TextItem>
-            <TextItem>Тел.: +38096 158 46 06 </TextItem>
+            <TextItem>{t("ns1.description.footer.contacts.phone")}</TextItem>
             <TextItem>+38098 486 00 42</TextItem>
           </FlexItem>
           <FlexItem>
             <TextItem>
-              <strong>Aдреса</strong>
+              <strong>{t("ns1.description.footer.address.address")}</strong>
             </TextItem>
-            <TextItem>Україна, 79011</TextItem>
-            <TextItem>Львівська область, місто Львів, вулиця Івана Франка 152</TextItem>
+            <TextItem>{t("ns1.description.footer.address.country")}</TextItem>
+            <TextItem>{t("ns1.description.footer.address.position")}</TextItem>
           </FlexItem>
           <FlexItem>
             <FoxImage src={foxImageSrc} alt='fox image' />
