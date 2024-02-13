@@ -6,10 +6,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { BlockForLoader, NewsBlock, NewsContainer, TitleProjects } from "./NewsBoardStyle";
+import { Overlay } from "../../../components/Navbar/NavbarStyles";
+
 import NewsPiece from "../NewsPiece/NewsPiece";
 
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
+import ProjectModalWindow from "../../../components/ProjectModalWindow/ProjectModalWindow";
 import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 
 function NewsBoard() {
@@ -22,7 +25,12 @@ function NewsBoard() {
   const [dataFromBackend, setDataFromBackend] = useState<NewsData[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedNews, setSelectedNews] = useState<string | null>(null);
-  const [showCards, setShowCards] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
+
+  const handleCloseModalWindow = () => {
+    setShow(false);
+    setSelectedNews(null);
+  };
 
   useEffect(() => {
     setLoader(true);
@@ -114,25 +122,28 @@ function NewsBoard() {
         ) : (
           <>
             <NewsContainer>
-              {showCards && (
-                <Slider {...settings}>
-                  {dataFromBackend?.map((newsPiece, index) => (
-                    <NewsPiece
-                      image={newsPiece.photos}
-                      title={newsPiece.title}
-                      id={newsPiece._id}
-                      key={index}
-                      setSelectedNews={setSelectedNews}
-                      setShowCards={setShowCards}
-                    />
-                  ))}
-                </Slider>
-              )}
+              <Slider {...settings}>
+                {dataFromBackend?.map((newsPiece, index) => (
+                  <NewsPiece
+                    image={newsPiece.photos}
+                    title={newsPiece.title}
+                    id={newsPiece._id}
+                    key={index}
+                    setSelectedNews={setSelectedNews}
+                    setShow={setShow}
+                  />
+                ))}
+              </Slider>
 
-              {selectedNews && <FullNewsPiece id={selectedNews} />}
+              {selectedNews && (
+                <ProjectModalWindow closeModal={handleCloseModalWindow}>
+                  <FullNewsPiece id={selectedNews} />
+                </ProjectModalWindow>
+              )}
             </NewsContainer>
           </>
         )}
+        <Overlay onClick={handleCloseModalWindow} show={show} />
       </NewsBlock>
     </>
   );

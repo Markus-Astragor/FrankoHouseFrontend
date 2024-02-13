@@ -3,6 +3,7 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
+  position: relative
   height: auto;
   margin: 50px 0px 50px 0px;
   position: relative;
