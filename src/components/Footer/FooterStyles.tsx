@@ -50,6 +50,11 @@ export const FlexItem = styled.div`
 
 export const TextItem = styled.p``;
 
+export const Link = styled.a`
+  color: #fff;
+  text-decoration: none;
+`;
+
 export const FoxImage = styled.img`
   width: 130px;
 `;

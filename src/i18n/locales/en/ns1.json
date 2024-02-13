@@ -32,6 +32,25 @@
       },
       "info-line": "Information line",
       "adress": "Ivana Franka Street, 150, 152, Lviv, Lviv region, 79000"
+    },
+    "footer": {
+      "links": {
+        "about-us": "About us",
+        "projects": "Projects",
+        "contacts": "Contacts",
+        "museums": "Museums",
+        "partners": "Partners",
+        "our-mission": "Our mission"
+      },
+      "contacts": {
+        "contacts": "Contacts",
+        "phone": "Tel.: +38096 158 46 06"
+      },
+      "address": {
+        "address": "Address",
+        "country": "Ukraine, 79011",
+        "position": "Lviv Region, Lviv City, 152 Ivana Franka Street"
+      }
     }
   }
 }
