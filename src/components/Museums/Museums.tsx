@@ -1,16 +1,9 @@
-import React from "react";
-import {
-  MuseumsStyled,
-  MuseumsContainer,
-  MuseumTitle,
-  Slide,
-  SlideContent,
-  SlideContentTitle,
-  VisitButton,
-} from "./MuseunsStyles";
+import React, { useState } from "react";
+import { MuseumsStyled, MuseumsContainer, MuseumTitle } from "./MuseunsStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Slide from "./SlideItem/Slide";
 const settings = {
   dots: false,
   infinite: true,
@@ -67,51 +60,17 @@ const settings = {
 };
 
 function Museums() {
+  const [data] = useState(() => {
+    return Array.from({ length: 5 }, (_, index) => index);
+  });
   return (
     <MuseumsStyled>
       <MuseumsContainer>
         <MuseumTitle>Музеї Івана Франка</MuseumTitle>
         <Slider {...settings}>
-          <Slide>
-            <SlideContent>
-              <SlideContentTitle>
-                Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)
-              </SlideContentTitle>
-              <VisitButton>Ознайомитися</VisitButton>
-            </SlideContent>
-          </Slide>
-          <Slide>
-            <SlideContent>
-              <SlideContentTitle>
-                Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)
-              </SlideContentTitle>
-              <VisitButton>Ознайомитися</VisitButton>
-            </SlideContent>
-          </Slide>
-          <Slide>
-            <SlideContent>
-              <SlideContentTitle>
-                Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)
-              </SlideContentTitle>
-              <VisitButton>Ознайомитися</VisitButton>
-            </SlideContent>
-          </Slide>
-          <Slide>
-            <SlideContent>
-              <SlideContentTitle>
-                Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)
-              </SlideContentTitle>
-              <VisitButton>Ознайомитися</VisitButton>
-            </SlideContent>
-          </Slide>
-          <Slide>
-            <SlideContent>
-              <SlideContentTitle>
-                Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)
-              </SlideContentTitle>
-              <VisitButton>Ознайомитися</VisitButton>
-            </SlideContent>
-          </Slide>
+          {data.map((_, index) => (
+            <Slide key={index} />
+          ))}
         </Slider>
       </MuseumsContainer>
     </MuseumsStyled>
