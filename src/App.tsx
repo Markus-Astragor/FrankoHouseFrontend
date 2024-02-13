@@ -10,6 +10,7 @@ import AdminAuth from "./Pages/AdminAuth/AdminAuth";
 import GetPosts from "./Pages/AdminPanel/GetPosts/GetPosts";
 import CreatePost from "./Pages/AdminPanel/CreatePost/CreatePost";
 import EditPost from "./Pages/AdminPanel/EditPost/EditPost";
+import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 function App() {
   const [language, setLanguage] = useState<string>("ua");
@@ -20,7 +21,7 @@ function App() {
         <Router>
           <Routes>
             <Route element={<MainPage />} path='/' />
-            {/* <Route element={<NewsBoardRoutes />} path='/posts/*' /> */}
+            <Route element={<NewsBoardRoutes />} path='/*' />
             <Route element={<AdminPanel />} path='admin'>
               <Route index element={<Navigate to='view-posts' replace />} />
               <Route path='view-posts' element={<GetPosts />} />

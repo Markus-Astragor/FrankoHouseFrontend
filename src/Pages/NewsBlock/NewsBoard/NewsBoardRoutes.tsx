@@ -1,14 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import NewsBoard from "./NewsBoard";
-import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 
 function NewsBoardRoutes() {
   return (
     <div id='posts'>
       <Routes>
-        <Route index element={<NewsBoard />} />
-        <Route path=':id' element={<FullNewsPiece />} />
+        <Route path='/' element={<NewsBoard />} />
       </Routes>
     </div>
   );

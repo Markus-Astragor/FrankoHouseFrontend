@@ -3,9 +3,9 @@ import styled from "styled-components";
 // NewsComponent and container for news
 export const NewsBlock = styled.div`
   display: block;
-  height: 1000px;
+  height: auto;
+  margin: 50px 0px 50px 0px;
   position: relative;
-  margin-top: 181px;
 
   @media (min-width: 300px) and (max-width: 700px) {
     margin-top: 900px;
@@ -14,14 +14,22 @@ export const NewsBlock = styled.div`
   @media (min-width: 701px) and (max-width: 1100px) {
     margin-top: 651px;
   }
+
+  @media (min-width: 1101px) and (max-width: 1300px) {
+    margin-top: 51px;
+  }
 `;
 
 export const NewsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 85%;
-  margin: 0 auto 200px auto;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 64px;
+  box-sizing: border-box;
+
+  @media (min-width: 370px) and (max-width: 450px) {
+    width: 85%;
+  }
 `;
 
 export const TitleProjects = styled.h2`

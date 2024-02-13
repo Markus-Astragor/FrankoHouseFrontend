@@ -7,7 +7,6 @@ export const PartnerBlock = styled.div`
   height: 700px;
   background: url(${backgroundFranko}) no-repeat center center fixed;
   background-size: cover;
-  margin-top: 200px;
   background-position-x: center;
 
   @media (min-width: 300px) and (max-width: 450px) {
