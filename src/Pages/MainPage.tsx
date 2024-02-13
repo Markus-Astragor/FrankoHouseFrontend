@@ -7,6 +7,7 @@ import Partners from "./Partners/Partners";
 import OurMission from "../components/OurMission/OurMission";
 import Footer from "../components/Footer/Footer";
 import Museums from "../components/Museums/Museums";
+import InfoLine from "../components/InfoLine/InfoLine";
 function MainPage() {
   return (
     <div>
@@ -17,6 +18,7 @@ function MainPage() {
       <NewsBoardRoutes />
       <Partners />
       <Museums />
+      <InfoLine />
       <Footer />
     </div>
   );
