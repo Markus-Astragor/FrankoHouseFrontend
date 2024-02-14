@@ -5,7 +5,7 @@ const liftModalBlock = keyframes`
     top: 250%;
   }
   to {
-    top: -8%;
+    top: 4%;
   }
 `;
 
@@ -18,7 +18,7 @@ export const ProjectModalBlock = styled.div`
   padding: 20px 0px 40px 0px;
   z-index: 8;
   border-radius: 20px;
-  top: -8%;
+  top: 4%;
   left: 50%;
   transform: translateX(-50%);
   animation-name: ${liftModalBlock};

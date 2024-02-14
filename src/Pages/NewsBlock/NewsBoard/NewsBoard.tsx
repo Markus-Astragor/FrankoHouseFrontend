@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import Slider from "react-slick";
@@ -26,6 +26,7 @@ function NewsBoard() {
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedNews, setSelectedNews] = useState<string | null>(null);
   const [show, setShow] = useState<boolean>(false);
+  const sliderBlock = useRef<HTMLDivElement>(null);
 
   const handleCloseModalWindow = () => {
     setShow(false);
@@ -47,6 +48,19 @@ function NewsBoard() {
         setLoader(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflowY = "hidden";
+      if (sliderBlock.current)
+        sliderBlock.current.scrollIntoView({
+          behavior: "smooth",
+        });
+    }
+    return () => {
+      document.body.style.overflowY = "scroll";
+    };
+  }, [show]);
 
   const settings = {
     dots: false,
@@ -113,7 +127,7 @@ function NewsBoard() {
 
   return (
     <>
-      <NewsBlock>
+      <NewsBlock ref={sliderBlock}>
         <TitleProjects>Події</TitleProjects>
         {loader ? (
           <BlockForLoader>
