@@ -4,8 +4,8 @@ import slideImageSrc from "../../../assets/museums/placeholder.png";
 
 export const SlideContent = styled.div`
   position: relative;
-  height: 80vh;
   width: 100%;
+  height: 450px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 `;
@@ -43,12 +43,28 @@ export const SlideContentFront = styled.div`
 
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+
+  @media (max-width: 820px) {
+    padding: 0 8px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0 15px;
+  }
 `;
 
 export const SlideContentTitle = styled.div`
   text-align: center;
   color: #fff;
   font-size: 18px;
+
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 820px) {
+    font-size: 14px;
+  }
 `;
 
 export const SlideContentBack = styled.div`
