@@ -11,13 +11,21 @@ const settings = {
   autoplaySpeed: 2000,
   slidesToScroll: 1,
   centerMode: true,
-  centerPadding: "120px",
-  slidesToShow: 3,
+  centerPadding: "80px",
+  slidesToShow: 4,
   speed: 500,
   focusOnSelect: true,
   responsive: [
     {
       breakpoint: 1280,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        centerPadding: "100px",
+      },
+    },
+    {
+      breakpoint: 1000,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -25,7 +33,7 @@ const settings = {
       },
     },
     {
-      breakpoint: 900,
+      breakpoint: 768,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -33,7 +41,7 @@ const settings = {
       },
     },
     {
-      breakpoint: 768,
+      breakpoint: 600,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -41,19 +49,11 @@ const settings = {
       },
     },
     {
-      breakpoint: 550,
+      breakpoint: 500,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
-        centerPadding: "40px",
-      },
-    },
-    {
-      breakpoint: 400,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        centerPadding: "20px",
+        centerPadding: "60px",
       },
     },
   ],
