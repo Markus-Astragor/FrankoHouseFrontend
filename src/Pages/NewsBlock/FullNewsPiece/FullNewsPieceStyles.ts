@@ -11,7 +11,6 @@ export const LoaderBlock = styled.div`
 export const MainBlock = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 40px;
 `;
 
 export const SliderBlock = styled.div`
