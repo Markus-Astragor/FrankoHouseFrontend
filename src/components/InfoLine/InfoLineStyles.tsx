@@ -89,6 +89,7 @@ export const Map = styled.div`
   background-color: #fff;
   width: 60%;
   height: 350px;
+  cursor: pointer;
 
   background: url(${backgroundMapSrc});
   background-repeat: no-repeat;
