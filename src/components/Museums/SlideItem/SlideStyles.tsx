@@ -86,25 +86,25 @@ export const SlideContentBack = styled.div`
 
 export const ContentBackSlide = styled.div``;
 
-export const VisitButton = styled.a`
-  padding: 8px 0;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translate(-50%);
-  display: block;
-  text-align: center;
-  width: 80%;
-  margin: 0 auto;
-  border: 2px solid #fff;
-  color: #fff;
-  font-weight: 700;
+// export const VisitButton = styled.a`
+//   padding: 8px 0;
+//   position: absolute;
+//   bottom: 20px;
+//   left: 50%;
+//   transform: translate(-50%);
+//   display: block;
+//   text-align: center;
+//   width: 80%;
+//   margin: 0 auto;
+//   border: 2px solid #fff;
+//   color: #fff;
+//   font-weight: 700;
 
-  cursor: pointer;
-  transition: 0.3s linear;
+//   cursor: pointer;
+//   transition: 0.3s linear;
 
-  &:hover {
-    background-color: #fff;
-    color: #000;
-  }
-`;
+//   &:hover {
+//     background-color: #fff;
+//     color: #000;
+//   }
+// `;
