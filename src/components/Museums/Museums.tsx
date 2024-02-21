@@ -45,15 +45,23 @@ const settings = {
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
-        centerPadding: "140px",
+        centerPadding: "120px",
       },
     },
     {
-      breakpoint: 500,
+      breakpoint: 480,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
-        centerPadding: "60px",
+        centerPadding: "40px",
+      },
+    },
+    {
+      breakpoint: 430,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: false,
       },
     },
   ],
