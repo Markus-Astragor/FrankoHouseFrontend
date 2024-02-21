@@ -16,7 +16,7 @@ export const MuseumsContainer = styled.div`
   box-sizing: border-box;
 
   @media (max-width: 431px) {
-    padding: 0 60px;
+    padding: 0 40px;
   }
 `;
 
