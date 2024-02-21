@@ -8,6 +8,10 @@ export const SlideContent = styled.div`
   height: 450px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+
+  @media (max-width: 431px) {
+    height: 350px;
+  }
 `;
 
 export const SlideBox = styled.div`
@@ -48,8 +52,8 @@ export const SlideContentFront = styled.div`
     padding: 0 8px;
   }
 
-  @media (max-width: 400px) {
-    padding: 0 15px;
+  @media (max-width: 431px) {
+    padding: 0 25px;
   }
 `;
 
@@ -60,10 +64,6 @@ export const SlideContentTitle = styled.div`
 
   @media (max-width: 1280px) {
     font-size: 16px;
-  }
-
-  @media (max-width: 820px) {
-    font-size: 14px;
   }
 `;
 
