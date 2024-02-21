@@ -12,7 +12,7 @@ import {
 
 function InfoLine() {
   return (
-    <InfoLineStyled>
+    <InfoLineStyled id='contacts'>
       <InfoLineContiner>
         <InfoLineTitle>Інфомарційна лінія</InfoLineTitle>
         <FlexContainer>
