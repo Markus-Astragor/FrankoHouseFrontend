@@ -2,12 +2,13 @@ import { styled } from "styled-components";
 
 export const NewsPiece = styled.div`
   display: block;
+  width: 97%;
   height: calc(194px + 174px);
   border: 2px solid black;
   border-radius: 25px;
   cursor: pointer;
   box-sizing: border-box;
-  margin: 0 15px;
+  // margin: 0 15px;
 `;
 
 export const BlockForImage = styled.img`
