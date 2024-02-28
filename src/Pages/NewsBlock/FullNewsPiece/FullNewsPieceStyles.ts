@@ -13,13 +13,23 @@ export const MainBlock = styled.div`
   height: 100%;
 `;
 
-export const SliderBlock = styled.div`
-  width: 40%;
-  height: 400px;
-  margin: 0 auto;
+export const TitleAndSlider = styled.div`
+  display: flex;
 
   @media (max-width: 600px) {
-    width: 100%;
+    flex-direction: column;
+  }
+`;
+
+export const SliderBlock = styled.div`
+  width: 400px;
+  height: 194px;
+  margin-left: 20px;
+  order: 1;
+
+  @media (max-width: 600px) {
+    width: 90%;
+    order: 2;
   }
 
   @media (min-width: 601px) and (max-width: 1024px) {
@@ -36,19 +46,25 @@ export const SliderBlock = styled.div`
 `;
 
 export const Title = styled.h3`
+  width: 70%;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
   letter-spacing: -1.5%;
   margin: 20px 0px;
+  order: 2;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    order: 1;
+  }
 `;
 
 export const Description = styled.p`
-  width: 70%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 40px auto;
+  font-size: 23px;
 `;
-
-export const TitleAndSlider = styled.div``;
 
 export const ShortDescription = styled.p``;
 

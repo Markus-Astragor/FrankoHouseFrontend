@@ -11,6 +11,7 @@ import {
   Description,
   ShortDescription,
   LongDescription,
+  TitleAndSlider,
 } from "./FullNewsPieceStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -110,14 +111,16 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
       ) : (
         <div>
           <MainBlock>
-            <Title>{neededPost?.title}</Title>
-            <SliderBlock>
-              <Slider {...settings}>
-                {neededPost?.photos.map((photo, i) => (
-                  <img src={photo} width='100%' height='400px' key={i} />
-                ))}
-              </Slider>
-            </SliderBlock>
+            <TitleAndSlider>
+              <SliderBlock>
+                <Slider {...settings}>
+                  {neededPost?.photos.map((photo, i) => (
+                    <img src={photo} width='400px' height='200px' key={i} />
+                  ))}
+                </Slider>
+              </SliderBlock>
+              <Title>{neededPost?.title}</Title>
+            </TitleAndSlider>
 
             <Description>
               <ShortDescription>{neededPost?.shortDescription}</ShortDescription>
