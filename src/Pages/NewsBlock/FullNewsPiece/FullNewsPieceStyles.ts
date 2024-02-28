@@ -48,6 +48,8 @@ export const Description = styled.p`
   margin: 0 auto;
 `;
 
+export const TitleAndSlider = styled.div``;
+
 export const ShortDescription = styled.p``;
 
 export const LongDescription = styled.p``;

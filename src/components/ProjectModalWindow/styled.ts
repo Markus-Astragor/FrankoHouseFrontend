@@ -26,10 +26,18 @@ export const ProjectModalBlock = styled.div`
 `;
 
 export const CloseBtn = styled.span`
-  width: 10%;
+  width: 98%;
   display: flex;
-  justify-content: center;
-  font-size: 30px;
+  justify-content: flex-end;
+  font-size: 20px;
   color: black;
   cursor: pointer;
+`;
+
+export const CloseIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 27px;
+  border: 3px solid black;
+  border-radius: 50%;
 `;
