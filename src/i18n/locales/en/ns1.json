@@ -30,7 +30,11 @@
         "item3": "Communication",
         "item4": "Interaction"
       },
-      "info-line": "Information line",
+      "info-line": {
+        "title": "Information Line",
+        "contacts": "Contacts",
+        "telephone": "tel.:"
+      },
       "adress": "Ivana Franka Street, 150, 152, Lviv, Lviv region, 79000"
     },
     "footer": {
