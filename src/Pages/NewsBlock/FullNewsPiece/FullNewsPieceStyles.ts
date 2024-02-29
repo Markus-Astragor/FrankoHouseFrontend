@@ -39,10 +39,14 @@ export const SliderBlock = styled.div`
 
   @media (min-width: 1025px) and (max-width: 1400px) {
     width: 60%;
+    margin: 0 auto;
+    margin-left: 20px;
   }
 
   @media (min-width: 1401px) and (max-width: 1800px) {
     width: 45%;
+    margin: 0 auto;
+    margin-left: 20px;
   }
 `;
 
