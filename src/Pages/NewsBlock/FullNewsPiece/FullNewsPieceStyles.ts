@@ -68,10 +68,11 @@ export const Description = styled.p`
 `;
 
 export const ImageInSlider = styled.img`
+  width: 400px;
   height: 200px;
 
   @media (max-width: 1024px) {
-    height: 300px;
+    height: 200px;
   }
 `;
 
