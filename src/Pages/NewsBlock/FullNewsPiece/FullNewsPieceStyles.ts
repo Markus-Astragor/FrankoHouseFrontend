@@ -16,7 +16,7 @@ export const MainBlock = styled.div`
 export const TitleAndSlider = styled.div`
   display: flex;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1200px) {
     flex-direction: column;
   }
 `;
@@ -27,13 +27,14 @@ export const SliderBlock = styled.div`
   margin-left: 20px;
   order: 1;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1200px) {
     width: 90%;
     order: 2;
   }
 
   @media (min-width: 601px) and (max-width: 1024px) {
     width: 80%;
+    margin: 0 auto;
   }
 
   @media (min-width: 1025px) and (max-width: 1400px) {
@@ -54,7 +55,7 @@ export const Title = styled.h3`
   margin: 20px 0px;
   order: 2;
 
-  @media (max-width: 600px) {
+  @media (max-width: 1200px) {
     width: 100%;
     order: 1;
   }
@@ -64,6 +65,14 @@ export const Description = styled.p`
   width: 90%;
   margin: 40px auto;
   font-size: 23px;
+`;
+
+export const ImageInSlider = styled.img`
+  height: 200px;
+
+  @media (max-width: 1024px) {
+    height: 300px;
+  }
 `;
 
 export const ShortDescription = styled.p``;

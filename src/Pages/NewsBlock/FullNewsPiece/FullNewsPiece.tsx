@@ -12,6 +12,7 @@ import {
   ShortDescription,
   LongDescription,
   TitleAndSlider,
+  ImageInSlider,
 } from "./FullNewsPieceStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
