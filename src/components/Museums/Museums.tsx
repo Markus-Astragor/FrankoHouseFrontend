@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Slide from "./SlideItem/Slide";
+import { useTranslation } from "react-i18next";
 const settings = {
   dots: false,
   infinite: true,
@@ -68,13 +69,14 @@ const settings = {
 };
 
 function Museums() {
+  const { t } = useTranslation();
   const [data] = useState(() => {
     return Array.from({ length: 5 }, (_, index) => index);
   });
   return (
     <MuseumsStyled>
       <MuseumsContainer>
-        <MuseumTitle>Музеї Івана Франка</MuseumTitle>
+        <MuseumTitle>{t("ns1.description.museumsFranko.title")}</MuseumTitle>
         <Slider {...settings}>
           {data.map((_, index) => (
             <Slide key={index} />
