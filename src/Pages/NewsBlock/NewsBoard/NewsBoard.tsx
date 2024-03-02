@@ -14,8 +14,11 @@ import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
 import ProjectModalWindow from "../../../components/ProjectModalWindow/ProjectModalWindow";
 import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
+import { useTranslation } from "react-i18next";
 
 function NewsBoard() {
+  const { t } = useTranslation();
+
   type NewsData = {
     _id: string;
     title: string;
@@ -128,7 +131,7 @@ function NewsBoard() {
   return (
     <>
       <NewsBlock ref={sliderBlock}>
-        <TitleProjects>Події</TitleProjects>
+        <TitleProjects>{t("ns1.description.events.title")}</TitleProjects>
         {loader ? (
           <BlockForLoader>
             <LoaderComponent />
