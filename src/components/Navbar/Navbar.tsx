@@ -41,8 +41,8 @@ function Navbar() {
     if (e.target !== switcher.current) return;
     const currentLanguage = localStorage.getItem("language");
 
-    if (currentLanguage === "uk") changeLanguage("en");
-    else changeLanguage("uk");
+    if (currentLanguage === "ua") changeLanguage("en");
+    else changeLanguage("ua");
   }
 
   return (
