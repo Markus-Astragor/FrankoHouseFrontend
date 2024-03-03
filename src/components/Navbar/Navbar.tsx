@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import LogoSrc from "../../assets/header-imgs/logo.png";
 import {
   NavbarStyled,
@@ -16,6 +16,7 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
 import { useLanguageContext } from "../../Context/LanguageContext";
 function Navbar() {
+  const switcher = useRef<HTMLDivElement>(null);
   const { setLanguage } = useLanguageContext();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -36,6 +37,14 @@ function Navbar() {
     i18n.changeLanguage(lan);
   }
 
+  function switchLanguage(e) {
+    if (e.target !== switcher.current) return;
+    const currentLanguage = localStorage.getItem("language");
+
+    if (currentLanguage === "ua") changeLanguage("en");
+    else changeLanguage("ua");
+  }
+
   return (
     <NavbarStyled>
       <NavbarContainer>
@@ -50,7 +59,7 @@ function Navbar() {
             <MenuItem href='#partners'>{t("ns1.description.navbar.link3")}</MenuItem>
             <MenuItem href='#contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
             <MenuItem href='#our-mission'>{t("ns1.description.navbar.link5")}</MenuItem>
-            <SwitchLanguage>
+            <SwitchLanguage onClick={switchLanguage} ref={switcher}>
               <span onClick={() => changeLanguage("ua")}>UA</span>|
               <span onClick={() => changeLanguage("en")}>EN</span>
             </SwitchLanguage>

@@ -38,6 +38,19 @@
       },
       "adress": "Ivana Franka Street, 150, 152, Lviv, Lviv region, 79000"
     },
+
+    "events": {
+      "title": "Events"
+    },
+
+    "partners": {
+      "title": "Partners"
+    },
+
+    "museumsFranko": {
+      "title": "Museums of Ivan Franko"
+    },
+
     "footer": {
       "links": {
         "about-us": "About us",
