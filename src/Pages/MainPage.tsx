@@ -13,8 +13,8 @@ function MainPage() {
     <div>
       <Navbar />
       <Intro />
-      <OurMission />
       <AboutUs />
+      <OurMission />
       <NewsBoardRoutes />
       <Partners />
       <Museums />

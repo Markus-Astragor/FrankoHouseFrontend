@@ -13,7 +13,8 @@ import { useTranslation } from "react-i18next";
 
 function InfoLine() {
   const { t } = useTranslation();
-  const handleOpenGoogleMaps = () => window.open("https://maps.app.goo.gl/bxFv8DTAyBmyp7HN7", "_blank");
+  const handleOpenGoogleMaps = () =>
+    window.open("https://maps.app.goo.gl/bxFv8DTAyBmyp7HN7", "_blank");
   return (
     <InfoLineStyled id='contacts'>
       <InfoLineContiner>
