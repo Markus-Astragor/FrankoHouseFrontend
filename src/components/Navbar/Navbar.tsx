@@ -57,7 +57,7 @@ function Navbar() {
             <MenuItem href='#about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
             <MenuItem href='#posts'>{t("ns1.description.navbar.link2")}</MenuItem>
             <MenuItem href='#partners'>{t("ns1.description.navbar.link3")}</MenuItem>
-            <MenuItem>{t("ns1.description.navbar.link4")}</MenuItem>
+            <MenuItem href='#contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
             <MenuItem href='#our-mission'>{t("ns1.description.navbar.link5")}</MenuItem>
             <SwitchLanguage onClick={switchLanguage} ref={switcher}>
               <span onClick={() => changeLanguage("ua")}>UA</span>|

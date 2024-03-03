@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const BurgerMenuStyled = styled.div<{ open: boolean }>`
@@ -39,7 +38,7 @@ export const BurgerMenuLinks = styled.ul`
   row-gap: 5px;
   margin-bottom: 20px;
 `;
-export const BurgerMenuLink = styled(NavLink)`
+export const BurgerMenuLink = styled.a`
   text-decoration: none;
   color: #000;
   font-weight: 700;
