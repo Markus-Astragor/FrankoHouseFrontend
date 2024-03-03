@@ -2,6 +2,7 @@
   "BASE-URL": "https://amif.server24.space/api",
   "GET-POSTS": "https://amif.server24.space/api/getPosts",
   "GET-POSTS-ID": "https://amif.server24.space/api/getPosts",
+  "GET_MUSEUMS": "https://amif.server24.space/api/getMuseums",
   "ADMIN": {
     "CREATE-POST": "https://amif.server24.space/api/admin/createPost",
     "EDIT-POST": "https://amif.server24.space/api/admin/editPost",

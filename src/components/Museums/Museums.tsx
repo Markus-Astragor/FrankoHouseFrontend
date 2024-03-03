@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { MuseumsStyled, MuseumsContainer, MuseumTitle } from "./MuseunsStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Slide from "./SlideItem/Slide";
+import useMuseums, { MuseumsData } from "../../hooks/useMuseums";
+
 const settings = {
   dots: false,
   infinite: true,
@@ -68,18 +70,26 @@ const settings = {
 };
 
 function Museums() {
-  const [data] = useState(() => {
-    return Array.from({ length: 5 }, (_, index) => index);
-  });
+  const { getMuseums, data, isLoading } = useMuseums();
+
+  useEffect(() => {
+    getMuseums();
+  }, []);
+
   return (
     <MuseumsStyled>
       <MuseumsContainer>
         <MuseumTitle>Музеї Івана Франка</MuseumTitle>
-        <Slider {...settings}>
-          {data.map((_, index) => (
-            <Slide key={index} />
-          ))}
-        </Slider>
+
+        {isLoading ? (
+          <p>Дані завантажуються</p>
+        ) : (
+          <Slider {...settings}>
+            {data.map((info: MuseumsData, index) => (
+              <Slide data={info} key={index} />
+            ))}
+          </Slider>
+        )}
       </MuseumsContainer>
     </MuseumsStyled>
   );

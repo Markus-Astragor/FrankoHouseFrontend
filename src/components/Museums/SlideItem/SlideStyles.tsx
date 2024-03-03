@@ -1,21 +1,23 @@
 import styled from "styled-components";
 
 import slideImageSrc from "../../../assets/museums/placeholder.png";
-
+import slideBackSrc from "../../../assets/museums/slide_back.png";
 export const SlideContent = styled.div`
   position: relative;
   width: 100%;
   height: 450px;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 
   @media (max-width: 431px) {
-    height: 350px;
+    height: 400px;
   }
 `;
 
 export const SlideBox = styled.div`
-  padding: 10px;
+  padding: 30px 10px;
   box-sizing: border-box;
   background-color: transparent;
   perspective: 1000px;
@@ -76,35 +78,33 @@ export const SlideContentBack = styled.div`
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 
-  background-color: dodgerblue;
+  background-image: url(${slideBackSrc});
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
   transform: rotateY(180deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 50px 10px 10px;
+  box-sizing: border-box;
 `;
 
-export const ContentBackSlide = styled.div``;
+export const BackMuseumTitle = styled.div`
+  text-align: center;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 50px;
+  color: #fff;
+`;
 
-// export const VisitButton = styled.a`
-//   padding: 8px 0;
-//   position: absolute;
-//   bottom: 20px;
-//   left: 50%;
-//   transform: translate(-50%);
-//   display: block;
-//   text-align: center;
-//   width: 80%;
-//   margin: 0 auto;
-//   border: 2px solid #fff;
-//   color: #fff;
-//   font-weight: 700;
+export const BackBoldText = styled.div`
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #fff;
+`;
 
-//   cursor: pointer;
-//   transition: 0.3s linear;
-
-//   &:hover {
-//     background-color: #fff;
-//     color: #000;
-//   }
-// `;
+export const BackSiteLink = styled.a`
+  color: #46a6ff;
+  text-decoration: underline;
+  cursor: pointer;
+`;
