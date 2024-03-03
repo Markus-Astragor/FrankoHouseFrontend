@@ -23,7 +23,7 @@ export const MuseumsContainer = styled.div`
 export const MuseumTitle = styled.h2`
   text-align: center;
   font-size: 36px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 
   @media (max-width: 820px) {
     font-size: 30px;
