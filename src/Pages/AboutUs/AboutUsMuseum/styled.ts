@@ -5,6 +5,7 @@ export const AboutUsMuseumBlock = styled.div`
   width: 80%;
   height: 100vh;
   margin: 0 auto;
+  padding: 20px 0 60px;
 `;
 
 export const AboutUsMuseumContainer = styled.div`
