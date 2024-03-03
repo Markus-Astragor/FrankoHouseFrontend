@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import Slide from "./SlideItem/Slide";
 import useMuseums, { MuseumsData } from "../../hooks/useMuseums";
 
+import { useTranslation } from "react-i18next";
 const settings = {
   dots: false,
   infinite: true,
@@ -71,16 +72,18 @@ const settings = {
 
 function Museums() {
   const { getMuseums, data, isLoading } = useMuseums();
+  const { t } = useTranslation();
+  
 
   useEffect(() => {
     getMuseums();
   }, []);
-
+        
+ 
   return (
     <MuseumsStyled>
       <MuseumsContainer>
-        <MuseumTitle>Музеї Івана Франка</MuseumTitle>
-
+        <MuseumTitle>{t("ns1.description.museumsFranko.title")}</MuseumTitle>
         {isLoading ? (
           <p>Дані завантажуються</p>
         ) : (

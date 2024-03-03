@@ -4,6 +4,8 @@ export const NavbarStyled = styled.div`
   width: 100%;
   box-sizing: border-box;
   background-color: #fff;
+  position: fixed;
+  z-index: 100;
 `;
 
 export const NavbarContainer = styled.div`
