@@ -62,10 +62,10 @@ export const SlideContentFront = styled.div`
 export const SlideContentTitle = styled.div`
   text-align: center;
   color: #fff;
-  font-size: 18px;
+  font-size: 19px;
 
   @media (max-width: 1280px) {
-    font-size: 16px;
+    font-size: 17px;
   }
 `;
 
@@ -83,24 +83,37 @@ export const SlideContentBack = styled.div`
   background-size: cover;
   color: white;
   transform: rotateY(180deg);
-  padding: 50px 10px 10px;
+  padding: 50px 25px 10px;
   box-sizing: border-box;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const BackMuseumTitle = styled.div`
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   font-family: "Montserrat", sans-serif;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: #fff;
+
+  @media (max-width: 1280px) {
+    font-size: 16px;
+  }
 `;
 
 export const BackBoldText = styled.div`
   font-weight: 700;
   font-family: "Montserrat", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px;
   color: #fff;
+
+  @media (max-width: 1280px) {
+    font-size: 12px;
+  }
 `;
 
 export const BackSiteLink = styled.a`
