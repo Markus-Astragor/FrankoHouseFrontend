@@ -15,7 +15,7 @@ export const NewsBlock = styled.div`
 
 export const NewsContainer = styled.div`
   width: 97%;
-  max-width: 2000px;
+  // max-width: 2000px;
   height: 100%;
   margin: 0 auto;
   margin-top: 64px;

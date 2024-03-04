@@ -10,7 +10,11 @@ export const LoaderBlock = styled.div`
 
 export const MainBlock = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
+  @media (max-height: 800px) {
+    height: 70vh;
+    overflow-y: scroll;
+  }
 `;
 
 export const TitleAndSlider = styled.div`
@@ -22,9 +26,9 @@ export const TitleAndSlider = styled.div`
 `;
 
 export const SliderBlock = styled.div`
-  width: 400px;
+  width: 30%;
   height: 194px;
-  margin-left: 20px;
+  margin: 0 auto;
   order: 1;
 
   @media (max-width: 1200px) {
@@ -38,20 +42,20 @@ export const SliderBlock = styled.div`
   }
 
   @media (min-width: 1025px) and (max-width: 1400px) {
-    width: 60%;
+    width: 43%;
     margin: 0 auto;
-    margin-left: 20px;
+    padding-left: 40px;
   }
 
   @media (min-width: 1401px) and (max-width: 1800px) {
-    width: 45%;
+    width: 40%;
     margin: 0 auto;
-    margin-left: 20px;
+    padding-left: 40px;
   }
 `;
 
 export const Title = styled.h3`
-  width: 70%;
+  width: 60%;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
