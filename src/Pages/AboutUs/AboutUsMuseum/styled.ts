@@ -6,6 +6,9 @@ export const AboutUsMuseumBlock = styled.div`
   height: 100vh;
   margin: 0 auto;
   padding: 20px 0 60px;
+  @media (min-width: 300px) and (max-width: 1100px) {
+    margin-bottom: 740px;
+  }
 `;
 
 export const AboutUsMuseumContainer = styled.div`

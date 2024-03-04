@@ -8,14 +8,6 @@ export const NewsBlock = styled.div`
   margin: 50px 0px 50px 0px;
   position: relative;
 
-  @media (min-width: 300px) and (max-width: 700px) {
-    margin-top: 900px;
-  }
-
-  @media (min-width: 701px) and (max-width: 1100px) {
-    margin-top: 651px;
-  }
-
   @media (min-width: 1101px) and (max-width: 1300px) {
     margin-top: 51px;
   }
