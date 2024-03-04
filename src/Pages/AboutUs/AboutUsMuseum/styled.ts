@@ -5,8 +5,13 @@ export const AboutUsMuseumBlock = styled.div`
   width: 80%;
   height: 100vh;
   margin: 0 auto;
-  padding: 20px 0 60px;
-  @media (min-width: 300px) and (max-width: 1100px) {
+
+  @media (max-width: 400px) {
+    padding: 20px 0 60px;
+    margin-bottom: 740px;
+  }
+
+  @media (min-width: 400px) and (max-width: 1100px) {
     margin-bottom: 740px;
   }
 `;

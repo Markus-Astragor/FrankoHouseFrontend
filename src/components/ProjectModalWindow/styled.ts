@@ -5,20 +5,20 @@ const liftModalBlock = keyframes`
     top: 250%;
   }
   to {
-    top: 20%;
+    top: 27%;
   }
 `;
 
 export const ProjectModalBlock = styled.div`
   position: absolute;
   width: 70%;
-  height: 80%;
+  height: auto;
   background-color: white;
   margin: 0 auto;
-  padding: 20px 0px 40px 0px;
+  padding: 20px 0px 0px 0px;
   z-index: 8;
   border-radius: 20px;
-  top: 20%;
+  top: 27%;
   left: 50%;
   transform: translateX(-50%);
   animation-name: ${liftModalBlock};
