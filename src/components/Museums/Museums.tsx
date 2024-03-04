@@ -15,10 +15,18 @@ const settings = {
   slidesToScroll: 1,
   centerMode: true,
   centerPadding: "80px",
-  slidesToShow: 4,
+  slidesToShow: 5,
   speed: 500,
   focusOnSelect: true,
   responsive: [
+    {
+      breakpoint: 1800,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        centerPadding: "100px",
+      },
+    },
     {
       breakpoint: 1280,
       settings: {
@@ -73,13 +81,11 @@ const settings = {
 function Museums() {
   const { getMuseums, data, isLoading } = useMuseums();
   const { t } = useTranslation();
-  
 
   useEffect(() => {
     getMuseums();
   }, []);
-        
- 
+
   return (
     <MuseumsStyled>
       <MuseumsContainer>

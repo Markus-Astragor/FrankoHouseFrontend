@@ -11,7 +11,7 @@ export const MuseumsStyled = styled.div`
 
 export const MuseumsContainer = styled.div`
   width: 100%;
-  max-width: 1500px;
+  /* max-width: 1500px; */
   margin: 0 auto;
   box-sizing: border-box;
 
