@@ -3,17 +3,8 @@ import styled from "styled-components";
 export const AboutUsMuseumBlock = styled.div`
   @import url("https://fonts.cdnfonts.com/css/kelly-slab");
   width: 80%;
-  height: 100vh;
   margin: 0 auto;
-
-  @media (max-width: 400px) {
-    padding: 20px 0 60px;
-    margin-bottom: 740px;
-  }
-
-  @media (min-width: 400px) and (max-width: 1100px) {
-    margin-bottom: 740px;
-  }
+  padding: 123px 0px;
 `;
 
 export const AboutUsMuseumContainer = styled.div`
@@ -35,7 +26,6 @@ export const AboutUsLeftPart = styled.div`
 
 export const AboutUsTitle = styled.h2`
   margin-left: 20px;
-  margin-top: 123px;
   font-size: 53px;
   font-family: "Kelly Slab", sans-serif;
   font-weight: 100;
