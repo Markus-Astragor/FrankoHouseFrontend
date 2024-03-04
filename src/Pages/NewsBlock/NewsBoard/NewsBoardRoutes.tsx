@@ -4,7 +4,7 @@ import NewsBoard from "./NewsBoard";
 
 function NewsBoardRoutes() {
   return (
-    <div id='posts'>
+    <div>
       <Routes>
         <Route path='/' element={<NewsBoard />} />
       </Routes>

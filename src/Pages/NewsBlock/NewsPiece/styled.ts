@@ -20,7 +20,6 @@ export const BlockForImage = styled.img`
 `;
 
 export const BlockForTitle = styled.div`
-  width: 100%;
   height: 30%;
   display: flex;
   justify-content: center;
@@ -28,4 +27,5 @@ export const BlockForTitle = styled.div`
   align-items: center;
   font-family: "Montserrat", sans-serif;
   font-size: 24px;
+  padding: 0px 20px;
 `;

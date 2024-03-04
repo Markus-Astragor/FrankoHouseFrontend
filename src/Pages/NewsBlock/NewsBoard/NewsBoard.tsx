@@ -130,7 +130,7 @@ function NewsBoard() {
 
   return (
     <>
-      <NewsBlock ref={sliderBlock}>
+      <NewsBlock ref={sliderBlock} id='posts'>
         <TitleProjects>{t("ns1.description.events.title")}</TitleProjects>
         {loader ? (
           <BlockForLoader>
