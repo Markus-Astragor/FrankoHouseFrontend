@@ -9,6 +9,7 @@ import AdminPanel from "./Pages/AdminPanel/AdminPanel";
 import AdminAuth from "./Pages/AdminAuth/AdminAuth";
 import GetPosts from "./Pages/AdminPanel/GetPosts/GetPosts";
 import CreatePost from "./Pages/AdminPanel/CreatePost/CreatePost";
+import AddMuseum from "./Pages/AdminPanel/AddMuseum/AddMuseum";
 import EditPost from "./Pages/AdminPanel/EditPost/EditPost";
 import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
@@ -27,6 +28,7 @@ function App() {
               <Route path='view-posts' element={<GetPosts />} />
               <Route path='view-posts/:id' element={<EditPost />} />
               <Route path='create-post' element={<CreatePost />} />
+              <Route path='add-museum' element={<AddMuseum />} />
             </Route>
             <Route element={<AdminAuth />} path='/admin/auth' />
           </Routes>

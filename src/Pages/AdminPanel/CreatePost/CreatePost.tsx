@@ -22,6 +22,8 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
+import handleClearImages from "../functions/handleClearImages";
+
 import TextArea from "../../../components/TextArea/TexArea";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
@@ -101,10 +103,6 @@ function CreatePost() {
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setPostInfo((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function handleClearImages() {
-    setImages([]);
   }
 
   function clearInputs() {
@@ -261,7 +259,7 @@ function CreatePost() {
             <ButtonStyled type='submit' variant='outlined'>
               Створити
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearImages} variant='outlined'>
+            <ButtonStyled onClick={() => handleClearImages(setImages)} variant='outlined'>
               Скинути зображення
             </ButtonStyled>
             <ButtonStyled onClick={handleClearInputs} variant='outlined'>
