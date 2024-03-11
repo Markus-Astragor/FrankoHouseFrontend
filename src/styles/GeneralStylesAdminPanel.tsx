@@ -147,7 +147,7 @@ export const ImagesContainer = styled.div`
 
   row-gap: 20px;
   column-gap: 20px;
-  /* justify-content: center; */
+  /*justify-content: center;*/
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));

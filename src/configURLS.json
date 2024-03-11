@@ -6,6 +6,9 @@
   "ADMIN": {
     "CREATE-POST": "https://amif.server24.space/api/admin/createPost",
     "EDIT-POST": "https://amif.server24.space/api/admin/editPost",
-    "GET-POST-ID": "https://amif.server24.space/api/admin/getPost"
+    "GET-POST-ID": "https://amif.server24.space/api/admin/getPost",
+    "GET-PARTNERS": "https://amif.server24.space/api/getPartners",
+    "POST-PARTNER": "https://amif.server24.space/api/admin/addPartner",
+    "DELETE-PARTNER": "https://amif.server24.space/api/admin/deletePartner"
   }
 }
