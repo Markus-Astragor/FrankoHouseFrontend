@@ -3,7 +3,7 @@ export type museumInfoProps = {
   UkrWorkingHr: string;
   UkrAddress: string;
   EnMuseumTitle: string;
-  EnrWorkingHr: string;
+  EnWorkingHr: string;
   EnAddress: string;
   link: string;
   phone: string;

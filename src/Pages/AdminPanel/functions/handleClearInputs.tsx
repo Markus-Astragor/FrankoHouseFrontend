@@ -7,7 +7,7 @@ export default function handleClearInputs(setter: Dispatch<SetStateAction<museum
     UkrWorkingHr: "",
     UkrAddress: "",
     EnMuseumTitle: "",
-    EnrWorkingHr: "",
+    EnWorkingHr: "",
     EnAddress: "",
     link: "",
     phone: "",
