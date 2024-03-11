@@ -87,6 +87,7 @@ export const FlexItems = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 
   @media (max-width: 1100px) {
     flex-direction: column;
@@ -95,16 +96,22 @@ export const FlexItems = styled.div`
 `;
 
 export const FlexItem = styled.div`
-  padding: 30px;
+  padding: 30px 30px 10px;
   box-sizing: border-box;
   width: 47%;
   border-radius: 10px;
   background: rgba(217, 217, 217, 0.1);
+  margin-bottom: 30px;
 
   @media (max-width: 1100px) {
     width: 100%;
     margin-bottom: 30px;
   }
+`;
+
+export const GeneralFlexItem = styled(FlexItem)`
+  width: 60%;
+  margin: 0 auto;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -144,10 +151,9 @@ export const ImagesContainer = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(223px, 223px));
-
   row-gap: 20px;
   column-gap: 20px;
-  /* justify-content: center; */
+  justify-content: center;
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -307,3 +313,11 @@ export const FileInputIcon = styled.div`
   }
 `;
 // Input styles
+
+export const LoaderWrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

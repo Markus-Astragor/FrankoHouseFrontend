@@ -27,6 +27,7 @@ import {
   CenterBox,
   InputLbl,
   ButtonStyled,
+  LoaderWrapper,
 } from "../../../styles/GeneralStylesAdminPanel";
 
 export type postInfoProps = {
@@ -40,6 +41,7 @@ export type postInfoProps = {
 
 export default function EditPost() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
@@ -197,6 +199,8 @@ export default function EditPost() {
   useEffect(() => {
     async function getPostData() {
       try {
+        setIsLoading(true);
+
         const res = await axios.get(`${config["BASE-URL"]}/admin/getPost/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
@@ -224,10 +228,20 @@ export default function EditPost() {
             alert(error.message);
           }
         }
+      } finally {
+        setIsLoading(false);
       }
     }
     getPostData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
+  }
 
   return (
     <Wrapper>
