@@ -11,6 +11,8 @@ import GetPosts from "./Pages/AdminPanel/GetPosts/GetPosts";
 import CreatePost from "./Pages/AdminPanel/CreatePost/CreatePost";
 import EditPost from "./Pages/AdminPanel/EditPost/EditPost";
 import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
+import CreatePartner from "./Pages/AdminPanel/Partners/CreatePartner/CreatePartner";
+import GetPartners from "./Pages/AdminPanel/Partners/GetPartners/GetPartners";
 
 function App() {
   const [language, setLanguage] = useState<string>("ua");
@@ -27,6 +29,8 @@ function App() {
               <Route path='view-posts' element={<GetPosts />} />
               <Route path='view-posts/:id' element={<EditPost />} />
               <Route path='create-post' element={<CreatePost />} />
+              <Route path='create-partner' element={<CreatePartner />} />
+              <Route path='view-partners' element={<GetPartners />} />
             </Route>
             <Route element={<AdminAuth />} path='/admin/auth' />
           </Routes>
