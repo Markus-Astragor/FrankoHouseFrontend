@@ -19,6 +19,7 @@ import {
   DeleteButton,
 } from "../../../../styles/GeneralStylesAdminPanel";
 import { Loader } from "../../../../components/Loader/LoaderComponentStyles";
+import Success from "../../../../components/SuccesWindow/Success";
 import config from "../../../../configURLS.json";
 
 import axios from "axios";
@@ -29,6 +30,7 @@ export default function CreatePartner() {
   const [linkPartner, setLinkPartner] = useState<string>("");
   const [imagePartner, setImageForPartner] = useState<File | null>(null);
   const [imageForPreview, setImageForPreview] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   const handleNamePartnerOrganization = (e) => setNamePartnerOrganization(e.target.value);
@@ -102,7 +104,10 @@ export default function CreatePartner() {
           headers,
         },
       )
-      .then((res) => console.log("res", res))
+      .then((res) => {
+        setSuccess(res.data.message);
+        console.log("res", res);
+      })
       .catch((err) => console.log("err", err))
       .finally(() => setLoading(false));
 
@@ -180,6 +185,7 @@ export default function CreatePartner() {
           )}
         </CenterBox>
       </Form>
+      {success && <Success setSuccess={setSuccess} message={success} />}
     </Wrapper>
   );
 }

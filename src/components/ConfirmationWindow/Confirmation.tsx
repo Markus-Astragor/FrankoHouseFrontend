@@ -12,17 +12,18 @@ import {
 type ConfirmationProps = {
   onDelete: () => void;
   onCancel: () => void;
+  text?: string;
 };
 
-export default function Confirmation({ onDelete, onCancel }: ConfirmationProps) {
+export default function Confirmation({ onDelete, onCancel, text }: ConfirmationProps) {
   return (
     <ConfirmationStyled>
       <Overlayer />
       <Window>
-        <Message>Ви впевнені що хочете видалити публікацію?</Message>
+        <Message>{text ? text : "Ви впевнені що хочете видалити публікацію?"}</Message>
         <ButtonsContainer>
           <WindowButton onClick={onCancel} bgcolor='#19aae8'>
-            Відмінити
+            Скасувати
           </WindowButton>
           <WindowButton onClick={onDelete} bgcolor='#828484'>
             Видалити

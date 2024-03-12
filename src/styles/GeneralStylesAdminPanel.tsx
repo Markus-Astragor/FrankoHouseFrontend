@@ -3,6 +3,11 @@ import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 
+type ImageContainerProps = {
+  height?: string;
+  overflow?: string;
+};
+
 export const Wrapper = styled.div`
   width: 100%;
 `;
@@ -162,13 +167,12 @@ export const ImagesContainer = styled.div`
   }
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<ImageContainerProps>`
   position: relative;
   width: 100%;
-  height: 100%;
-  height: 130px;
+  height: ${(props) => props.height || "130px"};
   border-radius: 15px;
-  overflow: hidden;
+  overflow: ${(props) => props.overflow || "hidden"};
   box-sizing: border-box;
 
   img {
