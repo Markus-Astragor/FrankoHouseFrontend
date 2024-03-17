@@ -11,6 +11,7 @@ import GetPosts from "./Pages/AdminPanel/GetPosts/GetPosts";
 import CreatePost from "./Pages/AdminPanel/CreatePost/CreatePost";
 import AddMuseum from "./Pages/AdminPanel/AddMuseum/AddMuseum";
 import EditPost from "./Pages/AdminPanel/EditPost/EditPost";
+import GetMuseums from "./Pages/AdminPanel/GetMuseums/GetMuseums";
 import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route element={<AdminPanel />} path='admin'>
               <Route index element={<Navigate to='view-posts' replace />} />
               <Route path='view-posts' element={<GetPosts />} />
+              <Route path='view-museums' element={<GetMuseums />} />
               <Route path='view-posts/:id' element={<EditPost />} />
               <Route path='create-post' element={<CreatePost />} />
               <Route path='add-museum' element={<AddMuseum />} />
