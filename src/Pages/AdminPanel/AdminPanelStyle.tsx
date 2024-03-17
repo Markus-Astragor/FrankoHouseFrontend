@@ -17,7 +17,7 @@ export const AdminStyled = styled.div`
 export const NavBar = styled.div`
   height: 100vh;
   max-width: 400px;
-  min-width: 200px;
+  min-width: 300px;
   width: 20%;
   background-color: #09282c;
   border-radius: 0px 30px 30px 0px;

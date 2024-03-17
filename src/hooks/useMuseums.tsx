@@ -2,7 +2,7 @@ import { useState } from "react";
 // import axios, { AxiosError } from "axios";
 // import configURLS from "../configURLS.json";
 
-import mockData from "../components/Museums/mockData.json";
+import mockData from "../data/mockData.json";
 // type MuseumsData = {
 //   frontText: string;
 //   rearText: string;
@@ -11,6 +11,7 @@ import mockData from "../components/Museums/mockData.json";
 // };
 
 export type MuseumsData = {
+  _id: string;
   name?: string;
   website?: string;
   email?: string;
@@ -30,7 +31,7 @@ const useMuseums = () => {
       // if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
       // console.log(res);
       // setData(res.data);
-      setData(mockData);
+      setData(mockData.museums);
     } catch (error) {
       // if (error instanceof Error) {
       //   if (error instanceof AxiosError) {

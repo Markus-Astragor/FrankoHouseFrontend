@@ -42,6 +42,7 @@ export default function AdminPanel() {
             <Link to='create-post'>Створити пост</Link>
             <Link to='view-posts'>Переглянути пости</Link>
             <Link to='add-museum'>Додати музей</Link>
+            <Link to='view-museums'>Переглянути музеї</Link>
           </LinkBox>
         </NavbarBox>
       </NavBar>
