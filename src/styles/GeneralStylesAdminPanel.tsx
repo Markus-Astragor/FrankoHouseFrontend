@@ -321,7 +321,7 @@ export const ErrorParagraphContainer = styled.div`
   width: 100%;
   height: auto;
   padding: 2vh 0;
-
+`;
 export const LoaderWrapper = styled.div`
   width: 100%;
   height: 100vh;
