@@ -21,7 +21,9 @@ export const Title = styled.h3`
   }
 `;
 
-export const PostsBox = styled.ul``;
+export const PostsBox = styled.ul`
+  width: 100%;
+`;
 
 export const CenterBox = styled.div`
   width: 100%;

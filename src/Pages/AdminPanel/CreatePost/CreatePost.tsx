@@ -22,6 +22,11 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
+import handleClearImages from "../functions/handleClearImages";
+import handleDeleteImage from "../functions/handleDeleteImage";
+import tranformImagesForPreview from "../functions/transformImagesForPreview";
+import handleFileInput from "../functions/handleFileInput";
+
 import TextArea from "../../../components/TextArea/TexArea";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
@@ -50,52 +55,18 @@ function CreatePost() {
   });
 
   useEffect(() => {
-    tranformImageForPreview();
+    tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
 
   const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
   const fileRef = useRef<HTMLInputElement | null>(null);
 
-  function handleFileInput() {
-    if (images.length >= 10) return alert("Ви досягли ліміту по зображеннях");
-    if (fileRef.current && fileRef.current.files?.length !== 0) {
-      const files = fileRef.current?.files;
-      console.log(files);
-
-      if (files) {
-        const newFiles: File[] = [];
-
-        // Validation for files of type image
-        for (const file of files) {
-          if (file.type.startsWith("image/")) {
-            newFiles.push(file);
-          } else {
-            alert(`${file.name} не є зображенням`);
-          }
-        }
-
-        // Validation for max images count
-        if (newFiles.length + images.length > 10) {
-          alert(
-            `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
-              10 - images.length
-            } `,
-          );
-          return;
-        }
-
-        setImages((prev) => [...prev, ...newFiles]);
-      } else {
-        console.log("No image selected");
-      }
-    }
-  }
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
     sendRequest(postInfo, images, "POST");
-    clearInputs();
+    handleClearInputs();
+    handleClearImages(setImages, setImagesPreview);
   }
 
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
@@ -103,54 +74,6 @@ function CreatePost() {
     setPostInfo((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleClearImages() {
-    setImages([]);
-  }
-
-  function clearInputs() {
-    setPostInfo({
-      ukrTitle: "",
-      ukrDescription: "",
-      ukrShortDescription: "",
-      engTitle: "",
-      engDescription: "",
-      engShortDescription: "",
-    });
-  }
-
-  // Deleting image
-  function handleDeleteImage(index: number) {
-    setImagesPreview(imagesPreview.slice(0, index).concat(imagesPreview.slice(index + 1)));
-    setImages(images.slice(0, index).concat(images.slice(index + 1)));
-  }
-
-  function tranformImageForPreview() {
-    if (images.length === 0) return;
-    const promises = images.map((image) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          resolve(e.target?.result as string);
-        };
-
-        reader.onerror = (error) => {
-          reject(error);
-        };
-
-        reader.readAsDataURL(image);
-      });
-    });
-
-    Promise.all(promises)
-      .then((newPreviews) => {
-        setImagesPreview(newPreviews as string[]);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error processing images:", error);
-      });
-  }
   // Clearing all inputs
   function handleClearInputs() {
     setPostInfo({
@@ -233,7 +156,9 @@ function CreatePost() {
           {imagesPreview.map((img, index) => (
             <ImageContainer key={index}>
               <img src={img} />
-              <DeleteButton onClick={() => handleDeleteImage(index)}>X</DeleteButton>
+              <DeleteButton onClick={() => handleDeleteImage(setImagesPreview, setImages, index)}>
+                X
+              </DeleteButton>
             </ImageContainer>
           ))}
         </ImagesContainer>
@@ -243,7 +168,7 @@ function CreatePost() {
             <FileInput
               multiple
               ref={fileRef}
-              onChange={handleFileInput}
+              onChange={() => handleFileInput(images, setImages, fileRef)}
               type='file'
               accept='image/*'
             />
@@ -261,7 +186,10 @@ function CreatePost() {
             <ButtonStyled type='submit' variant='outlined'>
               Створити
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearImages} variant='outlined'>
+            <ButtonStyled
+              onClick={() => handleClearImages(setImages, setImagesPreview)}
+              variant='outlined'
+            >
               Скинути зображення
             </ButtonStyled>
             <ButtonStyled onClick={handleClearInputs} variant='outlined'>

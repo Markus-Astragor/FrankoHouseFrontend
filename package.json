@@ -29,6 +29,7 @@
     "dotenv": "^16.3.1",
     "hamburger-react": "^2.5.0",
     "install": "^0.13.0",
+    "json-server": "^1.0.0-alpha.23",
     "leaflet": "^1.9.4",
     "moment": "^2.29.4",
     "msw": "^2.1.5",
@@ -51,6 +52,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server --watch src/data/mockData.json --port 8000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

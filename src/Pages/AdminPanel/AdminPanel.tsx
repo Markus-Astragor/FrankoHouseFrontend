@@ -16,7 +16,6 @@ import LogoSrc from "../../assets/header-imgs/logo-white.png";
 
 export default function AdminPanel() {
   const [showError, setShowError] = useState<boolean>(false);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("jwtToken")) setShowError(true);
@@ -44,6 +43,8 @@ export default function AdminPanel() {
             <Link to='view-posts'>Переглянути пости</Link>
             <Link to='create-partner'>Додати партнера</Link>
             <Link to='view-partners'>Переглянути партнерів</Link>
+            <Link to='add-museum'>Додати музей</Link>
+            <Link to='view-museums'>Переглянути музеї</Link>
           </LinkBox>
         </NavbarBox>
       </NavBar>

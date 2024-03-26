@@ -1,4 +1,4 @@
-import { screen, render, findByLabelText } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import EditPost from "../Pages/AdminPanel/EditPost/EditPost";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
