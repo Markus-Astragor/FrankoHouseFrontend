@@ -41,6 +41,8 @@ export default function AdminPanel() {
           <LinkBox>
             <Link to='create-post'>Створити пост</Link>
             <Link to='view-posts'>Переглянути пости</Link>
+            <Link to='create-partner'>Додати партнера</Link>
+            <Link to='view-partners'>Переглянути партнерів</Link>
             <Link to='add-museum'>Додати музей</Link>
             <Link to='view-museums'>Переглянути музеї</Link>
           </LinkBox>

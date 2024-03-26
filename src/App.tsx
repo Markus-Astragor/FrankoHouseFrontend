@@ -13,6 +13,8 @@ import AddMuseum from "./Pages/AdminPanel/AddMuseum/AddMuseum";
 import EditPost from "./Pages/AdminPanel/EditPost/EditPost";
 import GetMuseums from "./Pages/AdminPanel/GetMuseums/GetMuseums";
 import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
+import CreatePartner from "./Pages/AdminPanel/Partners/CreatePartner/CreatePartner";
+import GetPartners from "./Pages/AdminPanel/Partners/GetPartners/GetPartners";
 
 function App() {
   const [language, setLanguage] = useState<string>("ua");
@@ -30,6 +32,8 @@ function App() {
               <Route path='view-museums' element={<GetMuseums />} />
               <Route path='view-posts/:id' element={<EditPost />} />
               <Route path='create-post' element={<CreatePost />} />
+              <Route path='create-partner' element={<CreatePartner />} />
+              <Route path='view-partners' element={<GetPartners />} />
               <Route path='add-museum' element={<AddMuseum />} />
             </Route>
             <Route element={<AdminAuth />} path='/admin/auth' />
