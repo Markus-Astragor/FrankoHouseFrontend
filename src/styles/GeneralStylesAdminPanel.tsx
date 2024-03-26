@@ -170,7 +170,7 @@ export const ImagesContainer = styled.div`
 export const ImageContainer = styled.div<ImageContainerProps>`
   position: relative;
   width: 100%;
-  height: ${(props) => props.height || "130px"};
+  height: ${(props) => props.height || "auto"};
   border-radius: 15px;
   overflow: ${(props) => props.overflow || "hidden"};
   box-sizing: border-box;
@@ -311,3 +311,16 @@ export const FileInputIcon = styled.div`
   }
 `;
 // Input styles
+export const ErrorParagraphContainer = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 2vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ErrorParagraph = styled.p`
+  color: red;
+  font-size: 16px;
+`;

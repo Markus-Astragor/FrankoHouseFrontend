@@ -73,9 +73,9 @@ export default function GetPartners() {
       ) : (
         <ImagesContainer>
           {data.map((img, index) => (
-            <ImageContainer height='130px' overflow='visible' key={index}>
+            <ImageContainer height='auto' overflow='visible' key={index}>
               <TitleForPartner>{img.name}</TitleForPartner>
-              <ImageContainer height='130px' overflow='visible'>
+              <ImageContainer height='225px' overflow='visible'>
                 <ImagePartner src={img.logo[0]} width='100%' height='100%' />
                 <DeleteButton onClick={() => handleConfirmation(img._id)}>X</DeleteButton>
               </ImageContainer>

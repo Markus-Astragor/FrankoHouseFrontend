@@ -17,6 +17,8 @@ import {
   FileInputLable,
   ImageContainer,
   DeleteButton,
+  ErrorParagraph,
+  ErrorParagraphContainer,
 } from "../../../../styles/GeneralStylesAdminPanel";
 import { Loader } from "../../../../components/Loader/LoaderComponentStyles";
 import Success from "../../../../components/SuccesWindow/Success";
@@ -25,17 +27,24 @@ import config from "../../../../configURLS.json";
 import axios from "axios";
 
 export default function CreatePartner() {
+  const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
   const [loading, setLoading] = useState<boolean>(false);
   const [namePartnerOrganization, setNamePartnerOrganization] = useState<string>("");
   const [linkPartner, setLinkPartner] = useState<string>("");
   const [imagePartner, setImageForPartner] = useState<File | null>(null);
   const [imageForPreview, setImageForPreview] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
+
+  const [imageError, setImageError] = useState<string>("");
+  const [namePartnerError, setNamePartnerError] = useState<string>("");
+  const [linkPartnerError, setLinkPartnerError] = useState<string>("");
+
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   const handleNamePartnerOrganization = (e) => setNamePartnerOrganization(e.target.value);
   const handleLinkPartner = (e) => setLinkPartner(e.target.value);
   const handleDeleteImage = () => {
+    setImageError("");
     setImageForPreview("");
     setImageForPartner(null);
   };
@@ -46,12 +55,12 @@ export default function CreatePartner() {
       const files = fileRef.current?.files;
 
       if (files && !files[0].type.startsWith("image")) {
-        alert(`${files[0].name} не є зображенням`);
+        setImageError(`${files[0].name} не є зображенням`);
         return;
       }
 
       if (files?.length && files.length > 1) {
-        alert("Дозволена лише 1 картинка на партнера");
+        setImageError("Дозволена лише 1 картинка на партнера");
         return;
       }
 
@@ -85,6 +94,21 @@ export default function CreatePartner() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setImageError("");
+    setLinkPartnerError("");
+    setNamePartnerError("");
+
+    if (namePartnerOrganization.length > 100) {
+      setNamePartnerError("Занадто довга назва організації");
+      return;
+    }
+
+    if (!urlRegex.test(linkPartner)) {
+      setLinkPartnerError("Введене вами поле не є посиланням");
+      return;
+    }
+
     setLoading(true);
 
     const headers = {
@@ -108,7 +132,10 @@ export default function CreatePartner() {
         setSuccess(res.data.message);
         console.log("res", res);
       })
-      .catch((err) => console.log("err", err))
+      .catch((err) => {
+        console.log("err", err);
+        setImageError(err?.response?.data?.message);
+      })
       .finally(() => setLoading(false));
 
     handleDeleteImage();
@@ -132,10 +159,18 @@ export default function CreatePartner() {
               />
             </FormElementWrapper>
 
+            <ErrorParagraphContainer>
+              <ErrorParagraph>{namePartnerError}</ErrorParagraph>
+            </ErrorParagraphContainer>
+
             <FormElementWrapper>
               <InputLbl>Посилання на сайт партнера</InputLbl>
               <InputTitle required value={linkPartner} onChange={handleLinkPartner} fullWidth />
             </FormElementWrapper>
+
+            <ErrorParagraphContainer>
+              <ErrorParagraph>{linkPartnerError}</ErrorParagraph>
+            </ErrorParagraphContainer>
 
             <InputFileContainer style={{ marginBottom: "0px" }}>
               <InputFileBox>
@@ -151,6 +186,10 @@ export default function CreatePartner() {
                 <FileInputLable>додати фото</FileInputLable>
               </InputFileBox>
             </InputFileContainer>
+
+            <ErrorParagraphContainer>
+              <ErrorParagraph>{imageError}</ErrorParagraph>
+            </ErrorParagraphContainer>
 
             {imageForPreview ? (
               <CenterBox style={{ width: "100%" }}>

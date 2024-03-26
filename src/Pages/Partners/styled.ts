@@ -4,7 +4,7 @@ import backgroundFranko from "../../assets/partners/franko_background.png";
 export const PartnerBlock = styled.div`
   @import url("https://fonts.cdnfonts.com/css/kelly-slab");
   width: 100%;
-  height: 700px;
+  padding-bottom: 3vh;
   background: url(${backgroundFranko}) no-repeat center center fixed;
   background-size: cover;
   background-position-x: center;
