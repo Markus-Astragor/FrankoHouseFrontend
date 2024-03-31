@@ -9,3 +9,7 @@ export type museumInfoProps = {
   phone: string;
   email: string;
 };
+
+export type MuseumInfoPropsWithId = museumInfoProps & {
+  _id: string;
+};

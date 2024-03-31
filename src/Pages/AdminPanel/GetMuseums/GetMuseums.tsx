@@ -9,18 +9,10 @@ import config from "../../../configURLS.json";
 
 import axios from "axios";
 
-export type MuseumData = {
-  _id: string;
-  name: string;
-  website?: string;
-  email?: string;
-  phone?: string;
-  working_hours?: string;
-  address?: string;
-};
+import { MuseumInfoPropsWithId } from "../types/museumInfoProps";
 
 function GetMuseums() {
-  const [museums, setMuseums] = useState<MuseumData[]>([]);
+  const [museums, setMuseums] = useState<MuseumInfoPropsWithId[]>([]);
   const [success, setSuccess] = useState<string>("");
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -31,6 +23,7 @@ function GetMuseums() {
       try {
         const res = await axios.get("http://localhost:8000/museums");
         if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
+        console.log(res);
 
         setMuseums(res.data);
       } catch (err) {
@@ -92,7 +85,7 @@ function GetMuseums() {
       <GetPostsStyled>
         <Title>Музеї</Title>
         <PostsBox>
-          {museums.map((el: MuseumData, index) => (
+          {museums.map((el: MuseumInfoPropsWithId, index) => (
             <MuseumBox handlePostDelete={handlePostDelete} key={index} museum={el} />
           ))}
         </PostsBox>

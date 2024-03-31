@@ -8,7 +8,8 @@ import {
   LinkButton,
   ButtonsGroup,
 } from "./MuseumBoxStyles";
-import { MuseumData } from "../GetMuseums";
+
+import { MuseumInfoPropsWithId } from "../../types/museumInfoProps";
 
 import moment from "moment";
 import "moment/locale/uk";
@@ -19,13 +20,13 @@ export default function Post({
   museum,
   handlePostDelete,
 }: {
-  museum: MuseumData;
+  museum: MuseumInfoPropsWithId;
   handlePostDelete: DeleteFunction;
 }) {
   moment.locale("uk");
 
-  const title = museum.name.split(" ").slice(0, 7).join(" ");
-  const addDots = museum.name.split(" ").length >= 7;
+  const title = museum.urkMuseumTitle.split(" ").slice(0, 7).join(" ");
+  const addDots = museum.urkMuseumTitle.split(" ").length >= 7;
 
   return (
     <>

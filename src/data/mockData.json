@@ -2,77 +2,47 @@
   "museums": [
     {
       "_id": "56132154165",
-      "name": "Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)",
-      "website": "http://dimfranka.lviv.ua/",
+      "urkMuseumTitle": "Львівський національний літературно-меморіальний музей Івана Франка (Дім Франка)",
+      "EnMuseumTitle": "Lviv National Literary and Memorial Museum of Ivan Franko (Franko House)",
+      "link": "http://dimfranka.lviv.ua/",
       "email": "lviv_franko@ukr.net",
       "phone": "+38(096)158-4606",
-      "working_hours": "Щодня, крім вівторка, з 10:00 до 17:00",
-      "address": "Вулиця Івана Франка, 150-152, м. Львів 79011, Україна"
+      "UkrWorkingHr": "Щодня, крім вівторка, з 10:00 до 17:00",
+      "EnWorkingHr": "Everyday except Tuesday, from 10:00 to 17:00",
+      "UkrAddress": "Вулиця Івана Франка, 150-152, м. Львів 79011, Україна",
+      "EnAddress": "Ivana Franka Street, 150-152, Lviv 79011, Ukraine"
     },
     {
       "_id": "561324d5sa4d6a5",
-      "name": "Літературно-меморіальний музей-садиба Івана Франка (Державний історико-культурний заповідник 'Нагуєвичі')",
-      "website": "https://kamenyar.info/",
+      "urkMuseumTitle": "Літературно-меморіальний музей-садиба Івана Франка (Державний історико-культурний заповідник 'Нагуєвичі')",
+      "EnMuseumTitle": "Literary and Memorial Museum-Estate of Ivan Franko (State Historical and Cultural Reserve 'Naguevychi')",
+      "link": "https://kamenyar.info/",
       "email": "sadyba.batkiv@gmail.com",
       "phone": "+38(068)449-4005",
-      "working_hours": "10:00-18:00",
-      "address": "Україна, Львівська область, Дрогобицький район, с. Нагуєвичі, вул. Івана Франка, 15"
+      "UkrWorkingHr": "10:00-18:00",
+      "EnWorkingHr": "10:00-18:00",
+      "UkrAddress": "Україна, Львівська область, Дрогобицький район, с. Нагуєвичі, вул. Івана Франка, 15",
+      "EnAddress": "Ukraine, Lviv region, Drohobych district, village Naguevychi, Ivan Franka Street, 15"
     },
     {
       "_id": "5613215dsadas4165",
-      "name": "Криворівнянський літературно-меморіальний музей Івана Франка",
-      "website": "https://www.ifkm.if.ua/franko.html",
+      "urkMuseumTitle": "Криворівнянський літературно-меморіальний музей Івана Франка",
+      "EnMuseumTitle": "Kryvorivniansky Literary and Memorial Museum of Ivan Franko",
+      "link": "https://www.ifkm.if.ua/franko.html",
       "email": "ifkm@i.ua",
       "phone": "+38(097)960-8921",
-      "working_hours": "з 10:00 до 18:00 год. Вихідні дні: понеділок Обід: з 13:00 до 14:00 год.",
-      "address": "Івано-Франківська область, присілок Москалівка, с. Криворівня, Верховинський р-н, 78710"
+      "UkrWorkingHr": "з 10:00 до 18:00 год. Вихідні дні: понеділок Обід: з 13:00 до 14:00 год.",
+      "EnWorkingHr": "from 10:00 to 18:00. Closed on Mondays. Lunch: from 13:00 to 14:00.",
+      "UkrAddress": "Івано-Франківська область, присілок Москалівка, с. Криворівня, Верховинський р-н, 78710",
+      "EnAddress": "Ivano-Frankivsk region, Moskalivka hamlet, village Kryvorivnia, Verkhovyna district, 78710"
     },
     {
       "_id": "561321ddsaa54165",
-      "name": "Музей І.Я. Франка у Лолині",
+      "urkMuseumTitle": "Музей І.Я. Франка у Лолині",
+      "EnMuseumTitle": "Museum of I.Y. Franko in Lolyn",
       "phone": "+38(096)759-8362",
-      "address": "Івано-Франківська область, Долинський район, с. Лолин"
-    },
-    {
-      "_id": "561alvd32154165",
-      "name": "Народний музей-оселя родини Івана Франка у Підгірках",
-      "website": "https://kalushcity.gov.ua/catalog/37",
-      "phone": "+38(050)717-5329",
-      "working_hours": "з 9:00 до 17:30 год. Обід: з 12:00 до 12.30 год. Робочі дні: понеділок — п'ятниця. Вихідні дні: субота — неділя.",
-      "address": "Вулиця Івано-Франківська, 22, Калуш, Івано-Франківська область, 77312"
-    },
-    {
-      "_id": "5613dsan2154165",
-      "name": "Музей Івана Яковича Франка (відділення Київського обласного археологічного музею)",
-      "website": "http://koam.com.ua/",
-      "email": "muztrypil@gmail.com",
-      "phone": "+38(097)157-9059",
-      "working_hours": "Пн.-Пт.: з 9:00 до 17:00 Сб.-Нд.: з 10:00 до 16:00",
-      "address": "Київська обл., Обухівський р-н. с. Трипілля вул. Героїв Трипілля, 12"
-    },
-    {
-      "_id": "5613SAMDA2154165",
-      "name": "Музей 'Іван Франко і Київ'",
-      "website": "https://frankovi.com.ua/",
-      "phone": "+38(028)957-52__",
-      "working_hours": "з 10.00 до 17.00.",
-      "address": "Місто Київ, вул. Саксаганського, 97"
-    },
-    {
-      "_id": "56132154165arfdf",
-      "name": "Квартира-музей родини Івана Франка",
-      "website": "https://frankovi.com.ua/",
-      "email": "info@frankovi.com.ua",
-      "phone": "+38(066)711-1284",
-      "address": "Місто Київ, вул.Володимирська, 48А, офіс 15"
-    },
-    {
-      "_id": "56132154165al",
-      "name": "Музей Івана Франка в Канаді",
-      "website": "http://ult-wpg.ca/ivan-franko-museum/",
-      "email": "auucwinnipeg@gmail.com",
-      "phone": "+38(120)458-9439",
-      "address": "200 McGregor St, Winnipeg, MB R2W 5L6, Канада, провінція Мінітоба"
+      "UkrAddress": "Івано-Франківська область, Долинський район, с. Лолин",
+      "EnAddress": "Ivano-Frankivsk region, Dolyna district, village Lolyn"
     }
   ]
 }
