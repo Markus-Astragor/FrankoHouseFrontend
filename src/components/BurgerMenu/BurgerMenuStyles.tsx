@@ -44,6 +44,7 @@ export const BurgerMenuLink = styled.a`
   font-weight: 700;
   transition: 0.3s linear;
   padding: 4px 0;
+  cursor: pointer;
   &:hover {
     transform: translateX(10px);
   }

@@ -45,6 +45,20 @@ function Navbar() {
     else changeLanguage("ua");
   }
 
+  function handleMenuItemClick(id: string) {
+    const element = document.getElementById(id);
+
+    const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition && elementPosition - 100;
+
+    if (offsetPosition) {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }
+
   return (
     <NavbarStyled>
       <NavbarContainer>
@@ -54,11 +68,21 @@ function Navbar() {
           </NavLink>
 
           <Menu>
-            <MenuItem href='#about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
-            <MenuItem href='#posts'>{t("ns1.description.navbar.link2")}</MenuItem>
-            <MenuItem href='#partners'>{t("ns1.description.navbar.link3")}</MenuItem>
-            <MenuItem href='#contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
-            <MenuItem href='#our-mission'>{t("ns1.description.navbar.link5")}</MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("about-us")}>
+              {t("ns1.description.navbar.link1")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("posts")}>
+              {t("ns1.description.navbar.link2")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("partners")}>
+              {t("ns1.description.navbar.link3")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("contacts")}>
+              {t("ns1.description.navbar.link4")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("our-mission")}>
+              {t("ns1.description.navbar.link5")}
+            </MenuItem>
             <SwitchLanguage onClick={switchLanguage} ref={switcher}>
               <span onClick={() => changeLanguage("ua")}>UA</span>|
               <span onClick={() => changeLanguage("en")}>EN</span>

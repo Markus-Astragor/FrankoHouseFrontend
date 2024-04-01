@@ -51,8 +51,30 @@ export const FlexItem = styled.div`
 export const TextItem = styled.p``;
 
 export const Link = styled.a`
+  position: relative;
   color: #fff;
   text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    bottom: -4px;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+
+  &:hover {
+    &::before {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
 `;
 
 export const FoxImage = styled.img`
