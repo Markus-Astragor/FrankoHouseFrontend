@@ -19,6 +19,7 @@ export const NewsContainer = styled.div`
   margin: 0 auto;
   margin-top: 64px;
   box-sizing: border-box;
+  overflow-x: hidden;
 
   @media (min-width: 370px) and (max-width: 450px) {
     width: 85%;
