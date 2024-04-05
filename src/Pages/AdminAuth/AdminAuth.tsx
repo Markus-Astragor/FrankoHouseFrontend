@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
-  Title,
   CenterBox,
   Form,
   FormElementWrapper,
-  InputLbl,
   InputTitle,
   FlexItem,
   ButtonsContainer,
@@ -15,7 +13,7 @@ import {
   ErrorParagraphContainer,
 } from "../../styles/GeneralStylesAdminPanel";
 import { AdminStyled, NavBar, AdminWindow, NavbarBox, Logo } from "../AdminPanel/AdminPanelStyle";
-import { CenterBLock, LoginBtn } from "./AdminAuthStyle";
+import { CenterBLock, LoginBtn, TitleLogin, FieldName } from "./AdminAuthStyle";
 
 import LoaderComponent from "../../components/Loader/LoaderComponent";
 import LogoSrc from "../../assets/header-imgs/logo-white.png";
@@ -65,12 +63,12 @@ function AdminAuth() {
       </NavBar>
       <AdminWindow>
         <CenterBLock>
-          <Title>Вхід в адмін панель</Title>
+          <TitleLogin>Вхід в адмін панель</TitleLogin>
           <Form onSubmit={handleSubmit}>
             <CenterBox>
               <FlexItem>
                 <FormElementWrapper>
-                  <InputLbl>Логін</InputLbl>
+                  <FieldName>Логін</FieldName>
                   <InputTitle
                     required
                     type='text'
@@ -81,7 +79,7 @@ function AdminAuth() {
                 </FormElementWrapper>
 
                 <FormElementWrapper>
-                  <InputLbl>Пароль</InputLbl>
+                  <FieldName>Пароль</FieldName>
                   <InputTitle
                     required
                     type='password'
