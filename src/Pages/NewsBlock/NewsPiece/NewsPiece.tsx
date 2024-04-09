@@ -12,7 +12,6 @@ type NewsPieceBlockProps = {
 function NewsPieceBlock({ image, title, id, setSelectedNews, setShow }: NewsPieceBlockProps) {
   const words: string = title.split(" ").slice(0, 8).join(" ");
   const newTitle: string = title.split(" ").length > 8 ? words + "..." : words;
-  console.log(id);
 
   return (
     <NewsPiece
