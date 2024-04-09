@@ -26,6 +26,17 @@ export const MissionBoxStyled = styled.div<{
   justify-content: center;
   align-items: center;
 
+  animation: rotation 1s ease-in-out forwards;
+
+  @keyframes rotation {
+    from {
+      transform: rotateZ(-15deg);
+    }
+    to {
+      transform: rotateZ(0);
+    }
+  }
+
   @media (min-width: 1200px) and (max-width: 1540px) {
     max-width: 380px;
     padding: 15px;
@@ -65,6 +76,7 @@ export const MissionBoxStyled = styled.div<{
     z-index: 1;
     border-radius: 75.5px;
     box-sizing: border-box;
+    /* transform: rotate(-20deg); */
   }
 
   &::after {
@@ -74,13 +86,43 @@ export const MissionBoxStyled = styled.div<{
     border: ${(props) => (props.borderReverse ? "1px dashed #d9d9d9" : "1px solid #d9d9d9")};
     border-left: 0;
     border-bottom: 0;
+
+    animation: go_up 1s ease-in-out forwards;
+
+    @keyframes go_up {
+      from {
+        opacity: 0;
+        top: 0;
+        transform: rotate(0);
+      }
+      to {
+        opacity: 1;
+        top: -55px;
+        transform: rotate(-20deg);
+      }
+    }
   }
 
   &::before {
     top: 55px;
     border: ${(props) => (props.borderReverse ? "2px solid #d9d9d9" : "2px dashed #d9d9d9")};
-    transform: rotate(-20deg);
+    /* transform: rotate(-20deg); */
     border-top: 0;
+
+    animation: go_down 1s ease-in-out forwards;
+
+    @keyframes go_down {
+      from {
+        opacity: 0;
+        top: 0;
+        transform: rotate(0);
+      }
+      to {
+        opacity: 1;
+        top: 55px;
+        transform: rotate(-20deg);
+      }
+    }
   }
 `;
 

@@ -88,10 +88,9 @@ function Navbar() {
               <span onClick={() => changeLanguage("en")}>EN</span>
             </SwitchLanguage>
           </Menu>
-
-          <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
-          <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger} />
         </FlexContainer>
+        <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
+        <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger} />
       </NavbarContainer>
       <Overlay onClick={handleOverlayClick} show={isOpen} />
     </NavbarStyled>

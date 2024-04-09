@@ -17,7 +17,18 @@ export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: relative; */
+  animation: from_left 2s ease-in-out;
+
+  @keyframes from_left {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 `;
 
 export const Logo = styled.img`
