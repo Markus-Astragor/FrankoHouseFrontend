@@ -20,6 +20,7 @@ export const ProjectModalBlock = styled.div`
   border-radius: 20px;
   top: 27%;
   left: 50%;
+  transition: 1s;
   transform: translateX(-50%);
   animation-name: ${liftModalBlock};
   animation-duration: 1s;

@@ -8,7 +8,7 @@ type ProjectModalWindowProps = {
 
 export default function ProjectModalWindow({ children, closeModal }: ProjectModalWindowProps) {
   return (
-    <ProjectModalBlock>
+    <ProjectModalBlock id='modal-window'>
       <CloseBtn onClick={closeModal}>
         <CloseIcon>&#x2716;</CloseIcon>
       </CloseBtn>

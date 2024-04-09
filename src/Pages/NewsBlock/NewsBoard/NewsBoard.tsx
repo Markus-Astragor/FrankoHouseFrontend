@@ -34,8 +34,16 @@ function NewsBoard() {
   const sliderBlock = useRef<HTMLDivElement>(null);
 
   const handleCloseModalWindow = () => {
-    setShow(false);
-    setSelectedNews(null);
+    const modalWindow = document.getElementById("modal-window");
+    console.log("modalWindow", modalWindow);
+
+    if (modalWindow) {
+      modalWindow.style.top = "250%";
+      setTimeout(() => {
+        setShow(false);
+        setSelectedNews(null);
+      }, 700);
+    }
   };
 
   useEffect(() => {
