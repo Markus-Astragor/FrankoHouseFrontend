@@ -7,6 +7,7 @@ function isEvenArrow(id: number) {
 export const MissionBoxStyled = styled.div<{
   align: string | undefined;
   borderReverse: boolean;
+  inView: boolean;
 }>`
   position: relative;
   justify-self: ${(props) => (props.align ? props.align : "start")};
@@ -25,14 +26,18 @@ export const MissionBoxStyled = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
 
-  animation: rotation 1s ease-in-out forwards;
+  /* animation: rotation 1s ease-in-out forwards; */
+  animation: ${(props) => (props.inView ? "rotation" : "none")} 1s ease-in-out 0.3s forwards;
 
   @keyframes rotation {
     from {
+      opacity: 0;
       transform: rotateZ(-15deg);
     }
     to {
+      opacity: 1;
       transform: rotateZ(0);
     }
   }
@@ -76,6 +81,8 @@ export const MissionBoxStyled = styled.div<{
     z-index: 1;
     border-radius: 75.5px;
     box-sizing: border-box;
+    opacity: 0;
+
     /* transform: rotate(-20deg); */
   }
 
@@ -87,7 +94,7 @@ export const MissionBoxStyled = styled.div<{
     border-left: 0;
     border-bottom: 0;
 
-    animation: go_up 1s ease-in-out forwards;
+    animation: ${(props) => (props.inView ? "go_up" : "none")} 1s ease-in-out 0.3s forwards;
 
     @keyframes go_up {
       from {
@@ -109,7 +116,7 @@ export const MissionBoxStyled = styled.div<{
     /* transform: rotate(-20deg); */
     border-top: 0;
 
-    animation: go_down 1s ease-in-out forwards;
+    animation: ${(props) => (props.inView ? "go_down" : "none")} 1s ease-in-out 0.3s forwards;
 
     @keyframes go_down {
       from {

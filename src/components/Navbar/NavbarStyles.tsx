@@ -50,12 +50,12 @@ export const Menu = styled.ul`
   font-size: 22px;
   font-weight: 700;
 
-  @media (max-width: 866px) {
+  @media (max-width: 898px) {
     font-size: 18px;
     gap: 14px;
   }
 
-  @media (max-width: 710px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

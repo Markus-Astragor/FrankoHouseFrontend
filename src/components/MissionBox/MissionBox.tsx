@@ -7,6 +7,7 @@ type MissionBoxProps = {
   arrowId: number;
   children: ReactNode;
   borderReverse?: boolean;
+  inView: boolean;
 };
 
 export default function MissionBox({
@@ -14,9 +15,10 @@ export default function MissionBox({
   borderReverse = false,
   children,
   arrowId,
+  inView,
 }: MissionBoxProps) {
   return (
-    <MissionBoxStyled borderReverse={borderReverse} align={align}>
+    <MissionBoxStyled inView={inView} borderReverse={borderReverse} align={align}>
       <MissionBoxText>{children}</MissionBoxText>
       <ArrowDown arrowId={arrowId} src={ArrowDownSrc} />
     </MissionBoxStyled>

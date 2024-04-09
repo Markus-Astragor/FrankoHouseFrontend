@@ -21,7 +21,7 @@ export const BurgerIconStyled = styled.div<{ opened: boolean }>`
     }
   }
 
-  @media (max-width: 710px) {
+  @media (max-width: 768px) {
     display: block;
   }
 `;
