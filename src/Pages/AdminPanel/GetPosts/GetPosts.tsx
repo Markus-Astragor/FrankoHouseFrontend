@@ -6,6 +6,7 @@ import Post from "./Post/Post";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 import Confirmation from "../../../components/ConfirmationWindow/Confirmation";
+import { useGet } from "../../../hooks/useGet";
 
 export type PostData = {
   _id: string;
@@ -17,10 +18,10 @@ export type PostData = {
 
 export default function GetPosts() {
   const [data, setData] = useState<PostData[]>([]);
-  const [success, setSuccess] = useState<string>("");
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
+
+  const { isLoading, setIsLoading, success, setSuccess, sendRequest } = useGet(config["GET-POSTS"]);
 
   // When confirm is true
   async function handleDelete() {
@@ -60,23 +61,7 @@ export default function GetPosts() {
 
   // Get all Posts
   useEffect(() => {
-    async function getPosts() {
-      try {
-        setIsLoading(true);
-        const res = await axios.get(`${config["BASE-URL"]}/getPosts`);
-
-        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
-        setData(res.data);
-        console.log(res.data);
-      } catch (err) {
-        let message: string = "Невідома помилка";
-        if (err instanceof Error) message = err.message;
-        alert(message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    getPosts();
+    sendRequest(setData);
   }, []);
 
   if (isLoading) {

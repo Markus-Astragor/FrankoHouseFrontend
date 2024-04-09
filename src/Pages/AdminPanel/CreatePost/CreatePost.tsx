@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
+import React, { FormEvent, useRef, useState, useEffect } from "react";
 
 import {
   Wrapper,
@@ -26,21 +26,16 @@ import handleClearImages from "../functions/handleClearImages";
 import handleDeleteImage from "../functions/handleDeleteImage";
 import tranformImagesForPreview from "../functions/transformImagesForPreview";
 import handleFileInput from "../functions/handleFileInput";
+import handleClearInputs from "../functions/Posts/handleClearInputs";
+import handleChangeInput from "../functions/Posts/handleChangeInput";
 
 import TextArea from "../../../components/TextArea/TexArea";
 import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
-import useApi from "../../../hooks/useApi";
-import config from "../../../configURLS.json";
 
-export type postInfoProps = {
-  ukrTitle: string;
-  ukrDescription: string;
-  ukrShortDescription: string;
-  engTitle: string;
-  engDescription: string;
-  engShortDescription: string;
-};
+import config from "../../../configURLS.json";
+import { postInfoProps } from "../types/postInfoProps";
+import { useCreate } from "../../../hooks/useCreate";
 
 function CreatePost() {
   const [images, setImages] = useState<File[]>([]);
@@ -58,32 +53,16 @@ function CreatePost() {
     tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
 
-  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
+  const { sendRequest, success, setSuccess, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
+
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    sendRequest(postInfo, images, "POST");
-    handleClearInputs();
+    sendRequest(images, "POST", postInfo);
+    handleClearInputs(setPostInfo);
     handleClearImages(setImages, setImagesPreview);
-  }
-
-  function handleInput(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setPostInfo((prev) => ({ ...prev, [name]: value }));
-  }
-
-  // Clearing all inputs
-  function handleClearInputs() {
-    setPostInfo({
-      ukrTitle: "",
-      ukrDescription: "",
-      ukrShortDescription: "",
-      engTitle: "",
-      engDescription: "",
-      engShortDescription: "",
-    });
   }
 
   return (
@@ -98,7 +77,7 @@ function CreatePost() {
                 required
                 name='ukrTitle'
                 value={postInfo.ukrTitle}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 fullWidth
               />
             </FormElementWrapper>
@@ -106,7 +85,7 @@ function CreatePost() {
               <InputLbl>Короткий опис (українською)</InputLbl>
               <TextArea
                 value={postInfo.ukrShortDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 name='ukrShortDescription'
               />
             </FormElementWrapper>
@@ -116,7 +95,7 @@ function CreatePost() {
               <TextArea
                 name='ukrDescription'
                 value={postInfo.ukrDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
           </FlexItem>
@@ -127,8 +106,8 @@ function CreatePost() {
               <InputTitle
                 required
                 name='engTitle'
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 value={postInfo.engTitle}
-                onChange={handleInput}
                 fullWidth
               />
             </FormElementWrapper>
@@ -137,7 +116,7 @@ function CreatePost() {
               <TextArea
                 name='engShortDescription'
                 value={postInfo.engShortDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
 
@@ -146,7 +125,7 @@ function CreatePost() {
               <TextArea
                 name='engDescription'
                 value={postInfo.engDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
           </FlexItem>
@@ -177,7 +156,7 @@ function CreatePost() {
           </InputFileBox>
         </InputFileContainer>
 
-        {loading ? (
+        {isLoading ? (
           <CenterBox>
             <Loader />
           </CenterBox>
@@ -192,7 +171,7 @@ function CreatePost() {
             >
               Скинути зображення
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearInputs} variant='outlined'>
+            <ButtonStyled onClick={() => handleClearInputs(setPostInfo)} variant='outlined'>
               Очистити всі поля
             </ButtonStyled>
           </ButtonsContainer>

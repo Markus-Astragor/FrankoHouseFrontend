@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import {
   LoaderWrapper,
@@ -31,19 +31,25 @@ import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import { museumInfoProps } from "../types/museumInfoProps";
 import handleClearImages from "../functions/handleClearImages";
-import handleClearInputs from "../functions/handleClearInputs";
+import handleClearInputs from "../functions/Museums/handleClearInputs";
 import handleDeleteImage from "../functions/handleDeleteImage";
-import handleChangeInput from "../functions/handleChangeInput";
+import handleChangeInput from "../functions/Museums/handleChangeInput";
 import handleFileInput from "../functions/handleFileInput";
+
+import createFileFromUrl from "../functions/createFileFromUrl";
 import tranformImagesForPreview from "../functions/transformImagesForPreview";
-import { useGetMuseum } from "../../../hooks/useGetMuseum";
+
+import { useEdit } from "../../../hooks/useEdit";
+
+import config from "../../../configURLS.json";
 
 function EditMuseum() {
   const { id } = useParams();
-  const [imagesUrl] = useState<string[]>([]);
+  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
-  const { isLoading, data, getMuseum } = useGetMuseum();
+  const { isLoading, setIsLoading, sendRequest } = useEdit(config.ADMIN["EDIT-MUSEUM"]);
+
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
     urkMuseumTitle: "",
     UkrWorkingHr: "",
@@ -58,38 +64,57 @@ function EditMuseum() {
 
   const fileRef = useRef<HTMLInputElement | null>(null);
 
-  // # filling inputs when data is loaded
-  useEffect(() => {
-    console.log("data is loaded");
-    console.log(data);
-
-    setMuseumInfo({
-      urkMuseumTitle: data.urkMuseumTitle,
-      UkrWorkingHr: data.UkrWorkingHr,
-      UkrAddress: data.UkrAddress,
-      EnMuseumTitle: data.EnMuseumTitle,
-      EnWorkingHr: data.EnWorkingHr,
-      EnAddress: data.EnAddress,
-      link: data.link || "",
-      phone: data.phone || "",
-      email: data.email || "",
-    });
-  }, [data]);
-
-  useEffect(() => {
-    tranformImagesForPreview(images, setImagesPreview);
-  }, [images]);
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
-    // sendRequest(museumInfo, images);
+    sendRequest(images, museumInfo, { name: "museumId", value: id || "" });
     handleClearInputs(setMuseumInfo);
   }
 
   // 1. Loading data about museum
   useEffect(() => {
-    getMuseum(id);
+    async function getMuseumData() {
+      try {
+        setIsLoading(true);
+
+        const res = await axios.get(`${config["BASE-URL"]}/admin/getMuseum/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        });
+
+        console.log(res);
+
+        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
+        setMuseumInfo({
+          urkMuseumTitle: res.data.ukrainian.title,
+          UkrWorkingHr: res.data.ukrainian.workingHr,
+          UkrAddress: res.data.ukrainian.adress,
+          EnMuseumTitle: res.data.english.title,
+          EnWorkingHr: res.data.english.workingHr,
+          EnAddress: res.data.english.adress,
+          link: res.data.link,
+          phone: res.data.phone,
+          email: res.data.email,
+        });
+
+        setImagesUrl(res.data.photos);
+      } catch (error) {
+        console.log(error);
+
+        if (error instanceof Error) {
+          if (error instanceof AxiosError) {
+            alert(error.response?.data.message);
+          } else {
+            alert(error.message);
+          }
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getMuseumData();
   }, []);
 
   // # 2 Converting urls into files
@@ -103,57 +128,12 @@ function EditMuseum() {
     });
   }, [imagesUrl]);
 
-  async function createFileFromUrl(url: string, fileName: string) {
-    try {
-      // Use Axios to make the request
-      const response = await axios.get(url, { responseType: "blob" });
-
-      // Create a File object from the Blob
-      const file = new File([response.data], fileName || "image.jpg", {
-        type: response.headers["content-type"],
-      });
-
-      return file;
-    } catch (error) {
-      console.error("Error creating File from URL:", error);
-      throw error;
-    }
-  }
-
   // #3 Transforming images into base 64
   useEffect(() => {
-    tranformImageForPreview();
+    tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
 
   // Function for transforming all images into base64 for displaying
-  function tranformImageForPreview() {
-    if (images.length === 0) return;
-    const promises = images.map((image) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          resolve(e.target?.result as string);
-        };
-
-        reader.onerror = (error) => {
-          reject(error);
-        };
-
-        reader.readAsDataURL(image);
-      });
-    });
-
-    Promise.all(promises)
-      .then((newPreviews) => {
-        setImagesPreview(newPreviews as string[]);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error processing images:", error);
-      });
-  }
-
   if (isLoading) {
     return (
       <LoaderWrapper>
@@ -302,7 +282,7 @@ function EditMuseum() {
         ) : (
           <ButtonsContainer>
             <ButtonStyled type='submit' variant='outlined'>
-              Створити
+              Оновити
             </ButtonStyled>
             <ButtonStyled
               onClick={() => handleClearImages(setImages, setImagesPreview)}

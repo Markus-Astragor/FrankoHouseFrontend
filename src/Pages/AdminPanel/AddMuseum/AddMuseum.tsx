@@ -28,14 +28,17 @@ import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import { museumInfoProps } from "../types/museumInfoProps";
 import handleClearImages from "../functions/handleClearImages";
-import handleClearInputs from "../functions/handleClearInputs";
+import handleClearInputs from "../functions/Museums/handleClearInputs";
 import handleDeleteImage from "../functions/handleDeleteImage";
-import handleChangeInput from "../functions/handleChangeInput";
+import handleChangeInput from "../functions/Museums/handleChangeInput";
 import handleFileInput from "../functions/handleFileInput";
 import tranformImagesForPreview from "../functions/transformImagesForPreview";
-import useAddMuseum from "../../../hooks/useAddMuseum";
+import { useCreate } from "../../../hooks/useCreate";
+
+import config from "../../../configURLS.json";
 
 function AddMuseum() {
+  const fileRef = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
@@ -50,10 +53,7 @@ function AddMuseum() {
     email: "",
   });
 
-  // sendRequest
-  const { sendRequest, loading, success, setSuccess } = useAddMuseum();
-
-  const fileRef = useRef<HTMLInputElement | null>(null);
+  const { sendRequest, isLoading, success, setSuccess } = useCreate(config.ADMIN["ADD-MUSEUM"]);
 
   useEffect(() => {
     tranformImagesForPreview(images, setImagesPreview);
@@ -62,7 +62,7 @@ function AddMuseum() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
-    sendRequest(museumInfo, images);
+    sendRequest(images, "POST", museumInfo);
     handleClearInputs(setMuseumInfo);
   }
 
@@ -199,7 +199,7 @@ function AddMuseum() {
           </InputFileBox>
         </InputFileContainer>
 
-        {loading ? (
+        {isLoading ? (
           <CenterBox>
             <Loader />
           </CenterBox>
