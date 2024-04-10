@@ -6,8 +6,22 @@ export const BurgerIconStyled = styled.div<{ opened: boolean }>`
   right: ${(props) => (props.opened ? "10px" : "20px")};
   display: ${(props) => (props.opened ? "block" : "none")};
   z-index: 15;
+  opacity: 0;
 
-  @media (max-width: 710px) {
+  animation: from_left 2s ease-in-out forwards;
+
+  @keyframes from_left {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
     display: block;
   }
 `;

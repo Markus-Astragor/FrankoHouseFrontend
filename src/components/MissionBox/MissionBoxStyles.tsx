@@ -7,6 +7,7 @@ function isEvenArrow(id: number) {
 export const MissionBoxStyled = styled.div<{
   align: string | undefined;
   borderReverse: boolean;
+  inView: boolean;
 }>`
   position: relative;
   justify-self: ${(props) => (props.align ? props.align : "start")};
@@ -25,6 +26,21 @@ export const MissionBoxStyled = styled.div<{
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+
+  /* animation: rotation 1s ease-in-out forwards; */
+  animation: ${(props) => (props.inView ? "rotation" : "none")} 1s ease-in-out 0.3s forwards;
+
+  @keyframes rotation {
+    from {
+      opacity: 0;
+      transform: rotateZ(-15deg);
+    }
+    to {
+      opacity: 1;
+      transform: rotateZ(0);
+    }
+  }
 
   @media (min-width: 1200px) and (max-width: 1540px) {
     max-width: 380px;
@@ -65,6 +81,9 @@ export const MissionBoxStyled = styled.div<{
     z-index: 1;
     border-radius: 75.5px;
     box-sizing: border-box;
+    opacity: 0;
+
+    /* transform: rotate(-20deg); */
   }
 
   &::after {
@@ -74,13 +93,43 @@ export const MissionBoxStyled = styled.div<{
     border: ${(props) => (props.borderReverse ? "1px dashed #d9d9d9" : "1px solid #d9d9d9")};
     border-left: 0;
     border-bottom: 0;
+
+    animation: ${(props) => (props.inView ? "go_up" : "none")} 1s ease-in-out 0.3s forwards;
+
+    @keyframes go_up {
+      from {
+        opacity: 0;
+        top: 0;
+        transform: rotate(0);
+      }
+      to {
+        opacity: 1;
+        top: -55px;
+        transform: rotate(-20deg);
+      }
+    }
   }
 
   &::before {
     top: 55px;
     border: ${(props) => (props.borderReverse ? "2px solid #d9d9d9" : "2px dashed #d9d9d9")};
-    transform: rotate(-20deg);
+    /* transform: rotate(-20deg); */
     border-top: 0;
+
+    animation: ${(props) => (props.inView ? "go_down" : "none")} 1s ease-in-out 0.3s forwards;
+
+    @keyframes go_down {
+      from {
+        opacity: 0;
+        top: 0;
+        transform: rotate(0);
+      }
+      to {
+        opacity: 1;
+        top: 55px;
+        transform: rotate(-20deg);
+      }
+    }
   }
 `;
 
