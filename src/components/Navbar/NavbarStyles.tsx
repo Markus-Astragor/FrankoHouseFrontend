@@ -20,11 +20,11 @@ export const FlexContainer = styled.div`
   animation: from_left 2s ease-in-out;
 
   @keyframes from_left {
-    from {
+    0% {
       transform: translateX(-200px);
       opacity: 0;
     }
-    to {
+    100% {
       transform: translateX(0);
       opacity: 1;
     }

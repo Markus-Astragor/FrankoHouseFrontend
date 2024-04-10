@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useInView } from "react-intersection-observer";
 import MissionBox from "../MissionBox/MissionBox";
 import {
@@ -16,10 +16,6 @@ function OurMission() {
     threshold: 0.4,
     triggerOnce: true,
   });
-
-  useEffect(() => {
-    console.log("inView", inView);
-  }, [inView]);
 
   return (
     <MissionStyled ref={ref} id='our-mission'>
