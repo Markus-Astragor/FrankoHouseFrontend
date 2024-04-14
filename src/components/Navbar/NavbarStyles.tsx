@@ -8,9 +8,10 @@ export const NavbarStyled = styled.div`
   z-index: 100;
 `;
 
-export const NavbarContainer = styled.div`
-  padding: 30px 30px;
+export const NavbarContainer = styled.div<{ changeNavbar: boolean }>`
+  padding: ${(props) => (props.changeNavbar ? "20px 30px" : "30px 30px")};
   box-sizing: border-box;
+  transition: padding 0.4s ease-in-out;
 `;
 
 export const FlexContainer = styled.div`

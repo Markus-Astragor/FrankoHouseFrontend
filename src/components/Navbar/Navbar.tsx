@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LogoSrc from "../../assets/header-imgs/logo.png";
 import {
   NavbarStyled,
@@ -20,6 +20,7 @@ function Navbar() {
   const { setLanguage } = useLanguageContext();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [changeNavbar, setChangeNavbar] = useState<boolean>(false);
 
   function handleOverlayClick() {
     setIsOpen(false);
@@ -59,9 +60,17 @@ function Navbar() {
     }
   }
 
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
+      console.log(window.scrollY);
+      if (window.scrollY > 45) setChangeNavbar(true);
+      else setChangeNavbar(false);
+    });
+  }, []);
+
   return (
     <NavbarStyled>
-      <NavbarContainer>
+      <NavbarContainer changeNavbar={changeNavbar}>
         <FlexContainer>
           <NavLink to='/'>
             <Logo src={LogoSrc} alt='logo' />
