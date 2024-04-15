@@ -10,9 +10,10 @@ import {
   FoxImage,
   Link,
 } from "./FooterStyles";
+import { useTranslation } from "react-i18next";
+import { handleMenuItemClick } from "../Navbar/Navbar";
 import logoSrc from "../../assets/footer/white-logo.png";
 import foxImageSrc from "../../assets/footer/fox.png";
-import { useTranslation } from "react-i18next";
 function Footer() {
   const { t } = useTranslation();
   return (
@@ -26,23 +27,35 @@ function Footer() {
           <FlexItem>
             <TextItem>
               <strong>
-                <Link href='#about-us'>{t("ns1.description.footer.links.about-us")}</Link>
+                <Link onClick={() => handleMenuItemClick("about-us")}>
+                  {t("ns1.description.footer.links.about-us")}
+                </Link>
               </strong>
             </TextItem>
             <TextItem>
-              <Link href='#posts'>{t("ns1.description.footer.links.projects")}</Link>
+              <Link onClick={() => handleMenuItemClick("posts")}>
+                {t("ns1.description.footer.links.projects")}
+              </Link>
             </TextItem>
             <TextItem>
-              <Link href='#contacts'>{t("ns1.description.footer.links.contacts")}</Link>
+              <Link onClick={() => handleMenuItemClick("contacts")}>
+                {t("ns1.description.footer.links.contacts")}
+              </Link>
             </TextItem>
             <TextItem>
-              <Link href='#museums'>{t("ns1.description.footer.links.museums")}</Link>
+              <Link onClick={() => handleMenuItemClick("museums")}>
+                {t("ns1.description.footer.links.museums")}
+              </Link>
             </TextItem>
             <TextItem>
-              <Link href='#partners'>{t("ns1.description.footer.links.partners")}</Link>
+              <Link onClick={() => handleMenuItemClick("partners")}>
+                {t("ns1.description.footer.links.partners")}
+              </Link>
             </TextItem>
             <TextItem>
-              <Link href='#our-mission'>{t("ns1.description.footer.links.our-mission")}</Link>
+              <Link onClick={() => handleMenuItemClick("our-mission")}>
+                {t("ns1.description.footer.links.our-mission")}
+              </Link>
             </TextItem>
           </FlexItem>
           <FlexItem>

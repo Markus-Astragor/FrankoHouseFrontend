@@ -7,7 +7,7 @@ function Intro() {
   return (
     <IntroWrapper>
       <IntroStyled>
-        <Title>{t("ns1.description.intro.main-title")}</Title>
+        <Title id='intro'>{t("ns1.description.intro.main-title")}</Title>
       </IntroStyled>
     </IntroWrapper>
   );

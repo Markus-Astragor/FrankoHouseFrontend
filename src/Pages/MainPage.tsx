@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Navbar from "../components/Navbar/Navbar";
 import AboutUs from "./AboutUs/AboutUs";
 import NewsBoardRoutes from "./NewsBlock/NewsBoard/NewsBoardRoutes";
@@ -9,11 +10,16 @@ import Footer from "../components/Footer/Footer";
 import Museums from "../components/Museums/Museums";
 import InfoLine from "../components/InfoLine/InfoLine";
 function MainPage() {
+  const WrapperIntroAboutUs = styled.div`
+    position: relative;
+  `;
   return (
     <div>
       <Navbar />
-      <Intro />
-      <AboutUs />
+      <WrapperIntroAboutUs>
+        <Intro />
+        <AboutUs />
+      </WrapperIntroAboutUs>
       <OurMission />
       <NewsBoardRoutes />
       <Partners />

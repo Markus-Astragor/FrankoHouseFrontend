@@ -87,7 +87,7 @@ function Museums() {
   }, []);
 
   return (
-    <MuseumsStyled>
+    <MuseumsStyled id='museums'>
       <MuseumsContainer>
         <MuseumTitle>{t("ns1.description.museumsFranko.title")}</MuseumTitle>
         {isLoading ? (
