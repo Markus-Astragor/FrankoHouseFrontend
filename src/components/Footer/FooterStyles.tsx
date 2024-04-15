@@ -54,6 +54,7 @@ export const Link = styled.a`
   position: relative;
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
 
   &::before {
     content: "";

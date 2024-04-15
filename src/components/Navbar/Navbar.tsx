@@ -10,7 +10,6 @@ import {
   MenuItem,
   SwitchLanguage,
 } from "./NavbarStyles";
-import { NavLink } from "react-router-dom";
 import BurgerIcon from "../BurgerIcon/BurgerIcon";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
@@ -45,27 +44,11 @@ function Navbar() {
     else changeLanguage("ua");
   }
 
-  function handleMenuItemClick(id: string) {
-    const element = document.getElementById(id);
-
-    const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
-    const offsetPosition = elementPosition && elementPosition - 100;
-
-    if (offsetPosition) {
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  }
-
   return (
     <NavbarStyled>
       <NavbarContainer>
         <FlexContainer>
-          <NavLink to='/'>
-            <Logo src={LogoSrc} alt='logo' />
-          </NavLink>
+          <Logo src={LogoSrc} alt='logo' onClick={() => handleMenuItemClick("intro")} />
 
           <Menu>
             <MenuItem onClick={() => handleMenuItemClick("about-us")}>
@@ -98,3 +81,20 @@ function Navbar() {
 }
 
 export default Navbar;
+
+export function handleMenuItemClick(id: string) {
+  const element = document.getElementById(id);
+
+  const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
+  const offsetPosition =
+    id === "intro"
+      ? elementPosition && elementPosition - 250
+      : elementPosition && elementPosition - 100;
+
+  if (offsetPosition) {
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+}
