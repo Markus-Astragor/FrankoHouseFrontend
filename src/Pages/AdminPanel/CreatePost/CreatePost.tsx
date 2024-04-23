@@ -20,6 +20,8 @@ import {
   CenterBox,
   InputLbl,
   ButtonStyled,
+  ErrorParagraph,
+  ErrorParagraphContainer,
 } from "../../../styles/GeneralStylesAdminPanel";
 
 import handleClearImages from "../functions/handleClearImages";
@@ -42,6 +44,15 @@ export type postInfoProps = {
   engShortDescription: string;
 };
 
+type postInfoErrors = {
+  ukrTitleError: string;
+  ukrDescriptionError: string;
+  ukrShortDescriptionError: string;
+  engTitleError: string;
+  engDescriptionError: string;
+  engShortDescriptionError: string;
+};
+
 function CreatePost() {
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
@@ -54,6 +65,15 @@ function CreatePost() {
     engShortDescription: "",
   });
 
+  const [postInfoError, setPostInfoError] = useState<postInfoErrors>({
+    ukrTitleError: "",
+    ukrDescriptionError: "",
+    ukrShortDescriptionError: "",
+    engTitleError: "",
+    engDescriptionError: "",
+    engShortDescriptionError: "",
+  });
+
   useEffect(() => {
     tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
@@ -63,14 +83,53 @@ function CreatePost() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    console.log(postInfoError);
+
+    if (Object.values(postInfoError).find((errMsg) => errMsg.length > 0)) return;
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
     sendRequest(postInfo, images, "POST");
     handleClearInputs();
     handleClearImages(setImages, setImagesPreview);
   }
 
+  function validateInputForLanguage(value: string, nameInput: string): boolean {
+    const regex: RegExp = /^[^A-Za-z]*$/;
+    if (nameInput.includes("ukr") && value.length > 1) {
+      if (!regex.test(value)) {
+        setPostInfoError((prev) => ({
+          ...prev,
+          [nameInput + "Error"]: "Поле не повинно містити англійських символів",
+        }));
+      }
+      return false;
+    } else {
+      setPostInfoError((prev) => ({
+        ...prev,
+        [nameInput + "Error"]: "",
+      }));
+    }
+
+    if (nameInput.includes("eng") && value.length > 1) {
+      if (regex.test(value)) {
+        setPostInfoError((prev) => ({
+          ...prev,
+          [nameInput + "Error"]: "Поле не повинне містити українських символів",
+        }));
+        return false;
+      }
+    } else {
+      setPostInfoError((prev) => ({
+        ...prev,
+        [nameInput + "Error"]: "",
+      }));
+    }
+
+    return true;
+  }
+
   function handleInput(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
+    validateInputForLanguage(value, name);
     setPostInfo((prev) => ({ ...prev, [name]: value }));
   }
 
@@ -101,7 +160,11 @@ function CreatePost() {
                 onChange={handleInput}
                 fullWidth
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.ukrTitleError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
+
             <FormElementWrapper>
               <InputLbl>Короткий опис (українською)</InputLbl>
               <TextArea
@@ -109,6 +172,9 @@ function CreatePost() {
                 onChange={handleInput}
                 name='ukrShortDescription'
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.ukrShortDescriptionError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
 
             <FormElementWrapper>
@@ -118,6 +184,9 @@ function CreatePost() {
                 value={postInfo.ukrDescription}
                 onChange={handleInput}
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.ukrDescriptionError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
           </FlexItem>
 
@@ -131,6 +200,9 @@ function CreatePost() {
                 onChange={handleInput}
                 fullWidth
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.engTitleError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
             <FormElementWrapper>
               <InputLbl>Короткий опис (англійською)</InputLbl>
@@ -139,6 +211,9 @@ function CreatePost() {
                 value={postInfo.engShortDescription}
                 onChange={handleInput}
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.engShortDescriptionError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
 
             <FormElementWrapper>
@@ -148,6 +223,9 @@ function CreatePost() {
                 value={postInfo.engDescription}
                 onChange={handleInput}
               />
+              <ErrorParagraphContainer>
+                <ErrorParagraph>{postInfoError.engDescriptionError}</ErrorParagraph>
+              </ErrorParagraphContainer>
             </FormElementWrapper>
           </FlexItem>
         </FlexItems>
