@@ -4,35 +4,12 @@ import backgroundFranko from "../../assets/partners/franko_background.png";
 export const PartnerBlock = styled.div`
   @import url("https://fonts.cdnfonts.com/css/kelly-slab");
   width: 100%;
+  scrollbar-width: none;
+  overflow-y: scroll;
   padding-bottom: 3vh;
   background: url(${backgroundFranko}) no-repeat center center fixed;
   background-size: cover;
   background-position-x: center;
-
-  @media (min-width: 300px) and (max-width: 450px) {
-    background: url(${backgroundFranko}) no-repeat center center;
-    height: 1048px;
-  }
-
-  @media (min-width: 451px) and (max-width: 600px) {
-    height: 1213px;
-  }
-
-  @media (min-width: 601px) and (max-width: 700px) {
-    height: 1400px;
-  }
-
-  @media (min-width: 701px) and (max-width: 900px) {
-    height: 1492px;
-  }
-
-  @media (min-width: 901px) and (max-width: 1300px) {
-    height: 505px;
-  }
-
-  @media (min-width: 1301px) and (max-width: 1500px) {
-    height: 562px;
-  }
 `;
 
 export const BlockForTitle = styled.div`

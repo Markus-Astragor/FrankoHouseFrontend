@@ -48,6 +48,7 @@ export default function CreatePartner() {
     setImageForPreview("");
     setImageForPartner(null);
   };
+
   const handleDeleteNameOrganization = () => setNamePartnerOrganization("");
   const handleClearLinkInput = () => setLinkPartner("");
   const handleFileInput = () => {

@@ -17,7 +17,18 @@ export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: relative; */
+  animation: from_left 2s ease-in-out;
+
+  @keyframes from_left {
+    0% {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 `;
 
 export const Logo = styled.img`
@@ -39,12 +50,12 @@ export const Menu = styled.ul`
   font-size: 22px;
   font-weight: 700;
 
-  @media (max-width: 866px) {
+  @media (max-width: 898px) {
     font-size: 18px;
     gap: 14px;
   }
 
-  @media (max-width: 710px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

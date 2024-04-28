@@ -31,6 +31,30 @@ interface BurgerMenuProps {
 function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
   const { t } = useTranslation();
 
+  function handleMenuItemClick(id: string) {
+    // const element = document.getElementById(id);
+
+    // if (element) {
+    //   element.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "end",
+    //     inline: "nearest",
+    //   });
+    // }
+
+    const element = document.getElementById(id);
+
+    const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition && elementPosition - 100;
+
+    if (offsetPosition) {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }
+
   return (
     <BurgerMenuStyled open={isOpen}>
       <BurgerContainer>
@@ -41,19 +65,44 @@ function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
         </BugerLogoContainer>
 
         <BurgerMenuLinks>
-          <BurgerMenuLink onClick={onLinkClick} href='#about-us'>
+          <BurgerMenuLink
+            onClick={() => {
+              onLinkClick();
+              handleMenuItemClick("about-us");
+            }}
+          >
             {t("ns1.description.navbar.link1")}
           </BurgerMenuLink>
-          <BurgerMenuLink onClick={onLinkClick} href='#posts'>
+          <BurgerMenuLink
+            onClick={() => {
+              onLinkClick();
+              handleMenuItemClick("posts");
+            }}
+          >
             {t("ns1.description.navbar.link2")}
           </BurgerMenuLink>
-          <BurgerMenuLink onClick={onLinkClick} href='#partners'>
+          <BurgerMenuLink
+            onClick={() => {
+              onLinkClick();
+              handleMenuItemClick("partners");
+            }}
+          >
             {t("ns1.description.navbar.link3")}
           </BurgerMenuLink>
-          <BurgerMenuLink onClick={onLinkClick} href='#contacts'>
+          <BurgerMenuLink
+            onClick={() => {
+              onLinkClick();
+              handleMenuItemClick("contacts");
+            }}
+          >
             {t("ns1.description.navbar.link4")}
           </BurgerMenuLink>
-          <BurgerMenuLink onClick={onLinkClick} href='#our-mission'>
+          <BurgerMenuLink
+            onClick={() => {
+              onLinkClick();
+              handleMenuItemClick("our-mission");
+            }}
+          >
             {t("ns1.description.navbar.link5")}
           </BurgerMenuLink>
         </BurgerMenuLinks>

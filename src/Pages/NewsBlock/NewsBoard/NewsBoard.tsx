@@ -15,9 +15,11 @@ import LoaderComponent from "../../../components/Loader/LoaderComponent";
 import ProjectModalWindow from "../../../components/ProjectModalWindow/ProjectModalWindow";
 import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 import { useTranslation } from "react-i18next";
+import { useLanguageContext } from "../../../Context/LanguageContext";
 
 function NewsBoard() {
   const { t } = useTranslation();
+  const { language } = useLanguageContext();
 
   type NewsData = {
     _id: string;
@@ -32,14 +34,22 @@ function NewsBoard() {
   const sliderBlock = useRef<HTMLDivElement>(null);
 
   const handleCloseModalWindow = () => {
-    setShow(false);
-    setSelectedNews(null);
+    const modalWindow = document.getElementById("modal-window");
+    console.log("modalWindow", modalWindow);
+
+    if (modalWindow) {
+      modalWindow.style.top = "250%";
+      setTimeout(() => {
+        setShow(false);
+        setSelectedNews(null);
+      }, 700);
+    }
   };
 
   useEffect(() => {
     setLoader(true);
     axios
-      .get(`${URLS["BASE-URL"]}/getPosts`)
+      .get(`${URLS["BASE-URL"]}/getPosts?lang=${language}`)
       .then((res) => {
         console.log(res);
         setDataFromBackend(res.data);
@@ -50,7 +60,7 @@ function NewsBoard() {
       .finally(() => {
         setLoader(false);
       });
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (show) {

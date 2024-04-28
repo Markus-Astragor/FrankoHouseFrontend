@@ -1,9 +1,6 @@
 import React from "react";
 import { NewsPiece, BlockForImage, BlockForTitle } from "../NewsPiece/styled";
 
-import moment from "moment";
-import "moment/locale/uk";
-
 type NewsPieceBlockProps = {
   id: string;
   image: string;
@@ -13,9 +10,8 @@ type NewsPieceBlockProps = {
 };
 
 function NewsPieceBlock({ image, title, id, setSelectedNews, setShow }: NewsPieceBlockProps) {
-  console.log(id);
-
-  moment.locale("uk");
+  const words: string = title.split(" ").slice(0, 6).join(" ");
+  const newTitle: string = title.split(" ").length > 6 ? words + "..." : words;
 
   return (
     <NewsPiece
@@ -25,7 +21,8 @@ function NewsPieceBlock({ image, title, id, setSelectedNews, setShow }: NewsPiec
       }}
     >
       <BlockForImage src={image} />
-      <BlockForTitle>{title}</BlockForTitle>
+
+      <BlockForTitle>{newTitle}</BlockForTitle>
     </NewsPiece>
   );
 }

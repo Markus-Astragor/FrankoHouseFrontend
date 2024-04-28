@@ -10,7 +10,6 @@ import {
   MenuItem,
   SwitchLanguage,
 } from "./NavbarStyles";
-import { NavLink } from "react-router-dom";
 import BurgerIcon from "../BurgerIcon/BurgerIcon";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
@@ -49,25 +48,32 @@ function Navbar() {
     <NavbarStyled>
       <NavbarContainer>
         <FlexContainer>
-          <NavLink to='/'>
-            <Logo src={LogoSrc} alt='logo' />
-          </NavLink>
+          <Logo src={LogoSrc} alt='logo' onClick={() => handleMenuItemClick("intro")} />
 
           <Menu>
-            <MenuItem href='#about-us'>{t("ns1.description.navbar.link1")}</MenuItem>
-            <MenuItem href='#posts'>{t("ns1.description.navbar.link2")}</MenuItem>
-            <MenuItem href='#partners'>{t("ns1.description.navbar.link3")}</MenuItem>
-            <MenuItem href='#contacts'>{t("ns1.description.navbar.link4")}</MenuItem>
-            <MenuItem href='#our-mission'>{t("ns1.description.navbar.link5")}</MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("about-us")}>
+              {t("ns1.description.navbar.link1")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("posts")}>
+              {t("ns1.description.navbar.link2")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("partners")}>
+              {t("ns1.description.navbar.link3")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("contacts")}>
+              {t("ns1.description.navbar.link4")}
+            </MenuItem>
+            <MenuItem onClick={() => handleMenuItemClick("our-mission")}>
+              {t("ns1.description.navbar.link5")}
+            </MenuItem>
             <SwitchLanguage onClick={switchLanguage} ref={switcher}>
               <span onClick={() => changeLanguage("ua")}>UA</span>|
               <span onClick={() => changeLanguage("en")}>EN</span>
             </SwitchLanguage>
           </Menu>
-
-          <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
-          <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger} />
         </FlexContainer>
+        <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} />
+        <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger} />
       </NavbarContainer>
       <Overlay onClick={handleOverlayClick} show={isOpen} />
     </NavbarStyled>
@@ -75,3 +81,20 @@ function Navbar() {
 }
 
 export default Navbar;
+
+export function handleMenuItemClick(id: string) {
+  const element = document.getElementById(id);
+
+  const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
+  const offsetPosition =
+    id === "intro"
+      ? elementPosition && elementPosition - 250
+      : elementPosition && elementPosition - 100;
+
+  if (offsetPosition) {
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+}

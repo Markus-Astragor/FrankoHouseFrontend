@@ -1,60 +1,42 @@
 import styled from "styled-components";
 
-export const MainBlock = styled.div`
+export const CenterBLock = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const Form = styled.form`
-  width: 20%;
-  display: flex;
-  justify-content: center;
   flex-direction: column;
+`;
 
-  * {
-    margin: 5px;
-  }
-
-  @media (max-width: 550px) {
-    width: 70%;
-  }
-
-  @media (min-width: 551px) and (max-width: 800px) {
-    width: 60%;
-  }
-
-  @media (min-width: 801px) and (max-width: 1200px) {
-    width: 40%;
-  }
-  @media (min-width: 1201px) and (max-width: 1600px) {
-    width: 30%;
+export const LoginBtn = styled.button`
+  width: fit-content;
+  height: fit-content;
+  padding: 0.83vh 4.44vw;
+  background-color: #09282c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 0.34vw;
+  color: white;
+  border: 2px solid #09282c;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: #0f363b;
+    border: 2px solid #0f363b;
   }
 `;
 
-export const InputElement = styled.input`
-  display: block;
+export const TitleLogin = styled.h3`
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-family: "Nosifer Caps", sans-serif;
 `;
 
-export const FieldName = styled.span`
-  width: 100%;
-  display: block;
-`;
-
-export const SubmitButton = styled.button`
-  display: block;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-
-export const ErrorParagraph = styled.p`
-  color: red;
-  font-size: 16px;
-  text-align: center;
-  margin: 5px 0px;
+export const FieldName = styled.label`
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Nosifer Caps", sans-serif;
+  font-weight: 600;
 `;
