@@ -17,7 +17,7 @@ import { CenterBLock, LoginBtn, TitleLogin, FieldName } from "./AdminAuthStyle";
 
 import LoaderComponent from "../../components/Loader/LoaderComponent";
 import LogoSrc from "../../assets/header-imgs/logo-white.png";
-import Success from "../../components/SuccesWindow/Success";
+import MessageWindow from "../../components/Message/Message";
 import URLS from "../../configURLS.json";
 
 function AdminAuth() {
@@ -109,7 +109,7 @@ function AdminAuth() {
               )}
             </CenterBox>
           </Form>
-          {success && <Success setSuccess={setSuccess} message={success} />}
+          {success && <MessageWindow setMessage={setSuccess} message={success} />}
         </CenterBLock>
       </AdminWindow>
     </AdminStyled>

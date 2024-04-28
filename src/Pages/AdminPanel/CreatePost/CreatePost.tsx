@@ -60,7 +60,6 @@ function CreatePost() {
     engShortDescription: "",
   });
 
-
   // const [postInfoError, setPostInfoError] = useState<postInfoErrors>({
   //   ukrTitleError: "",
   //   ukrDescriptionError: "",
@@ -74,7 +73,6 @@ function CreatePost() {
     tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
 
-  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["CREATE-POST"]);
   const fileRef = useRef<HTMLInputElement | null>(null);
   const { sendRequest, success, setSuccess, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
 
@@ -91,7 +89,6 @@ function CreatePost() {
   useEffect(() => {
     tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
-
 
   // function validateInputForLanguage(value: string, nameInput: string): boolean {
   //   const regex: RegExp = /^[^A-Za-z]*$/;
@@ -128,23 +125,23 @@ function CreatePost() {
   //   return true;
   // }
 
-  function handleInput(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    // validateInputForLanguage(value, name);
-    setPostInfo((prev) => ({ ...prev, [name]: value }));
-  }
+  // function handleInput(e: ChangeEvent<HTMLInputElement>) {
+  //   const { name, value } = e.target;
+  //   // validateInputForLanguage(value, name);
+  //   setPostInfo((prev) => ({ ...prev, [name]: value }));
+  // }
 
   // Clearing all inputs
-  function handleClearInputs() {
-    setPostInfo({
-      ukrTitle: "",
-      ukrDescription: "",
-      ukrShortDescription: "",
-      engTitle: "",
-      engDescription: "",
-      engShortDescription: "",
-    });
-  }
+  // function handleClearInputs() {
+  //   setPostInfo({
+  //     ukrTitle: "",
+  //     ukrDescription: "",
+  //     ukrShortDescription: "",
+  //     engTitle: "",
+  //     engDescription: "",
+  //     engShortDescription: "",
+  //   });
+  // }
 
   return (
     <Wrapper>
