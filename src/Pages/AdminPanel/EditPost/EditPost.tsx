@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import config from "../../../configURLS.json";
 import TextArea from "../../../components/TextArea/TexArea";
-// import useApi from "../../../hooks/useApi";
-import Success from "../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../components/Message/Message";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 import { postInfoProps } from "../types/postInfoProps";
 import { useEdit } from "../../../hooks/useEdit";
@@ -16,6 +15,7 @@ import handleClearInputs from "../functions/Posts/handleClearInputs";
 import tranformImagesForPreview from "../functions/transformImagesForPreview";
 import createFileFromUrl from "../functions/createFileFromUrl";
 import handleChangeInput from "../functions/Posts/handleChangeInput";
+import handleClearImages from "../functions/handleClearImages";
 
 import {
   Wrapper,
@@ -54,7 +54,7 @@ export default function EditPost() {
     engShortDescription: "",
   });
 
-  const { sendRequest, success, setSuccess, isLoading, setIsLoading } = useEdit(
+  const { sendRequest, message, setMessage, isLoading, setIsLoading } = useEdit(
     config.ADMIN["EDIT-POST"],
   );
 
@@ -66,16 +66,8 @@ export default function EditPost() {
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
     sendRequest(images, postInfo, { name: "postId", value: id || "" });
     handleClearInputs(setPostInfo);
+    handleClearImages(setImages, setImagesPreview);
   }
-
-  // Clearing all images
-  function handleClearImages() {
-    setImages([]);
-    setImagesPreview([]);
-    setImagesUrl([]);
-  }
-
-  // Function for converting url into file
 
   useEffect(() => {
     tranformImagesForPreview(images, setImagesPreview);
@@ -241,7 +233,10 @@ export default function EditPost() {
             <ButtonStyled type='submit' variant='outlined'>
               Оновити
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearImages} variant='outlined'>
+            <ButtonStyled
+              onClick={() => handleClearImages(setImages, setImagesPreview)}
+              variant='outlined'
+            >
               Скинути зображення
             </ButtonStyled>
             <ButtonStyled onClick={() => handleClearInputs(setPostInfo)} variant='outlined'>
@@ -250,7 +245,7 @@ export default function EditPost() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }

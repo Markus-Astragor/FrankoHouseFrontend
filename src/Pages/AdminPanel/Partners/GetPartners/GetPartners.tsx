@@ -11,7 +11,7 @@ import { TitleForPartner, ImagePartner } from "./GetPartnersStyles";
 import config from "../../../../configURLS.json";
 import axios from "axios";
 import { Loader } from "../../../../components/Loader/LoaderComponentStyles";
-import Success from "../../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../../components/Message/Message";
 import Confirmation from "../../../../components/ConfirmationWindow/Confirmation";
 
 type PartnersData = {
@@ -86,7 +86,7 @@ export default function GetPartners() {
       {confirmation && (
         <Confirmation onCancel={handleCancel} onDelete={handleDeletePartner} text={confirmation} />
       )}
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {success && <MessageWindow setMessage={setSuccess} message={success} />}
     </Wrapper>
   );
 }

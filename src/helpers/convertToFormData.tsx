@@ -8,10 +8,8 @@ function convertToFormData(data: Record<string, string>, images: File[]): FormDa
   }
 
   images.forEach((image) => {
-    formData.append("photos", image);
+    formData.append("photo", image);
   });
-
-  console.log(formData["photos"]);
 
   return formData;
 }

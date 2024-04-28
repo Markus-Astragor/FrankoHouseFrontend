@@ -6,7 +6,7 @@ const useCreate = (url: string) => {
   const [success, setSuccess] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const sendRequest = async (images: File[], method: string, info: Record<string, string>) => {
+  const sendRequest = async (images: File[], method: "POST", info: Record<string, string>) => {
     try {
       setIsLoading(true);
       const data = convertToFormData(info, images);

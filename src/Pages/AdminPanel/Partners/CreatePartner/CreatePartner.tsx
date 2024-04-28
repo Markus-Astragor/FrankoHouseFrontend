@@ -21,7 +21,7 @@ import {
   ErrorParagraphContainer,
 } from "../../../../styles/GeneralStylesAdminPanel";
 import { Loader } from "../../../../components/Loader/LoaderComponentStyles";
-import Success from "../../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../../components/Message/Message";
 import config from "../../../../configURLS.json";
 
 import axios from "axios";
@@ -224,7 +224,7 @@ export default function CreatePartner() {
           )}
         </CenterBox>
       </Form>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {success && <MessageWindow setMessage={setSuccess} message={success} />}
     </Wrapper>
   );
 }

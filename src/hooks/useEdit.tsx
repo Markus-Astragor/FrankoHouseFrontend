@@ -9,7 +9,7 @@ type IdObject = {
 
 function useEdit(url: string) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [success, setSuccess] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   async function sendRequest(images: File[], info: Record<string, string>, postId: IdObject) {
     try {
@@ -30,11 +30,11 @@ function useEdit(url: string) {
       });
 
       console.log(response);
-      setSuccess(response.data.message);
+      setMessage(response.data.message);
     } catch (error) {
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
-          setSuccess(error.response?.data.message);
+          setMessage(error.response?.data.message);
         }
       }
       console.log(error);
@@ -43,7 +43,7 @@ function useEdit(url: string) {
     }
   }
 
-  return { setIsLoading, isLoading, setSuccess, success, sendRequest };
+  return { setIsLoading, isLoading, setMessage, message, sendRequest };
 }
 
 export { useEdit };

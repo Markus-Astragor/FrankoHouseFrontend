@@ -30,12 +30,12 @@ import handleClearInputs from "../functions/Posts/handleClearInputs";
 import handleChangeInput from "../functions/Posts/handleChangeInput";
 
 import TextArea from "../../../components/TextArea/TexArea";
-import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import config from "../../../configURLS.json";
 import { postInfoProps } from "../types/postInfoProps";
 import { useCreate } from "../../../hooks/useCreate";
+import MessageWindow from "../../../components/Message/Message";
 
 function CreatePost() {
   const [images, setImages] = useState<File[]>([]);
@@ -49,13 +49,8 @@ function CreatePost() {
     engShortDescription: "",
   });
 
-  useEffect(() => {
-    tranformImagesForPreview(images, setImagesPreview);
-  }, [images]);
-
-  const { sendRequest, success, setSuccess, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
-
   const fileRef = useRef<HTMLInputElement | null>(null);
+  const { sendRequest, success, setSuccess, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -64,6 +59,9 @@ function CreatePost() {
     handleClearInputs(setPostInfo);
     handleClearImages(setImages, setImagesPreview);
   }
+  useEffect(() => {
+    tranformImagesForPreview(images, setImagesPreview);
+  }, [images]);
 
   return (
     <Wrapper>
@@ -147,7 +145,7 @@ function CreatePost() {
             <FileInput
               multiple
               ref={fileRef}
-              onChange={() => handleFileInput(images, setImages, fileRef)}
+              onChange={() => handleFileInput(images, setImages, fileRef, setSuccess)}
               type='file'
               accept='image/*'
             />
@@ -177,7 +175,7 @@ function CreatePost() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {success && <MessageWindow setMessage={setSuccess} message={success} />}
     </Wrapper>
   );
 }

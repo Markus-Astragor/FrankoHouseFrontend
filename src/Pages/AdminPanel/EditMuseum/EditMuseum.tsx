@@ -26,7 +26,6 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
-// import Success from "../../../components/SuccesWindow/Success";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import { museumInfoProps } from "../types/museumInfoProps";
@@ -42,21 +41,24 @@ import tranformImagesForPreview from "../functions/transformImagesForPreview";
 import { useEdit } from "../../../hooks/useEdit";
 
 import config from "../../../configURLS.json";
+import MessageWindow from "../../../components/Message/Message";
 
 function EditMuseum() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
-  const { isLoading, setIsLoading, sendRequest } = useEdit(config.ADMIN["EDIT-MUSEUM"]);
+  const { isLoading, setIsLoading, sendRequest, message, setMessage } = useEdit(
+    config.ADMIN["EDIT-MUSEUM"],
+  );
 
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
-    urkMuseumTitle: "",
-    UkrWorkingHr: "",
-    UkrAddress: "",
-    EnMuseumTitle: "",
-    EnWorkingHr: "",
-    EnAddress: "",
+    urkTitle: "",
+    ukrWorkingHours: "",
+    ukrAddress: "",
+    engTitle: "",
+    engWorkingHours: "",
+    engAddress: "",
     link: "",
     phone: "",
     email: "",
@@ -69,6 +71,7 @@ function EditMuseum() {
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
     sendRequest(images, museumInfo, { name: "museumId", value: id || "" });
     handleClearInputs(setMuseumInfo);
+    handleClearImages(setImages, setImagesPreview);
   }
 
   // 1. Loading data about museum
@@ -87,12 +90,12 @@ function EditMuseum() {
 
         if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
         setMuseumInfo({
-          urkMuseumTitle: res.data.ukrainian.title,
-          UkrWorkingHr: res.data.ukrainian.workingHr,
-          UkrAddress: res.data.ukrainian.adress,
-          EnMuseumTitle: res.data.english.title,
-          EnWorkingHr: res.data.english.workingHr,
-          EnAddress: res.data.english.adress,
+          urkTitle: res.data.ukrainian.title,
+          ukrWorkingHours: res.data.ukrainian.workingHr,
+          ukrAddress: res.data.ukrainian.adress,
+          engTitle: res.data.english.title,
+          engWorkingHours: res.data.english.workingHr,
+          engAddress: res.data.english.adress,
           link: res.data.link,
           phone: res.data.phone,
           email: res.data.email,
@@ -151,7 +154,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.urkMuseumTitle}
+                value={museumInfo.urkTitle}
                 required
                 name='urkMuseumTitle'
                 fullWidth
@@ -162,7 +165,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Години роботи (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.UkrWorkingHr}
+                value={museumInfo.ukrWorkingHours}
                 required
                 name='UkrWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
@@ -173,7 +176,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Адреса (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.UkrAddress}
+                value={museumInfo.ukrAddress}
                 required
                 name='UkrAddress'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
@@ -186,7 +189,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnMuseumTitle}
+                value={museumInfo.engTitle}
                 required
                 name='EnMuseumTitle'
                 fullWidth
@@ -197,7 +200,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Години роботи (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnWorkingHr}
+                value={museumInfo.engWorkingHours}
                 required
                 name='EnWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
@@ -208,7 +211,7 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Адреса (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnAddress}
+                value={museumInfo.engAddress}
                 required
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 name='EnAddress'
@@ -296,7 +299,7 @@ function EditMuseum() {
           </ButtonsContainer>
         )}
       </Form>
-      {/* {success && <Success setSuccess={setSuccess} message={success} />} */}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }

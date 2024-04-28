@@ -23,7 +23,7 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
-import Success from "../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../components/Message/Message";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import { museumInfoProps } from "../types/museumInfoProps";
@@ -42,12 +42,12 @@ function AddMuseum() {
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
-    urkMuseumTitle: "",
-    UkrWorkingHr: "",
-    UkrAddress: "",
-    EnMuseumTitle: "",
-    EnWorkingHr: "",
-    EnAddress: "",
+    urkTitle: "",
+    ukrWorkingHours: "",
+    ukrAddress: "",
+    engTitle: "",
+    engWorkingHours: "",
+    engAddress: "",
     link: "",
     phone: "",
     email: "",
@@ -64,6 +64,7 @@ function AddMuseum() {
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
     sendRequest(images, "POST", museumInfo);
     handleClearInputs(setMuseumInfo);
+    handleClearImages(setImages, setImagesPreview);
   }
 
   return (
@@ -75,9 +76,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.urkMuseumTitle}
+                value={museumInfo.urkTitle}
                 required
-                name='urkMuseumTitle'
+                name='urkTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -86,9 +87,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Години роботи (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.UkrWorkingHr}
+                value={museumInfo.ukrWorkingHours}
                 required
-                name='UkrWorkingHr'
+                name='ukrWorkingHours'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -97,9 +98,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Адреса (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.UkrAddress}
+                value={museumInfo.ukrAddress}
                 required
-                name='UkrAddress'
+                name='ukrAddress'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -110,9 +111,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnMuseumTitle}
+                value={museumInfo.engTitle}
                 required
-                name='EnMuseumTitle'
+                name='engTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -121,9 +122,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Години роботи (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnWorkingHr}
+                value={museumInfo.engWorkingHours}
                 required
-                name='EnWorkingHr'
+                name='engWorkingHours'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -132,10 +133,10 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Адреса (англійською) *</InputLbl>
               <InputTitle
-                value={museumInfo.EnAddress}
+                value={museumInfo.engAddress}
                 required
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
-                name='EnAddress'
+                name='engAddress'
                 fullWidth
               />
             </FormElementWrapper>
@@ -188,7 +189,6 @@ function AddMuseum() {
         <InputFileContainer>
           <InputFileBox>
             <FileInput
-              multiple
               ref={fileRef}
               onChange={() => handleFileInput(images, setImages, fileRef)}
               type='file'
@@ -220,7 +220,7 @@ function AddMuseum() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {success && <MessageWindow setMessage={setSuccess} message={success} />}
     </Wrapper>
   );
 }

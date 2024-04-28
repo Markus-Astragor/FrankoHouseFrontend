@@ -4,38 +4,25 @@ import { GetPostsStyled, Title, PostsBox, CenterBox } from "../GetPosts/GetPosts
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 import MuseumBox from "./MuseumBox/MuseumBox";
 import Confirmation from "../../../components/ConfirmationWindow/Confirmation";
-import Success from "../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../components/Message/Message";
 import config from "../../../configURLS.json";
 
-import axios from "axios";
-
-import { MuseumInfoPropsWithId } from "../types/museumInfoProps";
+import { MuseumData } from "../types/museumInfoProps";
+import { useGet } from "../../../hooks/useGet";
+import { useDelete } from "../../../hooks/useDelete";
 
 function GetMuseums() {
-  const [museums, setMuseums] = useState<MuseumInfoPropsWithId[]>([]);
-  const [success, setSuccess] = useState<string>("");
+  const [museums, setMuseums] = useState<MuseumData[]>([]);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
 
+  const { sendRequest, isLoading, message, setMessage } = useGet(config.GET_MUSEUMS);
+  const { isLoading: postIsDeleting, sendRequest: sendDeletePostRequest } = useDelete(
+    config.ADMIN["DELETE-MUSEUM"],
+  );
+
   useEffect(() => {
-    async function getMuseums() {
-      try {
-        const res = await axios.get("http://localhost:8000/museums");
-        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
-        console.log(res);
-
-        setMuseums(res.data);
-      } catch (err) {
-        let message: string = "Невідома помилка";
-        if (err instanceof Error) message = err.message;
-        alert(message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMuseums();
+    sendRequest(setMuseums);
   }, []);
 
   function handlePostDelete(id: string) {
@@ -50,29 +37,10 @@ function GetMuseums() {
 
   async function handleDelete() {
     setShowConfirm(false);
-    try {
-      setIsLoading(true);
-      const res = await axios.delete(`${config["BASE-URL"]}/admin/deleteMuseum`, {
-        data: { postId: id },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        },
-      });
-
-      if (res.status != 200) throw new Error("Помилка видалення поста");
-
-      console.log(res);
-      setSuccess(res.data.message);
-    } catch (error) {
-      let message = "Невідома помилка";
-      if (error instanceof Error) message = error.message;
-      alert(message);
-    } finally {
-      setIsLoading(false);
-    }
+    sendDeletePostRequest({ name: "museumId", id });
     setMuseums((prev) => prev.filter((el) => el._id !== id));
   }
-  if (isLoading) {
+  if (isLoading || postIsDeleting) {
     return (
       <CenterBox>
         <Loader />
@@ -85,12 +53,12 @@ function GetMuseums() {
       <GetPostsStyled>
         <Title>Музеї</Title>
         <PostsBox>
-          {museums.map((el: MuseumInfoPropsWithId, index) => (
+          {museums.map((el: MuseumData, index) => (
             <MuseumBox handlePostDelete={handlePostDelete} key={index} museum={el} />
           ))}
         </PostsBox>
       </GetPostsStyled>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
       {showConfirm && <Confirmation onCancel={handleCancel} onDelete={handleDelete} />}
     </>
   );
