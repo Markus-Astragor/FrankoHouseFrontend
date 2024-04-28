@@ -4,13 +4,17 @@ export default function handleFileInput(
   images: File[],
   setImages: Dispatch<SetStateAction<File[]>>,
   fileRef: React.RefObject<HTMLInputElement> | null,
+  setMessage?: Dispatch<SetStateAction<string>>,
 ) {
   if (!fileRef) {
     console.error("Ref is null");
     return;
   }
 
-  if (images.length >= 10) return alert("Ви досягли ліміту по зображеннях");
+  if (images.length >= 10)
+    return setMessage
+      ? setMessage("Ви досягли ліміту по зображеннях")
+      : alert("Ви досягли ліміту по зображеннях");
   if (fileRef.current && fileRef.current.files?.length !== 0) {
     const files = fileRef.current?.files;
     console.log(files);
@@ -23,17 +27,26 @@ export default function handleFileInput(
         if (file.type.startsWith("image/")) {
           newFiles.push(file);
         } else {
+          if (setMessage) {
+            setMessage(`${file.name} не є зображенням`);
+          }
           alert(`${file.name} не є зображенням`);
         }
       }
 
       // Validation for max images count
       if (newFiles.length + images.length > 10) {
-        alert(
-          `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
-            10 - images.length
-          } `,
-        );
+        setMessage
+          ? setMessage(
+              `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
+                10 - images.length
+              } `,
+            )
+          : alert(
+              `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
+                10 - images.length
+              } `,
+            );
         return;
       }
 

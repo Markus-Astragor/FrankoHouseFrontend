@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { museumInfoProps } from "../types/museumInfoProps";
+import { museumInfoProps } from "../../types/museumInfoProps";
 
 export default function handleChangeInput(
   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

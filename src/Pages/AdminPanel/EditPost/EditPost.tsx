@@ -1,11 +1,21 @@
-import React, { ChangeEvent, FormEvent, useRef, useState, useEffect } from "react";
+import React, { FormEvent, useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios, { AxiosError } from "axios";
 import config from "../../../configURLS.json";
 import TextArea from "../../../components/TextArea/TexArea";
-import useApi from "../../../hooks/useApi";
-import Success from "../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../components/Message/Message";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
+import { postInfoProps } from "../types/postInfoProps";
+import { useEdit } from "../../../hooks/useEdit";
+
+// functions
+import handleFileInput from "../functions/handleFileInput";
+import handleDeleteImage from "../functions/handleDeleteImage";
+import handleClearInputs from "../functions/Posts/handleClearInputs";
+import tranformImagesForPreview from "../functions/transformImagesForPreview";
+import createFileFromUrl from "../functions/createFileFromUrl";
+import handleChangeInput from "../functions/Posts/handleChangeInput";
+import handleClearImages from "../functions/handleClearImages";
 
 import {
   Wrapper,
@@ -30,18 +40,8 @@ import {
   LoaderWrapper,
 } from "../../../styles/GeneralStylesAdminPanel";
 
-export type postInfoProps = {
-  ukrTitle: string;
-  ukrDescription: string;
-  ukrShortDescription: string;
-  engTitle: string;
-  engDescription: string;
-  engShortDescription: string;
-};
-
 export default function EditPost() {
-  const { id } = useParams();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { id } = useParams<{ id: string }>();
   const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
@@ -54,134 +54,23 @@ export default function EditPost() {
     engShortDescription: "",
   });
 
-  const { sendRequest, success, setSuccess, loading } = useApi(config.ADMIN["EDIT-POST"]);
+  const { sendRequest, message, setMessage, isLoading, setIsLoading } = useEdit(
+    config.ADMIN["EDIT-POST"],
+  );
 
   const fileRef = useRef<HTMLInputElement | null>(null);
-
-  // handling selecting files from input file
-  function handleFileInput() {
-    if (images.length >= 10) return alert("Ви досягли ліміту по зображеннях");
-    if (fileRef.current && fileRef.current.files?.length !== 0) {
-      const files = fileRef.current?.files;
-      console.log(files);
-
-      if (files) {
-        const newFiles: File[] = [];
-
-        // Validation for files of type image
-        for (const file of files) {
-          if (file.type.startsWith("image/")) {
-            newFiles.push(file);
-          } else {
-            alert(`${file.name} не є зображенням`);
-          }
-        }
-
-        // Validation for max images count
-        if (newFiles.length + images.length > 10) {
-          alert(
-            `Кількість вибраних зображень перевищує допустиму кількість (10), попередньо вибрані зображення не були збережені, будь ласка спробуйте ще раз.\nКількість зображень які можна ще вибрати - ${
-              10 - images.length
-            } `,
-          );
-          return;
-        }
-
-        setImages((prev) => [...prev, ...newFiles]);
-      } else {
-        console.log("No image selected");
-      }
-    }
-  }
 
   // Submit function
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    sendRequest(postInfo, images, "PATCH", id);
-    handleClearInputs();
-  }
-
-  // handling change on each input
-  function handleInput(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setPostInfo((prev) => ({ ...prev, [name]: value }));
-  }
-
-  // Clearing all images
-  function handleClearImages() {
-    setImages([]);
-    setImagesPreview([]);
-    setImagesUrl([]);
-  }
-
-  // Clearing all inputs
-  function handleClearInputs() {
-    setPostInfo({
-      ukrTitle: "",
-      ukrDescription: "",
-      ukrShortDescription: "",
-      engTitle: "",
-      engDescription: "",
-      engShortDescription: "",
-    });
-  }
-
-  // Deleting image
-  function handleDeleteImage(index: number) {
-    setImagesPreview(imagesPreview.slice(0, index).concat(imagesPreview.slice(index + 1)));
-    setImages(images.slice(0, index).concat(images.slice(index + 1)));
-  }
-
-  // Function for converting url into file
-  async function createFileFromUrl(url: string, fileName: string) {
-    try {
-      // Use Axios to make the request
-      const response = await axios.get(url, { responseType: "blob" });
-
-      // Create a File object from the Blob
-      const file = new File([response.data], fileName || "image.jpg", {
-        type: response.headers["content-type"],
-      });
-
-      return file;
-    } catch (error) {
-      console.error("Error creating File from URL:", error);
-      throw error;
-    }
-  }
-
-  // Function for transforming all images into base64 for displaying
-  function tranformImageForPreview() {
-    if (images.length === 0) return;
-    const promises = images.map((image) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          resolve(e.target?.result as string);
-        };
-
-        reader.onerror = (error) => {
-          reject(error);
-        };
-
-        reader.readAsDataURL(image);
-      });
-    });
-
-    Promise.all(promises)
-      .then((newPreviews) => {
-        setImagesPreview(newPreviews as string[]);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Error processing images:", error);
-      });
+    sendRequest(images, postInfo, { name: "postId", value: id || "" });
+    handleClearInputs(setPostInfo);
+    handleClearImages(setImages, setImagesPreview);
   }
 
   useEffect(() => {
-    tranformImageForPreview();
+    tranformImagesForPreview(images, setImagesPreview);
   }, [images]);
 
   // # 2 Converting urls into files
@@ -256,7 +145,7 @@ export default function EditPost() {
                 required
                 name='ukrTitle'
                 value={postInfo.ukrTitle}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 fullWidth
               />
             </FormElementWrapper>
@@ -264,7 +153,7 @@ export default function EditPost() {
               <InputLbl>Короткий опис (українською)</InputLbl>
               <TextArea
                 value={postInfo.ukrShortDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 name='ukrShortDescription'
               />
             </FormElementWrapper>
@@ -274,7 +163,7 @@ export default function EditPost() {
               <TextArea
                 name='ukrDescription'
                 value={postInfo.ukrDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
           </FlexItem>
@@ -286,7 +175,7 @@ export default function EditPost() {
                 required
                 name='engTitle'
                 value={postInfo.engTitle}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
                 fullWidth
               />
             </FormElementWrapper>
@@ -295,7 +184,7 @@ export default function EditPost() {
               <TextArea
                 name='engShortDescription'
                 value={postInfo.engShortDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
 
@@ -304,7 +193,7 @@ export default function EditPost() {
               <TextArea
                 name='engDescription'
                 value={postInfo.engDescription}
-                onChange={handleInput}
+                onChange={(e) => handleChangeInput(e, setPostInfo)}
               />
             </FormElementWrapper>
           </FlexItem>
@@ -314,7 +203,9 @@ export default function EditPost() {
           {imagesPreview.map((img, index) => (
             <ImageContainer key={index}>
               <img src={img} />
-              <DeleteButton onClick={() => handleDeleteImage(index)}>X</DeleteButton>
+              <DeleteButton onClick={() => handleDeleteImage(setImagesPreview, setImages, index)}>
+                X
+              </DeleteButton>
             </ImageContainer>
           ))}
         </ImagesContainer>
@@ -324,7 +215,7 @@ export default function EditPost() {
             <FileInput
               multiple
               ref={fileRef}
-              onChange={handleFileInput}
+              onChange={() => handleFileInput(images, setImages, fileRef)}
               type='file'
               accept='image/*'
             />
@@ -333,7 +224,7 @@ export default function EditPost() {
           </InputFileBox>
         </InputFileContainer>
 
-        {loading ? (
+        {isLoading ? (
           <CenterBox>
             <Loader />
           </CenterBox>
@@ -342,16 +233,19 @@ export default function EditPost() {
             <ButtonStyled type='submit' variant='outlined'>
               Оновити
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearImages} variant='outlined'>
+            <ButtonStyled
+              onClick={() => handleClearImages(setImages, setImagesPreview)}
+              variant='outlined'
+            >
               Скинути зображення
             </ButtonStyled>
-            <ButtonStyled onClick={handleClearInputs} variant='outlined'>
+            <ButtonStyled onClick={() => handleClearInputs(setPostInfo)} variant='outlined'>
               Очистити всі поля
             </ButtonStyled>
           </ButtonsContainer>
         )}
       </Form>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }

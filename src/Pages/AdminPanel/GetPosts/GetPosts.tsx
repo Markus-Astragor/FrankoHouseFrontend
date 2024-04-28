@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import config from "../../../configURLS.json";
 import { GetPostsStyled, Title, PostsBox, CenterBox } from "./GetPostsStyle";
 import Post from "./Post/Post";
-import Success from "../../../components/SuccesWindow/Success";
+import MessageWindow from "../../../components/Message/Message";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 import Confirmation from "../../../components/ConfirmationWindow/Confirmation";
+import { useGet } from "../../../hooks/useGet";
+import { useDelete } from "../../../hooks/useDelete";
 
 export type PostData = {
   _id: string;
@@ -17,34 +18,18 @@ export type PostData = {
 
 export default function GetPosts() {
   const [data, setData] = useState<PostData[]>([]);
-  const [success, setSuccess] = useState<string>("");
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
+
+  const { isLoading, message, setMessage, sendRequest } = useGet(config["GET-POSTS"]);
+  const { isLoading: postIsDeleting, sendRequest: sendDeletePostRequest } = useDelete(
+    config.ADMIN["DELETE-POST"],
+  );
 
   // When confirm is true
   async function handleDelete() {
     setShowConfirm(false);
-    try {
-      setIsLoading(true);
-      const res = await axios.delete(`${config["BASE-URL"]}/admin/deletePost`, {
-        data: { postId: id },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        },
-      });
-
-      if (res.status != 200) throw new Error("Помилка видалення поста");
-
-      console.log(res);
-      setSuccess(res.data.message);
-    } catch (error) {
-      let message = "Невідома помилка";
-      if (error instanceof Error) message = error.message;
-      alert(message);
-    } finally {
-      setIsLoading(false);
-    }
+    sendDeletePostRequest({ name: "postId", id });
     setData((prev) => prev.filter((el) => el._id !== id));
   }
   // When confirm is false
@@ -60,26 +45,10 @@ export default function GetPosts() {
 
   // Get all Posts
   useEffect(() => {
-    async function getPosts() {
-      try {
-        setIsLoading(true);
-        const res = await axios.get(`${config["BASE-URL"]}/getPosts`);
-
-        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
-        setData(res.data);
-        console.log(res.data);
-      } catch (err) {
-        let message: string = "Невідома помилка";
-        if (err instanceof Error) message = err.message;
-        alert(message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    getPosts();
+    sendRequest(setData);
   }, []);
 
-  if (isLoading) {
+  if (isLoading || postIsDeleting) {
     return (
       <CenterBox>
         <Loader />
@@ -97,7 +66,7 @@ export default function GetPosts() {
           ))}
         </PostsBox>
       </GetPostsStyled>
-      {success && <Success setSuccess={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
       {showConfirm && <Confirmation onCancel={handleCancel} onDelete={handleDelete} />}
     </>
   );

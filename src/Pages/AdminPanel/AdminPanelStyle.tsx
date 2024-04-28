@@ -94,6 +94,9 @@ export const LinkBox = styled.div`
   }
 `;
 
+export const LogoLink = styled(NavLink)`
+  text-decoration: none;
+`;
 export const Link = styled(NavLink)`
   text-decoration: none;
   color: white;

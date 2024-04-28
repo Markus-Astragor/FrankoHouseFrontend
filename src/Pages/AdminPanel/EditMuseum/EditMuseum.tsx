@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react";
+import { useParams } from "react-router-dom";
+import axios, { AxiosError } from "axios";
 
 import {
+  LoaderWrapper,
   Wrapper,
   FlexItem,
   Form,
@@ -23,7 +26,6 @@ import {
   ButtonStyled,
 } from "../../../styles/GeneralStylesAdminPanel";
 
-import MessageWindow from "../../../components/Message/Message";
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 
 import { museumInfoProps } from "../types/museumInfoProps";
@@ -32,15 +34,24 @@ import handleClearInputs from "../functions/Museums/handleClearInputs";
 import handleDeleteImage from "../functions/handleDeleteImage";
 import handleChangeInput from "../functions/Museums/handleChangeInput";
 import handleFileInput from "../functions/handleFileInput";
+
+import createFileFromUrl from "../functions/createFileFromUrl";
 import tranformImagesForPreview from "../functions/transformImagesForPreview";
-import { useCreate } from "../../../hooks/useCreate";
+
+import { useEdit } from "../../../hooks/useEdit";
 
 import config from "../../../configURLS.json";
+import MessageWindow from "../../../components/Message/Message";
 
-function AddMuseum() {
-  const fileRef = useRef<HTMLInputElement | null>(null);
+function EditMuseum() {
+  const { id } = useParams<{ id: string }>();
+  const [imagesUrl, setImagesUrl] = useState<string[]>([]);
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
+  const { isLoading, setIsLoading, sendRequest, message, setMessage } = useEdit(
+    config.ADMIN["EDIT-MUSEUM"],
+  );
+
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
     urkTitle: "",
     ukrWorkingHours: "",
@@ -53,23 +64,90 @@ function AddMuseum() {
     email: "",
   });
 
-  const { sendRequest, isLoading, success, setSuccess } = useCreate(config.ADMIN["ADD-MUSEUM"]);
-
-  useEffect(() => {
-    tranformImagesForPreview(images, setImagesPreview);
-  }, [images]);
+  const fileRef = useRef<HTMLInputElement | null>(null);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
-    sendRequest(images, "POST", museumInfo);
+    sendRequest(images, museumInfo, { name: "museumId", value: id || "" });
     handleClearInputs(setMuseumInfo);
     handleClearImages(setImages, setImagesPreview);
   }
 
+  // 1. Loading data about museum
+  useEffect(() => {
+    async function getMuseumData() {
+      try {
+        setIsLoading(true);
+
+        const res = await axios.get(`${config["BASE-URL"]}/admin/getMuseum/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        });
+
+        console.log(res);
+
+        if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
+        setMuseumInfo({
+          urkTitle: res.data.ukrainian.title,
+          ukrWorkingHours: res.data.ukrainian.workingHr,
+          ukrAddress: res.data.ukrainian.adress,
+          engTitle: res.data.english.title,
+          engWorkingHours: res.data.english.workingHr,
+          engAddress: res.data.english.adress,
+          link: res.data.link,
+          phone: res.data.phone,
+          email: res.data.email,
+        });
+
+        setImagesUrl(res.data.photos);
+      } catch (error) {
+        console.log(error);
+
+        if (error instanceof Error) {
+          if (error instanceof AxiosError) {
+            alert(error.response?.data.message);
+          } else {
+            alert(error.message);
+          }
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getMuseumData();
+  }, []);
+
+  // # 2 Converting urls into files
+  useEffect(() => {
+    const imagesPromises = imagesUrl.map((url, index) =>
+      createFileFromUrl(url, `image-${index + 1}`),
+    );
+    Promise.all(imagesPromises).then((res) => {
+      console.log(res);
+      setImages(res);
+    });
+  }, [imagesUrl]);
+
+  // #3 Transforming images into base 64
+  useEffect(() => {
+    tranformImagesForPreview(images, setImagesPreview);
+  }, [images]);
+
+  // Function for transforming all images into base64 for displaying
+  if (isLoading) {
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
+  }
+
   return (
     <Wrapper>
-      <Title>Додавання музею</Title>
+      <Title>Редагування музею</Title>
       <Form onSubmit={handleSubmit}>
         <FlexItems>
           <FlexItem>
@@ -78,7 +156,7 @@ function AddMuseum() {
               <InputTitle
                 value={museumInfo.urkTitle}
                 required
-                name='urkTitle'
+                name='urkMuseumTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -89,7 +167,7 @@ function AddMuseum() {
               <InputTitle
                 value={museumInfo.ukrWorkingHours}
                 required
-                name='ukrWorkingHours'
+                name='UkrWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -100,7 +178,7 @@ function AddMuseum() {
               <InputTitle
                 value={museumInfo.ukrAddress}
                 required
-                name='ukrAddress'
+                name='UkrAddress'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -113,7 +191,7 @@ function AddMuseum() {
               <InputTitle
                 value={museumInfo.engTitle}
                 required
-                name='engTitle'
+                name='EnMuseumTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -124,7 +202,7 @@ function AddMuseum() {
               <InputTitle
                 value={museumInfo.engWorkingHours}
                 required
-                name='engWorkingHours'
+                name='EnWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -136,7 +214,7 @@ function AddMuseum() {
                 value={museumInfo.engAddress}
                 required
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
-                name='engAddress'
+                name='EnAddress'
                 fullWidth
               />
             </FormElementWrapper>
@@ -189,6 +267,7 @@ function AddMuseum() {
         <InputFileContainer>
           <InputFileBox>
             <FileInput
+              multiple
               ref={fileRef}
               onChange={() => handleFileInput(images, setImages, fileRef)}
               type='file'
@@ -206,7 +285,7 @@ function AddMuseum() {
         ) : (
           <ButtonsContainer>
             <ButtonStyled type='submit' variant='outlined'>
-              Створити
+              Оновити
             </ButtonStyled>
             <ButtonStyled
               onClick={() => handleClearImages(setImages, setImagesPreview)}
@@ -220,9 +299,9 @@ function AddMuseum() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <MessageWindow setMessage={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }
 
-export default AddMuseum;
+export default EditMuseum;

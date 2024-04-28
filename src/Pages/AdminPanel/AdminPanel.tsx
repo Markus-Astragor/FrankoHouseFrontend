@@ -8,6 +8,7 @@ import {
   Logo,
   LinkBox,
   Link,
+  LogoLink,
 } from "./AdminPanelStyle";
 import AccessDenied from "../../components/AccessDenied/AccessDenied";
 import axios from "axios";
@@ -37,7 +38,10 @@ export default function AdminPanel() {
     <AdminStyled>
       <NavBar>
         <NavbarBox>
-          <Logo src={LogoSrc} alt='logo' />
+          <LogoLink to='/'>
+            <Logo src={LogoSrc} alt='logo' />
+          </LogoLink>
+
           <LinkBox>
             <Link to='create-post'>Створити пост</Link>
             <Link to='view-posts'>Переглянути пости</Link>
