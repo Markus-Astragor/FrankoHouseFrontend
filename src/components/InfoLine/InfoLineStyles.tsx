@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import backgroundSrc from "../../assets/info-line/background.png";
-import backgroundMapSrc from "../../assets/info-line/map.png";
+// import backgroundMapSrc from "../../assets/info-line/map.png";
 
 export const InfoLineStyled = styled.div`
   font-family: "Kelly Slab";
@@ -90,11 +90,6 @@ export const Map = styled.div`
   width: 60%;
   height: 350px;
   cursor: pointer;
-
-  background: url(${backgroundMapSrc});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 
   @media (max-width: 1200px) {
     height: 300px;

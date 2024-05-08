@@ -31,9 +31,10 @@ export const NewsContainer = styled.div`
 `;
 
 export const TitleProjects = styled.h2`
-  font-size: 75px;
+  font-size: 3.3125rem;
   text-align: center;
-  font-weight: 700;
+  font-weight: 400;
+  font-family: "Kelly Slab";
 `;
 
 export const BlockForLoader = styled.div`

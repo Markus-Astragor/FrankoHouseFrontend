@@ -13,6 +13,7 @@ import {
   LongDescription,
   TitleAndSlider,
   ImageInSlider,
+  ImageInSliderContainer,
 } from "./FullNewsPieceStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -101,6 +102,28 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
     prevArrow: <SamplePrevArrow className='slick-prev' style={{}} onClick={() => {}} />,
   };
 
+  useEffect(() => {
+    if (neededPost?.photos) {
+      setTimeout(() => {
+        const images: NodeListOf<HTMLImageElement> = document.querySelectorAll(".image-in-slider");
+        images.forEach((image: HTMLImageElement) => {
+          const naturalImageHeight = image.naturalHeight;
+          const naturalImageWidth = image.naturalWidth;
+          if (naturalImageHeight > naturalImageWidth) {
+            image.style.height = "100%";
+            image.style.width = "auto";
+          } else if (naturalImageWidth === naturalImageHeight) {
+            image.style.height = "100%";
+            image.style.width = "100%";
+          } else {
+            image.style.width = "100%";
+            image.style.height = "auto";
+          }
+        });
+      }, 0);
+    }
+  }, [neededPost]);
+
   return (
     <div>
       {loader ? (
@@ -113,7 +136,11 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
             <TitleAndSlider>
               <SliderBlock>
                 <Slider {...settings}>
-                  {neededPost?.photos.map((photo, i) => <ImageInSlider src={photo} key={i} />)}
+                  {neededPost?.photos.map((photo, i) => (
+                    <ImageInSliderContainer key={i}>
+                      <ImageInSlider src={photo} className='image-in-slider' />
+                    </ImageInSliderContainer>
+                  ))}
                 </Slider>
               </SliderBlock>
               <Title>{neededPost?.title}</Title>
