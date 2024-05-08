@@ -6,10 +6,15 @@ const useCreate = (url: string) => {
   const [success, setSuccess] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const sendRequest = async (images: File[], method: "POST", info: Record<string, string>) => {
+  const sendRequest = async (
+    images: File[],
+    method: "POST",
+    info: Record<string, string>,
+    photoName: string,
+  ) => {
     try {
       setIsLoading(true);
-      const data = convertToFormData(info, images);
+      const data = convertToFormData(info, images, photoName);
 
       const headers = {
         "Content-Type": "multipart/form-data",

@@ -1,4 +1,8 @@
-function convertToFormData(data: Record<string, string>, images: File[]): FormData {
+function convertToFormData(
+  data: Record<string, string>,
+  images: File[],
+  photoName: string,
+): FormData {
   const formData = new FormData();
 
   for (const [key, value] of Object.entries(data)) {
@@ -8,7 +12,7 @@ function convertToFormData(data: Record<string, string>, images: File[]): FormDa
   }
 
   images.forEach((image) => {
-    formData.append("photos", image);
+    formData.append(photoName, image);
   });
 
   return formData;

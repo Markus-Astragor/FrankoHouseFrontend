@@ -1,12 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MuseumsStyled, MuseumsContainer, MuseumTitle } from "./MuseunsStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Slide from "./SlideItem/Slide";
-import useMuseums, { MuseumsData } from "../../hooks/useMuseums";
 
 import { useTranslation } from "react-i18next";
+import { useGet } from "../../hooks/useGet";
+import config from "../../configURLS.json";
+
+export type MuseumInfo = {
+  _id: string;
+  title: string;
+  workingDays: string;
+  address: string;
+  link: string;
+  phone: string;
+  photo: string[];
+};
+
 const settings = {
   dots: false,
   infinite: true,
@@ -79,11 +91,13 @@ const settings = {
 };
 
 function Museums() {
-  const { getMuseums, data, isLoading } = useMuseums();
+  // const { getMuseums, data, isLoading } = useMuseums();
+  const { sendRequest, isLoading } = useGet(config.GET_MUSEUMS);
+  const [museums, setMuseums] = useState<MuseumInfo[]>([]);
   const { t } = useTranslation();
 
   useEffect(() => {
-    getMuseums();
+    sendRequest(setMuseums);
   }, []);
 
   return (
@@ -94,7 +108,7 @@ function Museums() {
           <p>Дані завантажуються</p>
         ) : (
           <Slider {...settings}>
-            {data.map((info: MuseumsData, index) => (
+            {museums.map((info: MuseumInfo, index) => (
               <Slide data={info} key={index} />
             ))}
           </Slider>

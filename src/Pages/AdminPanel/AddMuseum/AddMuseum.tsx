@@ -62,7 +62,7 @@ function AddMuseum() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
-    sendRequest(images, "POST", museumInfo);
+    sendRequest(images, "POST", museumInfo, "photo");
     handleClearInputs(setMuseumInfo);
     handleClearImages(setImages, setImagesPreview);
   }

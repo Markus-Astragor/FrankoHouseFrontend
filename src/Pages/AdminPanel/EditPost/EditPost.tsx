@@ -64,7 +64,7 @@ export default function EditPost() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    sendRequest(images, postInfo, { name: "postId", value: id || "" });
+    sendRequest(images, postInfo, { name: "postId", value: id || "" }, "photos");
     handleClearInputs(setPostInfo);
     handleClearImages(setImages, setImagesPreview);
   }

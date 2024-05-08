@@ -29,9 +29,10 @@ export const SlideBox = styled.div`
   }
 `;
 
-export const SlideContentFront = styled.div`
+export const SlideContentFront = styled.div<{ slideFrontBg: string }>`
   border-radius: 20px;
-  background-image: url(${slideImageSrc});
+  /* background-image: url(${slideImageSrc}); */
+  background-image: url(${(props) => props.slideFrontBg});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -44,6 +45,7 @@ export const SlideContentFront = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  filter: brightness(0.7);
 
   position: absolute;
 

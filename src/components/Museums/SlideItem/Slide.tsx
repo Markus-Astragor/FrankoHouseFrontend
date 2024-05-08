@@ -10,28 +10,28 @@ import {
   BackBoldText,
   BackSiteLink,
 } from "./SlideStyles";
-import { MuseumsData } from "../../../hooks/useMuseums";
+import { MuseumInfo } from "../Museums";
 
-function Slide({ data }: { data: MuseumsData }) {
+function Slide({ data }: { data: MuseumInfo }) {
   return (
     <SlideBox>
       <SlideContent>
-        <SlideContentFront>
-          <SlideContentTitle>{data.name}</SlideContentTitle>
+        <SlideContentFront slideFrontBg={data.photo[0]}>
+          <SlideContentTitle>{data.title}</SlideContentTitle>
         </SlideContentFront>
         <SlideContentBack>
-          {data.name && <BackMuseumTitle>{data.name}</BackMuseumTitle>}
-          {data.website && (
+          {data.title && <BackMuseumTitle>{data.title}</BackMuseumTitle>}
+          {data.link && (
             <BackBoldText>
               Веб-сайт:{" "}
-              <BackSiteLink href={data.website} target='_blank'>
-                {data.website}
+              <BackSiteLink href={data.link} target='_blank'>
+                {data.link}
               </BackSiteLink>
             </BackBoldText>
           )}
-          {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>}
+          {/* {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>} */}
           {data.phone && <BackBoldText>Телефон: {data.phone}</BackBoldText>}
-          {data.working_hours && <BackBoldText>Години роботи: {data.working_hours}</BackBoldText>}
+          {data.workingDays && <BackBoldText>Години роботи: {data.workingDays}</BackBoldText>}
           {data.address && <BackBoldText>Адреса: {data.address}</BackBoldText>}
         </SlideContentBack>
       </SlideContent>

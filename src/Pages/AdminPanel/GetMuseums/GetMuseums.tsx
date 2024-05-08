@@ -17,6 +17,7 @@ function GetMuseums() {
   const [id, setId] = useState<string>("");
 
   const { sendRequest, isLoading, message, setMessage } = useGet(config.GET_MUSEUMS);
+
   const { isLoading: postIsDeleting, sendRequest: sendDeletePostRequest } = useDelete(
     config.ADMIN["DELETE-MUSEUM"],
   );

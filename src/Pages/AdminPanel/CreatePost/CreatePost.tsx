@@ -81,7 +81,7 @@ function CreatePost() {
 
     // if (Object.values(postInfoError).find((errMsg) => errMsg.length > 0)) return;
     if (images.length === 0) return alert("Виберіть хочаб одне зображення");
-    sendRequest(images, "POST", postInfo);
+    sendRequest(images, "POST", postInfo, "photos");
     handleClearInputs(setPostInfo);
     handleClearImages(setImages, setImagesPreview);
   }

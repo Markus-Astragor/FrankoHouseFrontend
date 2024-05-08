@@ -11,12 +11,16 @@ function useEdit(url: string) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
-  async function sendRequest(images: File[], info: Record<string, string>, postId: IdObject) {
+  async function sendRequest(
+    images: File[],
+    info: Record<string, string>,
+    postId: IdObject,
+    photoName: string,
+  ) {
     try {
       setIsLoading(true);
-      const data = convertToFormData(info, images);
+      const data = convertToFormData(info, images, photoName);
       data.append(postId.name, postId.value);
-      console.log(data.get(postId.name));
 
       const headers = {
         "Content-Type": "multipart/form-data",
