@@ -52,6 +52,8 @@ function EditMuseum() {
     config.ADMIN["EDIT-MUSEUM"],
   );
 
+  console.log("id " + id);
+
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
     urkTitle: "",
     ukrWorkingHours: "",
@@ -90,18 +92,18 @@ function EditMuseum() {
 
         if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
         setMuseumInfo({
-          urkTitle: res.data.ukrainian.title,
-          ukrWorkingHours: res.data.ukrainian.workingHr,
-          ukrAddress: res.data.ukrainian.adress,
+          urkTitle: res.data.ukrainian?.title,
+          ukrWorkingHours: res.data.ukrainian.workingHours,
+          ukrAddress: res.data.ukrainian.address,
           engTitle: res.data.english.title,
-          engWorkingHours: res.data.english.workingHr,
-          engAddress: res.data.english.adress,
+          engWorkingHours: res.data.english.workingHours,
+          engAddress: res.data.english.address,
           link: res.data.link,
           phone: res.data.phone,
           email: res.data.email,
         });
 
-        setImagesUrl(res.data.photos);
+        setImagesUrl(res.data.photo);
       } catch (error) {
         console.log(error);
 

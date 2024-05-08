@@ -16,6 +16,7 @@ function useEdit(url: string) {
       setIsLoading(true);
       const data = convertToFormData(info, images);
       data.append(postId.name, postId.value);
+      console.log(data.get(postId.name));
 
       const headers = {
         "Content-Type": "multipart/form-data",
