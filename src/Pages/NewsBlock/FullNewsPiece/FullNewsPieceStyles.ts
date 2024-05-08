@@ -75,6 +75,10 @@ export const Description = styled.p`
   font-size: 23px;
 `;
 
+export const ImageInSliderContainer = styled.div`
+  width: 20.83vw;
+`;
+
 export const ImageInSlider = styled.img`
   width: 400px;
   height: 200px;
