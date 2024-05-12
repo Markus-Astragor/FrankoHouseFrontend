@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 import { convertToFormData } from "../helpers/convertToFormData";
 
 const useCreate = (url: string) => {
-  const [success, setSuccess] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const sendRequest = async (
@@ -29,11 +29,11 @@ const useCreate = (url: string) => {
       });
 
       console.log(response);
-      setSuccess(response.data.message);
+      setMessage(response.data.message);
     } catch (error) {
       if (error instanceof Error) {
         if (error instanceof AxiosError) {
-          setSuccess(error.response?.data.message);
+          setMessage(error.response?.data.message);
         }
       }
       console.log(error);
@@ -42,7 +42,7 @@ const useCreate = (url: string) => {
     }
   };
 
-  return { sendRequest, isLoading, success, setSuccess };
+  return { sendRequest, isLoading, message, setMessage };
 };
 
 export { useCreate };

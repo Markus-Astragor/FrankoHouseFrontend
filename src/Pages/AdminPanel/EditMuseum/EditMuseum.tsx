@@ -69,7 +69,7 @@ function EditMuseum() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (images.length === 0) return alert("Виберіть хоча б одне зображення");
-    sendRequest(images, museumInfo, { name: "museumId", value: id || "" }, "photo");
+    sendRequest(images, museumInfo, { name: "museumId", value: id! }, "photo");
     handleClearInputs(setMuseumInfo);
     handleClearImages(setImages, setImagesPreview);
   }

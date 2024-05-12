@@ -74,7 +74,7 @@ function CreatePost() {
   }, [images]);
 
   const fileRef = useRef<HTMLInputElement | null>(null);
-  const { sendRequest, success, setSuccess, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
+  const { sendRequest, message, setMessage, isLoading } = useCreate(config.ADMIN["CREATE-POST"]);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -244,7 +244,7 @@ function CreatePost() {
             <FileInput
               multiple
               ref={fileRef}
-              onChange={() => handleFileInput(images, setImages, fileRef, setSuccess)}
+              onChange={() => handleFileInput(images, setImages, fileRef, setMessage)}
               type='file'
               accept='image/*'
             />
@@ -274,7 +274,7 @@ function CreatePost() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <MessageWindow setMessage={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }

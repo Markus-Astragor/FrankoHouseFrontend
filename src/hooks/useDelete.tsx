@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 
 function useDelete(url: string) {
@@ -22,9 +22,13 @@ function useDelete(url: string) {
       console.log(res);
       setMessage(res.data.message);
     } catch (error) {
-      let message = "Невідома помилка";
-      if (error instanceof Error) message = error.message;
-      alert(message);
+      if (error instanceof Error) {
+        if (error instanceof AxiosError) {
+          return setMessage(error.response?.data.message);
+        }
+      }
+      setMessage("Виникла помилка при завантажені данних");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }

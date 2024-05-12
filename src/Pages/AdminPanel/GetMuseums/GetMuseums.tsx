@@ -18,9 +18,12 @@ function GetMuseums() {
 
   const { sendRequest, isLoading, message, setMessage } = useGet(config.GET_MUSEUMS);
 
-  const { isLoading: postIsDeleting, sendRequest: sendDeletePostRequest } = useDelete(
-    config.ADMIN["DELETE-MUSEUM"],
-  );
+  const {
+    isLoading: postIsDeleting,
+    sendRequest: sendDeletePostRequest,
+    message: museumDeletetingMessage,
+    setMessage: museumDeletingSetMessage,
+  } = useDelete(config.ADMIN["DELETE-MUSEUM"]);
 
   useEffect(() => {
     sendRequest(setMuseums);
@@ -59,6 +62,9 @@ function GetMuseums() {
           ))}
         </PostsBox>
       </GetPostsStyled>
+      {museumDeletetingMessage && (
+        <MessageWindow setMessage={museumDeletingSetMessage} message={museumDeletetingMessage} />
+      )}
       {message && <MessageWindow setMessage={setMessage} message={message} />}
       {showConfirm && <Confirmation onCancel={handleCancel} onDelete={handleDelete} />}
     </>

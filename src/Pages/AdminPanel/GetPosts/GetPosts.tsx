@@ -22,9 +22,12 @@ export default function GetPosts() {
   const [id, setId] = useState<string>("");
 
   const { isLoading, message, setMessage, sendRequest } = useGet(config["GET-POSTS"]);
-  const { isLoading: postIsDeleting, sendRequest: sendDeletePostRequest } = useDelete(
-    config.ADMIN["DELETE-POST"],
-  );
+  const {
+    isLoading: postIsDeleting,
+    message: postDeletetingMessage,
+    setMessage: postDeletingSetMessage,
+    sendRequest: sendDeletePostRequest,
+  } = useDelete(config.ADMIN["DELETE-POST"]);
 
   // When confirm is true
   async function handleDelete() {
@@ -67,6 +70,9 @@ export default function GetPosts() {
         </PostsBox>
       </GetPostsStyled>
       {message && <MessageWindow setMessage={setMessage} message={message} />}
+      {postDeletetingMessage && (
+        <MessageWindow setMessage={postDeletingSetMessage} message={postDeletetingMessage} />
+      )}
       {showConfirm && <Confirmation onCancel={handleCancel} onDelete={handleDelete} />}
     </>
   );

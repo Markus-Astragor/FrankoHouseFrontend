@@ -53,7 +53,7 @@ function AddMuseum() {
     email: "",
   });
 
-  const { sendRequest, isLoading, success, setSuccess } = useCreate(config.ADMIN["ADD-MUSEUM"]);
+  const { sendRequest, isLoading, message, setMessage } = useCreate(config.ADMIN["ADD-MUSEUM"]);
 
   useEffect(() => {
     tranformImagesForPreview(images, setImagesPreview);
@@ -61,7 +61,7 @@ function AddMuseum() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (images.length === 0) return alert("Виберіть хоча б одне зображення");
+    if (images.length === 0) return setMessage("Виберіть хоча б одне зображення");
     sendRequest(images, "POST", museumInfo, "photo");
     handleClearInputs(setMuseumInfo);
     handleClearImages(setImages, setImagesPreview);
@@ -220,7 +220,7 @@ function AddMuseum() {
           </ButtonsContainer>
         )}
       </Form>
-      {success && <MessageWindow setMessage={setSuccess} message={success} />}
+      {message && <MessageWindow setMessage={setMessage} message={message} />}
     </Wrapper>
   );
 }
