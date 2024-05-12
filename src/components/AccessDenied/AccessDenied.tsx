@@ -8,14 +8,12 @@ import {
   Button,
   UppercaseText,
 } from "./AccessDeniedStyles";
-import LockSVG from "../SVG/LockSVG";
+// import LockSVG from "../SVG/LockSVG";
 
 export default function AccessDenied() {
   return (
     <AccessDeniedStyled>
-      <LockImgContainer>
-        <LockSVG />
-      </LockImgContainer>
+      <LockImgContainer>{/* <LockSVG /> */}</LockImgContainer>
       <Title>Access Denied</Title>
       <Message>
         You do not have permissions to access this page. <br /> Contact an administrator to get
