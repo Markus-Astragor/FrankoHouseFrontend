@@ -5,6 +5,7 @@ import {
   SlideContent,
   SlideContentBack,
   SlideContentFront,
+  SlideContentFrontOverlayer,
   SlideContentTitle,
   BackMuseumTitle,
   BackBoldText,
@@ -17,7 +18,9 @@ function Slide({ data }: { data: MuseumInfo }) {
     <SlideBox>
       <SlideContent>
         <SlideContentFront slideFrontBg={data.photo[0]}>
-          <SlideContentTitle>{data.title}</SlideContentTitle>
+          <SlideContentFrontOverlayer>
+            <SlideContentTitle>{data.title}</SlideContentTitle>
+          </SlideContentFrontOverlayer>
         </SlideContentFront>
         <SlideContentBack>
           {data.title && <BackMuseumTitle>{data.title}</BackMuseumTitle>}

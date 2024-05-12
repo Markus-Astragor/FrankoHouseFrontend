@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import slideImageSrc from "../../../assets/museums/placeholder.png";
 import slideBackSrc from "../../../assets/museums/slide_back.png";
 export const SlideContent = styled.div`
   position: relative;
@@ -31,21 +30,13 @@ export const SlideBox = styled.div`
 
 export const SlideContentFront = styled.div<{ slideFrontBg: string }>`
   border-radius: 20px;
-  /* background-image: url(${slideImageSrc}); */
   background-image: url(${(props) => props.slideFrontBg});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 15px;
-  box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
   height: 100%;
-  filter: brightness(0.7);
 
   position: absolute;
 
@@ -59,6 +50,18 @@ export const SlideContentFront = styled.div<{ slideFrontBg: string }>`
   @media (max-width: 431px) {
     padding: 0 25px;
   }
+`;
+
+export const SlideContentFrontOverlayer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
 `;
 
 export const SlideContentTitle = styled.div`
@@ -88,7 +91,6 @@ export const SlideContentBack = styled.div`
   padding: 50px 25px 10px;
   box-sizing: border-box;
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
