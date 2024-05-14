@@ -5,12 +5,13 @@ import { BurgerIconStyled } from "./BurgerIconStyles";
 interface BurgerIconProps {
   isOpen: boolean;
   onOpen: () => void;
+  iconColor?: string;
 }
 
-function BurgerIcon({ isOpen, onOpen }: BurgerIconProps) {
+function BurgerIcon({ isOpen, onOpen, iconColor = "black" }: BurgerIconProps) {
   return (
     <BurgerIconStyled opened={isOpen}>
-      <Hamburger size={isOpen ? 24 : 28} toggled={isOpen} toggle={onOpen} />
+      <Hamburger size={isOpen ? 24 : 28} toggled={isOpen} toggle={onOpen} color={iconColor} />
     </BurgerIconStyled>
   );
 }

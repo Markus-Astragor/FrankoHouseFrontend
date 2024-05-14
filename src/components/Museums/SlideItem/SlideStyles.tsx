@@ -42,14 +42,6 @@ export const SlideContentFront = styled.div<{ slideFrontBg: string }>`
 
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
-
-  @media (max-width: 820px) {
-    padding: 0 8px;
-  }
-
-  @media (max-width: 431px) {
-    padding: 0 25px;
-  }
 `;
 
 export const SlideContentFrontOverlayer = styled.div`
@@ -62,6 +54,13 @@ export const SlideContentFrontOverlayer = styled.div`
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
+  @media (max-width: 820px) {
+    padding: 0 8px;
+  }
+
+  @media (max-width: 431px) {
+    padding: 0 25px;
+  }
 `;
 
 export const SlideContentTitle = styled.div`

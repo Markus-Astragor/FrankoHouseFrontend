@@ -8,15 +8,32 @@ import {
   Logo,
   LinkBox,
   Link,
+  BurgerLink,
   LogoLink,
 } from "./AdminPanelStyle";
 import AccessDenied from "../../components/AccessDenied/AccessDenied";
+import BurgerIcon from "../../components/BurgerIcon/BurgerIcon";
+import BurgerMenu from "../../components/BurgerMenuAdminPanel/BurgerMenuAdmin";
+import { Overlay } from "../../components/Navbar/NavbarStyles";
 import axios from "axios";
 import config from "../../configURLS.json";
 import LogoSrc from "../../assets/header-imgs/logo-white.png";
 
 export default function AdminPanel() {
   const [showError, setShowError] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  function handleOverlayClick() {
+    setIsOpen(false);
+  }
+
+  function handleOpenBurger() {
+    setIsOpen((prev) => !prev);
+  }
+
+  function handleClickOnLink() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     if (!localStorage.getItem("jwtToken")) setShowError(true);
@@ -50,7 +67,30 @@ export default function AdminPanel() {
             <Link to='add-museum'>Додати музей</Link>
             <Link to='view-museums'>Переглянути музеї</Link>
           </LinkBox>
+
+          <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} iconColor='black' />
+          <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger}>
+            <BurgerLink onClick={handleClickOnLink} to='create-post'>
+              Створити пост
+            </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='view-posts'>
+              Переглянути пости
+            </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='create-partner'>
+              Додати партнера
+            </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='view-partners'>
+              Переглянути партнерів
+            </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='add-museum'>
+              Додати музей
+            </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='view-museums'>
+              Переглянути музеї
+            </BurgerLink>
+          </BurgerMenu>
         </NavbarBox>
+        <Overlay onClick={handleOverlayClick} show={isOpen} />
       </NavBar>
       <AdminWindow>
         <Outlet />

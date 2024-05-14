@@ -64,19 +64,19 @@ export const NavbarBox = styled.div`
 export const Logo = styled.img`
   width: 140px;
   height: auto;
+  padding-top: 6px;
 
-  @media (max-width: 600px) {
-    width: 70px;
+  @media (min-width: 769px) and (max-width: 1200px) {
+    width: 120px;
   }
-  @media (min-width: 600px) and (max-width: 768px) {
+  @media (max-width: 768px) {
     width: 84px;
     height: auto;
     padding-right: 30px;
   }
-
-  @media (min-width: 768px) and (max-width: 1200px) {
-    width: 120px;
-  }
+  /* @media (max-width: 600px) {
+    width: 70px;
+  } */
 `;
 
 export const LinkBox = styled.div`
@@ -88,9 +88,10 @@ export const LinkBox = styled.div`
   margin: 0 auto;
 
   @media (max-width: 768px) {
-    flex-direction: row;
+    /* flex-direction: row;
     justify-content: flex-end;
-    gap: 15px;
+    gap: 15px; */
+    display: none;
   }
 `;
 
@@ -123,6 +124,41 @@ export const Link = styled(NavLink)`
 
   @media (min-width: 480px) and (max-width: 768px) {
     width: 40%;
+    font-size: 12px;
+    padding: 6px 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 1200px) {
+    font-size: 13px;
+  }
+`;
+
+export const BurgerLink = styled(NavLink)`
+  text-decoration: none;
+  color: black;
+  border-radius: 12px;
+  border: 1px solid #8a8a8a;
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  transition: 0.3s ease-in;
+  text-align: center;
+  box-sizing: border-box;
+  &:hover {
+    background: rgba(135, 135, 135, 0.52);
+  }
+  &.active {
+    background: rgba(135, 135, 135, 0.52);
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    font-size: 9px;
+    padding: 5px 0;
+  }
+
+  @media (min-width: 480px) and (max-width: 768px) {
+    width: 100%;
     font-size: 12px;
     padding: 6px 0;
   }
