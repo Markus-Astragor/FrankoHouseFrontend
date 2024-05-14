@@ -51,7 +51,14 @@
     },
 
     "museumsFranko": {
-      "title": "Музеї Івана Франка"
+      "title": "Музеї Івана Франка",
+      "card-info": {
+        "phone": "Телефон:",
+        "workingHours": "Години роботи:",
+        "address": "Адреса:",
+        "email": "Електронна-адреса:",
+        "website": "Веб-сайт:"
+      }
     },
 
     "footer": {
