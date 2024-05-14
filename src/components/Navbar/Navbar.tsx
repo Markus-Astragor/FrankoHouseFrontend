@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LogoSrc from "../../assets/header-imgs/logo.png";
 import {
   NavbarStyled,
@@ -44,6 +44,9 @@ function Navbar() {
     else changeLanguage("ua");
   }
 
+  useEffect(() => {
+    changeLanguage(i18n.language);
+  }, []);
   return (
     <NavbarStyled>
       <NavbarContainer>

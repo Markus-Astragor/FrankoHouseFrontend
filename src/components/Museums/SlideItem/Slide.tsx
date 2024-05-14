@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   SlideBox,
@@ -14,6 +15,7 @@ import {
 import { MuseumInfo } from "../Museums";
 
 function Slide({ data }: { data: MuseumInfo }) {
+  const { t } = useTranslation();
   return (
     <SlideBox>
       <SlideContent>
@@ -26,16 +28,28 @@ function Slide({ data }: { data: MuseumInfo }) {
           {data.title && <BackMuseumTitle>{data.title}</BackMuseumTitle>}
           {data.link && (
             <BackBoldText>
-              Веб-сайт:{" "}
+              {t("ns1.description.museumsFranko.card-info.website")}{" "}
               <BackSiteLink href={data.link} target='_blank'>
                 {data.link}
               </BackSiteLink>
             </BackBoldText>
           )}
           {/* {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>} */}
-          {data.phone && <BackBoldText>Телефон: {data.phone}</BackBoldText>}
-          {data.workingDays && <BackBoldText>Години роботи: {data.workingDays}</BackBoldText>}
-          {data.address && <BackBoldText>Адреса: {data.address}</BackBoldText>}
+          {data.phone && (
+            <BackBoldText>
+              {t("ns1.description.museumsFranko.card-info.phone")} {data.phone}
+            </BackBoldText>
+          )}
+          {data.workingDays && (
+            <BackBoldText>
+              {t("ns1.description.museumsFranko.card-info.workingHours")} {data.workingDays}
+            </BackBoldText>
+          )}
+          {data.address && (
+            <BackBoldText>
+              {t("ns1.description.museumsFranko.card-info.address")} {data.address}
+            </BackBoldText>
+          )}
         </SlideContentBack>
       </SlideContent>
     </SlideBox>

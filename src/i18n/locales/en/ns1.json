@@ -48,7 +48,14 @@
     },
 
     "museumsFranko": {
-      "title": "Museums of Ivan Franko"
+      "title": "Museums of Ivan Franko",
+      "card-info": {
+        "phone": "Phone:",
+        "workingHours": "Working hours:",
+        "address": "Address:",
+        "email": "Email address:",
+        "website": "Website:"
+      }
     },
 
     "footer": {
