@@ -9,11 +9,10 @@ import {
   Title,
   MainBlock,
   Description,
-  ShortDescription,
-  LongDescription,
   TitleAndSlider,
   ImageInSlider,
   ImageInSliderContainer,
+  DescriptionBlock,
 } from "./FullNewsPieceStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -146,10 +145,13 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
               <Title>{neededPost?.title}</Title>
             </TitleAndSlider>
 
-            <Description>
-              <ShortDescription>{neededPost?.shortDescription}</ShortDescription>
-              <LongDescription>{neededPost?.description}</LongDescription>
-            </Description>
+            <DescriptionBlock>
+              <Description>
+                {neededPost?.shortDescription}
+                <br />
+                {neededPost?.description}
+              </Description>
+            </DescriptionBlock>
           </MainBlock>
         </div>
       )}
