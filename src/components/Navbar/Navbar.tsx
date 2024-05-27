@@ -34,6 +34,7 @@ function Navbar() {
     localStorage.setItem("language", lan);
     setLanguage(lan);
     i18n.changeLanguage(lan);
+    document.documentElement.lang = lan;
   }
 
   function switchLanguage(e) {
