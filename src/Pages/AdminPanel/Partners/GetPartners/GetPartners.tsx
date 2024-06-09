@@ -6,7 +6,7 @@ import {
   ImagesContainer,
   ImageContainer,
   DeleteButton,
-} from "../../../../styles/GeneralStylesAdminPanel";
+} from "../../GeneralStylesAdminPanel";
 import { TitleForPartner, ImagePartner } from "./GetPartnersStyles";
 import config from "../../../../configURLS.json";
 import axios from "axios";

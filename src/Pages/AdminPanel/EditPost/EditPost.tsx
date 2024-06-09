@@ -38,7 +38,7 @@ import {
   InputLbl,
   ButtonStyled,
   LoaderWrapper,
-} from "../../../styles/GeneralStylesAdminPanel";
+} from "../GeneralStylesAdminPanel";
 
 export default function EditPost() {
   const { id } = useParams<{ id: string }>();

@@ -19,7 +19,7 @@ import {
   DeleteButton,
   ErrorParagraph,
   ErrorParagraphContainer,
-} from "../../../../styles/GeneralStylesAdminPanel";
+} from "../../GeneralStylesAdminPanel";
 import { Loader } from "../../../../components/Loader/LoaderComponentStyles";
 import MessageWindow from "../../../../components/Message/Message";
 import config from "../../../../configURLS.json";
