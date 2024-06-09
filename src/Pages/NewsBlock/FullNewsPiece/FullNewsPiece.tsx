@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 import URLS from "../../../configURLS.json";
 import LoaderComponent from "../../../components/Loader/LoaderComponent";
 import { BlockForLoader } from "../NewsBoard/NewsBoardStyle";
@@ -18,12 +20,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import leftImage from "../../../assets/NewsBoardImages/left-arrow.png";
 import rightImage from "../../../assets/NewsBoardImages/right-arrow.png";
-import { useLanguageContext } from "../../../Context/LanguageContext";
 
 type props = {
   className: string;
   style: object;
   onClick: () => void;
+};
+
+type NewsData = {
+  _id: string;
+  title: string;
+  shortDescription: string;
+  photos: string[];
+  timestamp: string;
+  description: string;
 };
 
 function SampleNextArrow({ className, style, onClick }: props) {
@@ -67,30 +77,22 @@ type FullNewsPieceProps = {
 };
 
 function FullNewsPiece({ id }: FullNewsPieceProps) {
-  type NewsData = {
-    _id: string;
-    title: string;
-    shortDescription: string;
-    photos: string[];
-    timestamp: string;
-    description: string;
-  };
+  const { i18n } = useTranslation();
 
   const [neededPost, setNeddedPost] = useState<NewsData>();
   const [loader, setLoader] = useState<boolean>(false);
-  const { language } = useLanguageContext();
 
   useEffect(() => {
     setLoader(true);
     axios
-      .get(`${URLS["BASE-URL"]}/getPosts/${id}?lang=${language}`)
+      .get(`${URLS["BASE-URL"]}/getPosts/${id}?lang=${i18n.language}`)
       .then((res) => {
         console.log(res.data);
         setNeddedPost(res.data);
       })
       .catch((err) => console.log("err", err))
       .finally(() => setLoader(false));
-  }, [language]);
+  }, [i18n.language]);
 
   const settings = {
     dots: false,

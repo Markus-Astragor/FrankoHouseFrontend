@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { LanguageContext } from "./Context/LanguageContext";
+import React from "react";
 // import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 
 import { Route, Routes, BrowserRouter as Router, Navigate } from "react-router-dom";
@@ -18,31 +17,28 @@ import GetPartners from "./Pages/AdminPanel/Partners/GetPartners/GetPartners";
 import EditMuseum from "./Pages/AdminPanel/EditMuseum/EditMuseum";
 
 function App() {
-  const [language, setLanguage] = useState<string>("ua");
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
-      <div className='App'>
-        <GlobalStyles />
-        <Router>
-          <Routes>
-            <Route element={<MainPage />} path='/' />
-            <Route element={<NewsBoardRoutes />} path='/*' />
-            <Route element={<AdminPanel />} path='admin'>
-              <Route index element={<Navigate to='view-posts' replace />} />
-              <Route path='view-posts' element={<GetPosts />} />
-              <Route path='view-museums' element={<GetMuseums />} />
-              <Route path='view-museums/:id' element={<EditMuseum />} />
-              <Route path='view-posts/:id' element={<EditPost />} />
-              <Route path='create-post' element={<CreatePost />} />
-              <Route path='create-partner' element={<CreatePartner />} />
-              <Route path='view-partners' element={<GetPartners />} />
-              <Route path='add-museum' element={<AddMuseum />} />
-            </Route>
-            <Route element={<AdminAuth />} path='/admin/auth' />
-          </Routes>
-        </Router>
-      </div>
-    </LanguageContext.Provider>
+    <div className='App'>
+      <GlobalStyles />
+      <Router>
+        <Routes>
+          <Route element={<MainPage />} path='/' />
+          <Route element={<NewsBoardRoutes />} path='/*' />
+          <Route element={<AdminPanel />} path='admin'>
+            <Route index element={<Navigate to='view-posts' replace />} />
+            <Route path='view-posts' element={<GetPosts />} />
+            <Route path='view-museums' element={<GetMuseums />} />
+            <Route path='view-museums/:id' element={<EditMuseum />} />
+            <Route path='view-posts/:id' element={<EditPost />} />
+            <Route path='create-post' element={<CreatePost />} />
+            <Route path='create-partner' element={<CreatePartner />} />
+            <Route path='view-partners' element={<GetPartners />} />
+            <Route path='add-museum' element={<AddMuseum />} />
+          </Route>
+          <Route element={<AdminAuth />} path='/admin/auth' />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

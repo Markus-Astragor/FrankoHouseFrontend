@@ -15,11 +15,9 @@ import LoaderComponent from "../../../components/Loader/LoaderComponent";
 import ProjectModalWindow from "../../../components/ProjectModalWindow/ProjectModalWindow";
 import FullNewsPiece from "../FullNewsPiece/FullNewsPiece";
 import { useTranslation } from "react-i18next";
-import { useLanguageContext } from "../../../Context/LanguageContext";
 
 function NewsBoard() {
-  const { t } = useTranslation();
-  const { language } = useLanguageContext();
+  const { t, i18n } = useTranslation();
 
   type NewsData = {
     _id: string;
@@ -49,7 +47,7 @@ function NewsBoard() {
   useEffect(() => {
     setLoader(true);
     axios
-      .get(`${URLS["BASE-URL"]}/getPosts?lang=${language}`)
+      .get(`${URLS["BASE-URL"]}/getPosts?lang=${i18n.language}`)
       .then((res) => {
         console.log(res);
         setDataFromBackend(res.data);
@@ -60,7 +58,7 @@ function NewsBoard() {
       .finally(() => {
         setLoader(false);
       });
-  }, [language]);
+  }, [i18n.language]);
 
   useEffect(() => {
     if (show) {
@@ -136,7 +134,6 @@ function NewsBoard() {
       },
     ],
   };
-  console.log("dataFromBackend", dataFromBackend);
 
   return (
     <>

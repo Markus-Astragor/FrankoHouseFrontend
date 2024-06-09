@@ -24,7 +24,7 @@ import {
   InputTitle,
   InputLbl,
   ButtonStyled,
-} from "../../../styles/GeneralStylesAdminPanel";
+} from "../GeneralStylesAdminPanel";
 
 import { Loader } from "../../../components/Loader/LoaderComponentStyles";
 

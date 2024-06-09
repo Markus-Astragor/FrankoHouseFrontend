@@ -13,10 +13,8 @@ import {
 import BurgerIcon from "../BurgerIcon/BurgerIcon";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { useTranslation } from "react-i18next";
-import { useLanguageContext } from "../../Context/LanguageContext";
 function Navbar() {
   const switcher = useRef<HTMLDivElement>(null);
-  const { setLanguage } = useLanguageContext();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -32,7 +30,6 @@ function Navbar() {
 
   function changeLanguage(lan: string) {
     localStorage.setItem("language", lan);
-    setLanguage(lan);
     i18n.changeLanguage(lan);
     document.documentElement.lang = lan;
   }

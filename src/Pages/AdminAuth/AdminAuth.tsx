@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -11,7 +11,7 @@ import {
   ButtonsContainer,
   ErrorParagraph,
   ErrorParagraphContainer,
-} from "../../styles/GeneralStylesAdminPanel";
+} from "../AdminPanel/GeneralStylesAdminPanel";
 import { AdminStyled, NavBar, AdminWindow, NavbarBox, Logo } from "../AdminPanel/AdminPanelStyle";
 import { CenterBLock, LoginBtn, TitleLogin, FieldName } from "./AdminAuthStyle";
 
@@ -28,6 +28,27 @@ function AdminAuth() {
   const [success, setSuccess] = useState<string>("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const jwtToken: string | null = localStorage.getItem("jwtToken");
+    if (jwtToken) {
+      setLoader(true);
+      axios
+        .get(`${URLS["BASE-URL"]}/admin/auth`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          },
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/admin");
+          }
+        })
+        .catch((error) => console.log(error))
+        .finally(() => setLoader(false));
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoader(true);
@@ -58,7 +79,9 @@ function AdminAuth() {
     <AdminStyled>
       <NavBar>
         <NavbarBox>
-          <Logo src={LogoSrc} alt='logo' />
+          <Link to='/'>
+            <Logo src={LogoSrc} alt='logo' />
+          </Link>
         </NavbarBox>
       </NavBar>
       <AdminWindow>

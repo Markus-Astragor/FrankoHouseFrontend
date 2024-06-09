@@ -4,13 +4,7 @@ export const FooterStyled = styled.footer`
   @import url("https://fonts.cdnfonts.com/css/kelly-slab");
   font-family: "Kelly Slab", sans-serif;
   width: 100%;
-  /* background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.9304971988795518) 0%,
-    rgba(0, 0, 0, 1) 9%
-  ); */
   background-color: #000;
-
   padding: 60px 0;
 `;
 

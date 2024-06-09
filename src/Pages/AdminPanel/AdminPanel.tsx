@@ -35,6 +35,10 @@ export default function AdminPanel() {
     setIsOpen(false);
   }
 
+  function handleLogOut() {
+    localStorage.setItem("jwtToken", "");
+  }
+
   useEffect(() => {
     if (!localStorage.getItem("jwtToken")) setShowError(true);
     const token = localStorage.getItem("jwtToken");
@@ -66,6 +70,9 @@ export default function AdminPanel() {
             <Link to='view-partners'>Переглянути партнерів</Link>
             <Link to='add-museum'>Додати музей</Link>
             <Link to='view-museums'>Переглянути музеї</Link>
+            <Link onClick={handleLogOut} to='/'>
+              Вийти
+            </Link>
           </LinkBox>
 
           <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} iconColor='black' />
