@@ -33,10 +33,11 @@ export const AboutUsTitle = styled.h2`
 
 export const TextContent = styled.p`
   margin-top: 3.79vh;
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
   font-size: 1.25rem;
   color: black;
   font-weight: 600;
+  line-height: 1.5;
 `;
 
 export const AboutUsRightPart = styled.div`
