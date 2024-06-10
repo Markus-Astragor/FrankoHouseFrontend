@@ -13,7 +13,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { handleMenuItemClick } from "../Navbar/Navbar";
 import logoSrc from "../../assets/footer/white-logo.png";
-import foxImageSrc from "../../assets/footer/fox.png";
+import foxGif from "../../assets/footer/fox-animation.gif";
 function Footer() {
   const { t } = useTranslation();
   return (
@@ -74,7 +74,7 @@ function Footer() {
             <TextItem>{t("ns1.description.footer.address.position")}</TextItem>
           </FlexItem>
           <FlexItem>
-            <FoxImage src={foxImageSrc} alt='fox image' />
+            <FoxImage src={foxGif} alt='fox image' />
           </FlexItem>
         </FlexContainer>
       </FooterContainer>
