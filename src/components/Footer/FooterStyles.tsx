@@ -73,5 +73,5 @@ export const Link = styled.a`
 `;
 
 export const FoxImage = styled.img`
-  width: 130px;
+  width: 150px;
 `;
