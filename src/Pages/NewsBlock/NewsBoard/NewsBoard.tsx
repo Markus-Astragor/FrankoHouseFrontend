@@ -77,7 +77,7 @@ function NewsBoard() {
     dots: false,
     speed: 500,
     centerMode: true,
-    slidesToShow: dataFromBackend.length || 0,
+    slidesToShow: dataFromBackend.length > 3 ? 4 : dataFromBackend.length,
     slidesToScroll: 1,
     centerPadding: "120px",
     autoplay: true,

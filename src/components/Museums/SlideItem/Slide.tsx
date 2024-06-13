@@ -34,15 +34,15 @@ function Slide({ data }: { data: MuseumInfo }) {
               </BackSiteLink>
             </BackBoldText>
           )}
-          {/* {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>} */}
+          {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>}
           {data.phone && (
             <BackBoldText>
               {t("ns1.description.museumsFranko.card-info.phone")} {data.phone}
             </BackBoldText>
           )}
-          {data.workingDays && (
+          {data.workingHours && (
             <BackBoldText>
-              {t("ns1.description.museumsFranko.card-info.workingHours")} {data.workingDays}
+              {t("ns1.description.museumsFranko.card-info.workingHours")} {data.workingHours}
             </BackBoldText>
           )}
           {data.address && (

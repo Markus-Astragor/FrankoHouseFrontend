@@ -14,9 +14,9 @@ export type MuseumData = {
   _id: string;
   title: string;
   workingHours: string;
-  workingDays: string;
   phone: string;
   address: string;
   link: string;
   photo: [string];
+  email: string;
 };
