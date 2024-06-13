@@ -3,7 +3,7 @@ import { museumInfoProps } from "../../types/museumInfoProps";
 
 export default function handleClearInputs(setter: Dispatch<SetStateAction<museumInfoProps>>) {
   setter({
-    urkTitle: "",
+    ukrTitle: "",
     ukrWorkingHours: "",
     ukrAddress: "",
     engTitle: "",

@@ -1,5 +1,5 @@
 export type museumInfoProps = {
-  urkTitle: string;
+  ukrTitle: string;
   ukrWorkingHours: string;
   ukrAddress: string;
   engTitle: string;

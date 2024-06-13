@@ -42,7 +42,7 @@ function AddMuseum() {
   const [images, setImages] = useState<File[]>([]);
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
-    urkTitle: "",
+    ukrTitle: "",
     ukrWorkingHours: "",
     ukrAddress: "",
     engTitle: "",
@@ -76,9 +76,9 @@ function AddMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.urkTitle}
+                value={museumInfo.ukrTitle}
                 required
-                name='urkTitle'
+                name='ukrTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />

@@ -53,7 +53,7 @@ function EditMuseum() {
   );
 
   const [museumInfo, setMuseumInfo] = useState<museumInfoProps>({
-    urkTitle: "",
+    ukrTitle: "",
     ukrWorkingHours: "",
     ukrAddress: "",
     engTitle: "",
@@ -90,7 +90,7 @@ function EditMuseum() {
 
         if (res.status !== 200) throw new Error("Виникла помилка при завантажені даних");
         setMuseumInfo({
-          urkTitle: res.data.ukrainian?.title,
+          ukrTitle: res.data.ukrainian?.title,
           ukrWorkingHours: res.data.ukrainian.workingHours,
           ukrAddress: res.data.ukrainian.address,
           engTitle: res.data.english.title,
@@ -154,9 +154,9 @@ function EditMuseum() {
             <FormElementWrapper>
               <InputLbl>Назва музею (українською) *</InputLbl>
               <InputTitle
-                value={museumInfo.urkTitle}
+                value={museumInfo.ukrTitle}
                 required
-                name='urkMuseumTitle'
+                name='ukrTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -166,7 +166,7 @@ function EditMuseum() {
               <InputLbl>Години роботи (українською) *</InputLbl>
               <InputTitle
                 value={museumInfo.ukrWorkingHours}
-                name='UkrWorkingHr'
+                name='ukrWorkingHours'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -177,7 +177,7 @@ function EditMuseum() {
               <InputTitle
                 value={museumInfo.ukrAddress}
                 required
-                name='UkrAddress'
+                name='ukrAddress'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -190,7 +190,7 @@ function EditMuseum() {
               <InputTitle
                 value={museumInfo.engTitle}
                 required
-                name='EnMuseumTitle'
+                name='engTitle'
                 fullWidth
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
               />
@@ -200,7 +200,7 @@ function EditMuseum() {
               <InputLbl>Години роботи (англійською) *</InputLbl>
               <InputTitle
                 value={museumInfo.engWorkingHours}
-                name='EnWorkingHr'
+                name='engWorkingHours'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
               />
@@ -212,7 +212,7 @@ function EditMuseum() {
                 value={museumInfo.engAddress}
                 required
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
-                name='EnAddress'
+                name='engAddress'
                 fullWidth
               />
             </FormElementWrapper>
