@@ -14,11 +14,12 @@ import Slide from "./SlideItem/Slide";
 export type MuseumInfo = {
   _id: string;
   title: string;
-  workingDays: string;
+  workingHours: string;
   address: string;
   link: string;
   phone: string;
   photo: string[];
+  email: string;
 };
 
 function Museums() {

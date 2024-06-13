@@ -166,7 +166,6 @@ function EditMuseum() {
               <InputLbl>Години роботи (українською) *</InputLbl>
               <InputTitle
                 value={museumInfo.ukrWorkingHours}
-                required
                 name='UkrWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
@@ -201,7 +200,6 @@ function EditMuseum() {
               <InputLbl>Години роботи (англійською) *</InputLbl>
               <InputTitle
                 value={museumInfo.engWorkingHours}
-                required
                 name='EnWorkingHr'
                 onChange={(e) => handleChangeInput(e, setMuseumInfo)}
                 fullWidth
