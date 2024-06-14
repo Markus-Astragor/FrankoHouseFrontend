@@ -75,7 +75,11 @@ export default function AdminPanel() {
             </Link>
           </LinkBox>
 
-          <BurgerIcon isOpen={isOpen} onOpen={handleOpenBurger} iconColor='black' />
+          <BurgerIcon
+            isOpen={isOpen}
+            onOpen={handleOpenBurger}
+            iconColor={`${isOpen ? "black" : "white"}`}
+          />
           <BurgerMenu isOpen={isOpen} onLinkClick={handleOpenBurger}>
             <BurgerLink onClick={handleClickOnLink} to='create-post'>
               Створити пост

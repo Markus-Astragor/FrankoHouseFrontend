@@ -65,6 +65,9 @@ function CreatePost() {
     sendRequest(images, "POST", postInfo, "photos");
     handleClearInputs(setPostInfo);
     handleClearImages(setImages, setImagesPreview);
+    if (fileRef.current) {
+      fileRef.current.value = "";
+    }
   }
 
   useEffect(() => {

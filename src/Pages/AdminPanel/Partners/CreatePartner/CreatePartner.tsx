@@ -99,6 +99,9 @@ export default function CreatePartner() {
     setImageError("");
     setLinkPartnerError("");
     setNamePartnerError("");
+    if (fileRef.current) {
+      fileRef.current.value = "";
+    }
 
     if (namePartnerOrganization.length > 100) {
       setNamePartnerError("Занадто довга назва організації");

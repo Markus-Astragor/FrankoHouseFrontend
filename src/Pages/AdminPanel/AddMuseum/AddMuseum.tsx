@@ -65,6 +65,9 @@ function AddMuseum() {
     sendRequest(images, "POST", museumInfo, "photo");
     handleClearInputs(setMuseumInfo);
     handleClearImages(setImages, setImagesPreview);
+    if (fileRef.current) {
+      fileRef.current.value = "";
+    }
   }
 
   return (
