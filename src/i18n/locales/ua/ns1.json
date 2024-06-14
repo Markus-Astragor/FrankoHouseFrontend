@@ -2,7 +2,7 @@
   "description": {
     "navbar": {
       "link1": "Про нас",
-      "link2": "Проекти",
+      "link2": "Проєкти",
       "link3": "Партнери",
       "link4": "Контакти",
       "link5": "Наша місія"
@@ -64,7 +64,7 @@
     "footer": {
       "links": {
         "about-us": "Про нас",
-        "projects": "Проекти",
+        "projects": "Проєкти",
         "contacts": "Контакти",
         "museums": "Музеї",
         "partners": "Партнери",
