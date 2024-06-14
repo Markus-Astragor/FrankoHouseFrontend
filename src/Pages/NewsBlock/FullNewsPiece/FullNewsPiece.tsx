@@ -15,6 +15,7 @@ import {
   ImageInSlider,
   ImageInSliderContainer,
   DescriptionBlock,
+  TimeStamp,
 } from "./FullNewsPieceStyles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -78,21 +79,8 @@ type FullNewsPieceProps = {
 
 function FullNewsPiece({ id }: FullNewsPieceProps) {
   const { i18n } = useTranslation();
-
   const [neededPost, setNeddedPost] = useState<NewsData>();
   const [loader, setLoader] = useState<boolean>(false);
-
-  useEffect(() => {
-    setLoader(true);
-    axios
-      .get(`${URLS["BASE-URL"]}/getPosts/${id}?lang=${i18n.language}`)
-      .then((res) => {
-        console.log(res.data);
-        setNeddedPost(res.data);
-      })
-      .catch((err) => console.log("err", err))
-      .finally(() => setLoader(false));
-  }, [i18n.language]);
 
   const settings = {
     dots: false,
@@ -101,6 +89,26 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow className='slick-next' style={{}} onClick={() => {}} />,
     prevArrow: <SamplePrevArrow className='slick-prev' style={{}} onClick={() => {}} />,
+  };
+
+  const formatDate = (dateFromUser: string) => {
+    let timeLocaleString: string = "uk-UA";
+
+    if (i18n.language === "ua") {
+      timeLocaleString = "uk-UA";
+    } else if (i18n.language === "en") {
+      timeLocaleString = "en-GB";
+    }
+
+    const date = new Date(dateFromUser);
+    const formatedDate = date.toLocaleDateString(timeLocaleString, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    console.log("i18n.language", i18n.language);
+
+    return formatedDate;
   };
 
   useEffect(() => {
@@ -124,6 +132,18 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
       }, 0);
     }
   }, [neededPost]);
+
+  useEffect(() => {
+    setLoader(true);
+    axios
+      .get(`${URLS["BASE-URL"]}/getPosts/${id}?lang=${i18n.language}`)
+      .then((res) => {
+        console.log(res.data);
+        setNeddedPost(res.data);
+      })
+      .catch((err) => console.log("err", err))
+      .finally(() => setLoader(false));
+  }, [i18n.language]);
 
   return (
     <div>
@@ -153,6 +173,9 @@ function FullNewsPiece({ id }: FullNewsPieceProps) {
                 <br />
                 {neededPost?.description}
               </Description>
+              <TimeStamp>
+                {neededPost?.timestamp ? formatDate(neededPost?.timestamp) : neededPost?.timestamp}
+              </TimeStamp>
             </DescriptionBlock>
           </MainBlock>
         </div>

@@ -73,6 +73,8 @@ export const DescriptionBlock = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Description = styled.p`
@@ -92,4 +94,10 @@ export const ImageInSlider = styled.img`
   @media (max-width: 1024px) {
     height: 200px;
   }
+`;
+
+export const TimeStamp = styled.div`
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: black;
 `;
