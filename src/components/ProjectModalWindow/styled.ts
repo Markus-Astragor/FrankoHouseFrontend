@@ -15,7 +15,7 @@ export const ProjectModalBlock = styled.div`
   height: auto;
   background-color: white;
   margin: 0 auto;
-  padding: 2.92vh 0;
+  padding: 2.92vh 2.08vw;
   z-index: 8;
   border-radius: 1.25rem;
   top: 27%;

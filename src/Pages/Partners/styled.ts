@@ -6,7 +6,7 @@ export const PartnerBlock = styled.div`
   width: 100%;
   scrollbar-width: none;
   overflow-y: scroll;
-  padding-bottom: 3vh;
+  padding: 7.81vh 0;
   background: url(${backgroundFranko}) no-repeat center center fixed;
   background-size: cover;
   background-position-x: center;
@@ -17,7 +17,6 @@ export const PartnerBlock = styled.div`
 `;
 
 export const BlockForTitle = styled.div`
-  padding-top: 9.76vh;
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -39,46 +38,7 @@ export const PartnersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* row-gap: 9.76vh; */
   gap: 6.94vw;
-
-  /* @media (min-width: 300px) and (max-width: 600px) {
-    width: 85%;
-    gap: 62px;
-  }
-
-  @media (min-width: 601px) and (max-width: 700px) {
-    width: 70%;
-    gap: 100px;
-  }
-
-  @media (min-width: 701px) and (max-width: 900px) {
-    column-gap: 172px;
-    row-gap: 100px;
-  }
-
-  @media (min-width: 901px) and (max-width: 1100px) {
-    width: 100%;
-  }
-
-  @media (min-width: 1101px) and (max-width: 1300px) {
-    width: 80%;
-    gap: 65px;
-  }
-
-  @media (min-width: 1301px) and (max-width: 1500px) {
-    width: 80%;
-    gap: 108px;
-  }
-  @media (min-width: 1501px) and (max-width: 1700px) {
-    width: 90%;
-    gap: 130px;
-  }
-
-  @media (min-width: 1701px) and (max-width: 1900px) {
-    width: 85%;
-    gap: 140px;
-  } */
 `;
 
 export const ImageBlock = styled.div`
