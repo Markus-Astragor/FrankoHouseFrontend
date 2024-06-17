@@ -15,6 +15,7 @@ import NewsBoardRoutes from "./Pages/NewsBlock/NewsBoard/NewsBoardRoutes";
 import CreatePartner from "./Pages/AdminPanel/Partners/CreatePartner/CreatePartner";
 import GetPartners from "./Pages/AdminPanel/Partners/GetPartners/GetPartners";
 import EditMuseum from "./Pages/AdminPanel/EditMuseum/EditMuseum";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -22,9 +23,11 @@ function App() {
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route element={<MainPage />} path='/' />
-          <Route element={<NewsBoardRoutes />} path='/*' />
-          <Route element={<AdminPanel />} path='admin'>
+          <Route path='/*' element={<Navigate to='/404' replace />} />
+
+          <Route path='/' element={<MainPage />} />
+          <Route path='/*' element={<NewsBoardRoutes />} />
+          <Route path='admin' element={<AdminPanel />}>
             <Route index element={<Navigate to='view-posts' replace />} />
             <Route path='view-posts' element={<GetPosts />} />
             <Route path='view-museums' element={<GetMuseums />} />
@@ -35,7 +38,8 @@ function App() {
             <Route path='view-partners' element={<GetPartners />} />
             <Route path='add-museum' element={<AddMuseum />} />
           </Route>
-          <Route element={<AdminAuth />} path='/admin/auth' />
+          <Route path='/admin/auth' element={<AdminAuth />} />
+          <Route path='/404' element={<PageNotFound />} />
         </Routes>
       </Router>
     </div>
