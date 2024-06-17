@@ -21,12 +21,16 @@ export const NewsContainer = styled.div`
   box-sizing: border-box;
   overflow-x: hidden;
 
-  @media (min-width: 370px) and (max-width: 450px) {
+  @media (max-width: 450px) {
     width: 85%;
   }
 
   @media (min-width: 450px) and (max-width: 1600px) {
     width: 92%;
+  }
+
+  @media (min-width: 1400px) and (max-width: 1600px) {
+    width: 95%;
   }
 `;
 

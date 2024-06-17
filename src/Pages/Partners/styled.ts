@@ -10,14 +10,18 @@ export const PartnerBlock = styled.div`
   background: url(${backgroundFranko}) no-repeat center center fixed;
   background-size: cover;
   background-position-x: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 9.76vh;
+  box-sizing: border-box;
 `;
 
 export const BlockForTitle = styled.div`
+  padding-top: 9.76vh;
+  box-sizing: border-box;
   width: 100%;
-  height: 150px;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 export const Title = styled.h2`
@@ -35,9 +39,10 @@ export const PartnersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 100px;
+  /* row-gap: 9.76vh; */
+  gap: 6.94vw;
 
-  @media (min-width: 300px) and (max-width: 600px) {
+  /* @media (min-width: 300px) and (max-width: 600px) {
     width: 85%;
     gap: 62px;
   }
@@ -73,7 +78,7 @@ export const PartnersContainer = styled.div`
   @media (min-width: 1701px) and (max-width: 1900px) {
     width: 85%;
     gap: 140px;
-  }
+  } */
 `;
 
 export const ImageBlock = styled.div`

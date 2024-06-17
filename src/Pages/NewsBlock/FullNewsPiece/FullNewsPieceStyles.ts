@@ -20,6 +20,8 @@ export const MainBlock = styled.div`
 export const TitleAndSlider = styled.div`
   display: flex;
   height: auto;
+  padding-right: 1.38vw;
+  box-sizing: border-box;
 
   @media (max-width: 1200px) {
     flex-direction: column;
@@ -27,7 +29,7 @@ export const TitleAndSlider = styled.div`
 `;
 
 export const SliderBlock = styled.div`
-  width: 30%;
+  width: 40%;
   margin: 0 auto;
   order: 1;
 
@@ -55,7 +57,7 @@ export const SliderBlock = styled.div`
 `;
 
 export const Title = styled.h3`
-  width: 60%;
+  width: 50%;
   text-align: center;
   font-size: 30px;
   font-weight: bold;
@@ -81,6 +83,9 @@ export const Description = styled.p`
   width: 90%;
   padding: 3.9vh 0;
   font-size: 23px;
+  @media screen and (max-width: 1500px) {
+    width: 87%;
+  }
 `;
 
 export const ImageInSliderContainer = styled.div`
