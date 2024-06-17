@@ -81,7 +81,7 @@ function CreatePost() {
         <FlexItems>
           <FlexItem>
             <FormElementWrapper>
-              <InputLbl>Заголовок (українською)</InputLbl>
+              <InputLbl>Заголовок (українською) *</InputLbl>
               <InputTitle
                 required
                 name='ukrTitle'
@@ -92,7 +92,7 @@ function CreatePost() {
             </FormElementWrapper>
 
             <FormElementWrapper>
-              <InputLbl>Короткий опис (українською)</InputLbl>
+              <InputLbl>Короткий опис (українською) *</InputLbl>
               <TextArea
                 value={postInfo.ukrShortDescription}
                 onChange={(e) => handleChangeInput(e, setPostInfo)}
@@ -101,7 +101,7 @@ function CreatePost() {
             </FormElementWrapper>
 
             <FormElementWrapper>
-              <InputLbl>Повний опис (українською)</InputLbl>
+              <InputLbl>Повний опис (українською) *</InputLbl>
               <TextArea
                 name='ukrDescription'
                 value={postInfo.ukrDescription}
@@ -112,7 +112,7 @@ function CreatePost() {
 
           <FlexItem>
             <FormElementWrapper>
-              <InputLbl>Заголовок (англійською)</InputLbl>
+              <InputLbl>Заголовок (англійською) *</InputLbl>
               <InputTitle
                 required
                 name='engTitle'
@@ -122,7 +122,7 @@ function CreatePost() {
               />
             </FormElementWrapper>
             <FormElementWrapper>
-              <InputLbl>Короткий опис (англійською)</InputLbl>
+              <InputLbl>Короткий опис (англійською) *</InputLbl>
               <TextArea
                 name='engShortDescription'
                 value={postInfo.engShortDescription}
@@ -131,7 +131,7 @@ function CreatePost() {
             </FormElementWrapper>
 
             <FormElementWrapper>
-              <InputLbl>Повний опис (англійською)</InputLbl>
+              <InputLbl>Повний опис (англійською) *</InputLbl>
               <TextArea
                 name='engDescription'
                 value={postInfo.engDescription}
