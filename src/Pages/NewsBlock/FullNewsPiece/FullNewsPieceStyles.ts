@@ -11,10 +11,9 @@ export const LoaderBlock = styled.div`
 export const MainBlock = styled.div`
   width: 100%;
   height: auto;
-  @media (max-height: 800px) {
-    height: 70vh;
-    overflow-y: scroll;
-  }
+  max-height: 70vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
 `;
 
 export const TitleAndSlider = styled.div`
@@ -28,7 +27,7 @@ export const TitleAndSlider = styled.div`
 `;
 
 export const SliderBlock = styled.div`
-  width: 50%;
+  width: 45%;
   order: 1;
 
   @media (max-width: 1200px) {
@@ -61,10 +60,8 @@ export const DescriptionBlock = styled.div`
 `;
 
 export const Description = styled.p`
-  max-height: 20vh;
   padding: 3.9vh 0;
   font-size: 23px;
-  overflow-y: scroll;
 `;
 
 export const ImageInSliderContainer = styled.div`
