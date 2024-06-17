@@ -154,7 +154,7 @@ export default function CreatePartner() {
         <CenterBox>
           <FlexItem>
             <FormElementWrapper>
-              <InputLbl>Ім&apos;я партнерської організації</InputLbl>
+              <InputLbl>Ім&apos;я партнерської організації *</InputLbl>
               <InputTitle
                 required
                 value={namePartnerOrganization}
@@ -168,7 +168,7 @@ export default function CreatePartner() {
             </ErrorParagraphContainer>
 
             <FormElementWrapper>
-              <InputLbl>Посилання на сайт партнера</InputLbl>
+              <InputLbl>Посилання на сайт партнера *</InputLbl>
               <InputTitle required value={linkPartner} onChange={handleLinkPartner} fullWidth />
             </FormElementWrapper>
 
