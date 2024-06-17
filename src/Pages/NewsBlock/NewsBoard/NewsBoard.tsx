@@ -33,7 +33,6 @@ function NewsBoard() {
 
   const handleCloseModalWindow = () => {
     const modalWindow = document.getElementById("modal-window");
-    console.log("modalWindow", modalWindow);
 
     if (modalWindow) {
       modalWindow.style.top = "250%";

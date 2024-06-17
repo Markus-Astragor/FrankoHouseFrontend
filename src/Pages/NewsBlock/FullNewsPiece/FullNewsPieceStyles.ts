@@ -20,39 +20,20 @@ export const MainBlock = styled.div`
 export const TitleAndSlider = styled.div`
   display: flex;
   height: auto;
-  padding-right: 1.38vw;
-  box-sizing: border-box;
 
   @media (max-width: 1200px) {
     flex-direction: column;
+    align-items: center;
   }
 `;
 
 export const SliderBlock = styled.div`
-  width: 40%;
-  margin: 0 auto;
+  width: 50%;
   order: 1;
 
   @media (max-width: 1200px) {
-    width: 90%;
+    width: 75%;
     order: 2;
-  }
-
-  @media (min-width: 601px) and (max-width: 1024px) {
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1400px) {
-    width: 43%;
-    margin: 0 auto;
-    padding-left: 40px;
-  }
-
-  @media (min-width: 1401px) and (max-width: 1800px) {
-    width: 40%;
-    margin: 0 auto;
-    padding-left: 40px;
   }
 `;
 
@@ -74,18 +55,16 @@ export const Title = styled.h3`
 export const DescriptionBlock = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
 `;
 
 export const Description = styled.p`
-  width: 90%;
+  max-height: 20vh;
   padding: 3.9vh 0;
   font-size: 23px;
-  @media screen and (max-width: 1500px) {
-    width: 87%;
-  }
+  overflow-y: scroll;
 `;
 
 export const ImageInSliderContainer = styled.div`
