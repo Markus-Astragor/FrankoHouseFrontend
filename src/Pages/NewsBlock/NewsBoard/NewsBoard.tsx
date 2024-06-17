@@ -84,11 +84,19 @@ function NewsBoard() {
     autoplaySpeed: 2000,
     responsive: [
       {
+        breakpoint: 1780,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerPadding: "-5px",
+        },
+      },
+      {
         breakpoint: 1280,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "150px",
+          centerPadding: "0",
         },
       },
       {
@@ -96,7 +104,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "60px",
+          centerPadding: "0",
         },
       },
       {
@@ -104,7 +112,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "140px",
+          centerPadding: "-6px",
         },
       },
       {
@@ -112,7 +120,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "80px",
+          centerPadding: "-6px",
         },
       },
       {
@@ -120,7 +128,7 @@ function NewsBoard() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerPadding: "40px",
+          centerPadding: "-6px",
         },
       },
       {

@@ -10,7 +10,7 @@ type NewsPieceBlockProps = {
 };
 
 function NewsPieceBlock({ image, title, id, setSelectedNews, setShow }: NewsPieceBlockProps) {
-  const words: string = title.split(" ").slice(0, 6).join(" ");
+  const words: string = title.split(" ").slice(0, 3).join(" ");
   const newTitle: string = title.split(" ").length > 6 ? words + "..." : words;
 
   return (
