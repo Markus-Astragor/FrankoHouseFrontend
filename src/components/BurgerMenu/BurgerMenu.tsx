@@ -9,6 +9,8 @@ import {
   BugerLogoContainer,
   BurgerMenuLinks,
   BurgerMenuLink,
+  LanguageSwitcher,
+  LanguageButton,
 } from "./BurgerMenuStyles";
 
 /* Icons & images*/
@@ -20,19 +22,9 @@ interface BurgerMenuProps {
 }
 
 function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   function handleMenuItemClick(id: string) {
-    // const element = document.getElementById(id);
-
-    // if (element) {
-    //   element.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "end",
-    //     inline: "nearest",
-    //   });
-    // }
-
     const element = document.getElementById(id);
 
     const elementPosition = element && element?.getBoundingClientRect().top + window.scrollY;
@@ -44,6 +36,12 @@ function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
         behavior: "smooth",
       });
     }
+  }
+
+  function changeLanguage(language: string) {
+    localStorage.setItem("language", language);
+    i18n.changeLanguage(language);
+    document.documentElement.lang = language;
   }
 
   return (
@@ -97,6 +95,14 @@ function BurgerMenu({ isOpen, onLinkClick }: BurgerMenuProps) {
             {t("ns1.description.navbar.link5")}
           </BurgerMenuLink>
         </BurgerMenuLinks>
+        <LanguageSwitcher>
+          <LanguageButton onClick={() => changeLanguage("ua")} active={i18n.language === "ua"}>
+            Українська
+          </LanguageButton>
+          <LanguageButton onClick={() => changeLanguage("en")} active={i18n.language === "en"}>
+            Англійська
+          </LanguageButton>
+        </LanguageSwitcher>
       </BurgerContainer>
     </BurgerMenuStyled>
   );
