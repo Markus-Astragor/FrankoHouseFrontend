@@ -36,7 +36,7 @@ export const BurgerMenuLinks = styled.ul`
   display: flex;
   flex-direction: column;
   row-gap: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 `;
 export const BurgerMenuLink = styled.a`
   text-decoration: none;
@@ -47,5 +47,25 @@ export const BurgerMenuLink = styled.a`
   cursor: pointer;
   &:hover {
     transform: translateX(10px);
+  }
+`;
+
+export const LanguageSwitcher = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const LanguageButton = styled.button<{ active?: boolean }>`
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  background-color: ${(props) => (props.active ? "#000" : "transparent")};
+  color: ${(props) => (props.active ? "#fff" : "#000")};
+
+  &:hover {
+    background-color: #000;
+    color: #fff;
   }
 `;

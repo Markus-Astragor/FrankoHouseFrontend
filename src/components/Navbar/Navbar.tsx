@@ -45,6 +45,7 @@ function Navbar() {
   useEffect(() => {
     changeLanguage(i18n.language);
   }, []);
+
   return (
     <NavbarStyled>
       <NavbarContainer>
