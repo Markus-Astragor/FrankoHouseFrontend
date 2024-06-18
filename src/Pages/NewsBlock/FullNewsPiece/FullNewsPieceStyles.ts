@@ -42,7 +42,7 @@ export const Title = styled.h3`
   font-size: 30px;
   font-weight: bold;
   letter-spacing: -1.5%;
-  margin: 20px 0px;
+  margin: 20px;
   order: 2;
 
   @media (max-width: 1200px) {
