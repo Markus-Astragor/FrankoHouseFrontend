@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import LogoSrc from "../../assets/header-imgs/logo.png";
 import {
   NavbarStyled,
@@ -9,6 +9,7 @@ import {
   Menu,
   MenuItem,
   SwitchLanguage,
+  SwitchLanguageItem,
 } from "./NavbarStyles";
 import BurgerIcon from "../BurgerIcon/BurgerIcon";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
@@ -18,6 +19,8 @@ function Navbar() {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const { t, i18n } = useTranslation();
+
   function handleOverlayClick() {
     setIsOpen(false);
   }
@@ -25,8 +28,6 @@ function Navbar() {
   function handleOpenBurger() {
     setIsOpen((prev) => !prev);
   }
-
-  const { t, i18n } = useTranslation();
 
   function changeLanguage(lan: string) {
     localStorage.setItem("language", lan);
@@ -69,8 +70,18 @@ function Navbar() {
               {t("ns1.description.navbar.link5")}
             </MenuItem>
             <SwitchLanguage onClick={switchLanguage} ref={switcher}>
-              <span onClick={() => changeLanguage("ua")}>UA</span>|
-              <span onClick={() => changeLanguage("en")}>EN</span>
+              <SwitchLanguageItem
+                active={i18n.language === "ua"}
+                onClick={() => changeLanguage("ua")}
+              >
+                UA
+              </SwitchLanguageItem>
+              <SwitchLanguageItem
+                active={i18n.language === "en"}
+                onClick={() => changeLanguage("en")}
+              >
+                EN
+              </SwitchLanguageItem>
             </SwitchLanguage>
           </Menu>
         </FlexContainer>
