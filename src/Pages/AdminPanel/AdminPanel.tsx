@@ -99,6 +99,9 @@ export default function AdminPanel() {
             <BurgerLink onClick={handleClickOnLink} to='view-museums'>
               Переглянути музеї
             </BurgerLink>
+            <BurgerLink onClick={handleClickOnLink} to='/'>
+              Вийти
+            </BurgerLink>
           </BurgerMenu>
         </NavbarBox>
         <Overlay onClick={handleOverlayClick} show={isOpen} />
