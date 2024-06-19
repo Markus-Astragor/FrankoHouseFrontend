@@ -38,12 +38,12 @@ export const ErrorMessage = styled.div`
 `;
 
 export const ErrorImage = styled.img`
-  width: 400px;
+  width: 600px;
   height: auto;
   margin-bottom: 24px;
 
   @media (max-width: 450px) {
-    width: 300px;
+    width: 400px;
   }
 `;
 
