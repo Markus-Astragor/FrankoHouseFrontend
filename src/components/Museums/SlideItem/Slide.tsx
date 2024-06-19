@@ -34,7 +34,11 @@ function Slide({ data }: { data: MuseumInfo }) {
               </BackSiteLink>
             </BackBoldText>
           )}
-          {data.email && <BackBoldText>Електронна-адреса: {data.email}</BackBoldText>}
+          {data.email && (
+            <BackBoldText>
+              {t("ns1.description.museumsFranko.card-info.email")} {data.email}
+            </BackBoldText>
+          )}
           {data.phone && (
             <BackBoldText>
               {t("ns1.description.museumsFranko.card-info.phone")} {data.phone}
