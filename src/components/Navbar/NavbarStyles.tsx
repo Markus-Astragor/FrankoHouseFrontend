@@ -92,6 +92,14 @@ export const MenuItem = styled.a`
 
 export const SwitchLanguage = styled.div`
   cursor: pointer;
+  display: flex;
+  gap: 5px;
+`;
+
+export const SwitchLanguageItem = styled.p<{ active: boolean }>`
+  border-bottom: ${(props) => (props.active ? "1px solid #000" : "0px")};
+  border-width: 2px;
+  border-radius: 4px;
 `;
 
 export const Overlay = styled.div<{ show: boolean }>`
